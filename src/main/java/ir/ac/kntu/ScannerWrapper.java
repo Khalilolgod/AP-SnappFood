@@ -18,6 +18,10 @@ public class ScannerWrapper {
 	public String next() {
 		return scanner.next();
 	}
+
+	public String nextLine() {
+		return scanner.nextLine();
+	}
 	
 	public Double nextDouble() {
 		return scanner.nextDouble();
