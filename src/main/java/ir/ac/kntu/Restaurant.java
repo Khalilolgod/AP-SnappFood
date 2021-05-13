@@ -18,7 +18,7 @@ public class Restaurant {
 
     public Restaurant(String name) {
         this.name = name;
-        Shift shift = new Shift(LocalTime.of(0,12) , LocalTime.of(5,00) );
+        Shift shift = new Shift(LocalTime.of(0,12) , LocalTime.of(20,00) );
         ArrayList<Shift> shifts =  new ArrayList<Shift>();
         shifts.add(shift);
         WorkDay workDay1 = new WorkDay(DayOfWeek.THURSDAY,shifts);
