@@ -15,6 +15,11 @@ public abstract class Menu {
         this.file = new File(this.filePath);
     }
 
+    public Menu() {
+        this.filePath = null;
+        this.file = null;
+    }
+
     public void showMenu(){
         try {
             Scanner myReader = new Scanner(this.file);

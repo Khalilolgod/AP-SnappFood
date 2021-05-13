@@ -16,8 +16,7 @@ public class OperatorMenu extends Menu {
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice){
             case "a":
-                System.out.println("ok");
-                agency.takeOrder();
+                agency.getChooseRestaurant().execute(agency);
                 return true;
             case "b":
                 System.out.println("fuck you");

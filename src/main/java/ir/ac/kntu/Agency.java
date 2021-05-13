@@ -1,8 +1,6 @@
 package ir.ac.kntu;
 
 import ir.ac.kntu.services.*;
-import ir.ac.kntu.time.*;
-import ir.ac.kntu.delivery.*;
 
 import java.util.ArrayList;
 
@@ -11,10 +9,13 @@ public class Agency {
     private ArrayList <Restaurant> restaurants;
     private Operator operator;
 
+    private ChooseRestaurant chooseRestaurant;
+
     Agency()
     {
         this.setOperator(new Operator("admin" , "1234"));
         this.restaurants = new ArrayList<>();
+        this.chooseRestaurant = new ChooseRestaurant();
     }
 
     public void operatorlogin(){
@@ -26,21 +27,15 @@ public class Agency {
         operator.getOperatorMenu().execute(this);
     }
 
-    public void takeOrder(){
-        showActiveRestaurants();
-        int choice = ScannerWrapper.getInstance().nextInt();
-        //restaurants.get(choice - 1).getFoodMenu().showFoods();
-    }
 
-    void showActiveRestaurants(){
-        int i= 1;
+    public  ArrayList <Restaurant> activeRestaurants(){
+        ArrayList <Restaurant> activeOnes = new ArrayList<>();
         for(Restaurant r :  getRestaurants()){
-            //Todo different strategies
             if(r.isActive()){
-                System.out.println(i +". " + r);
-                i++;
+                activeOnes.add(r);
             }
         }
+        return activeOnes;
     }
 
     public ArrayList<Restaurant> getRestaurants() {
@@ -57,5 +52,13 @@ public class Agency {
 
     public void setOperator(Operator operator) {
         this.operator = operator;
+    }
+
+    public ChooseRestaurant getChooseRestaurant() {
+        return chooseRestaurant;
+    }
+
+    public void setChooseRestaurant(ChooseRestaurant chooseRestaurant) {
+        this.chooseRestaurant = chooseRestaurant;
     }
 }
