@@ -1,5 +1,7 @@
 package ir.ac.kntu;
 
+import ir.ac.kntu.services.Costumer;
+
 public class OperatorMenu extends Menu {
 
     OperatorMenu(){
@@ -7,24 +9,29 @@ public class OperatorMenu extends Menu {
     }
 
     public void execute(Agency agency){
-        showMenu();
-        inputProcessor(agency);
+        while (true) {
+            showMenu();
+            if(!inputProcessor(agency)){
+                break;
+            }
+        }
     }
 
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
+        System.out.println(choice);
         switch (choice){
             case "a":
-                agency.getChooseRestaurant().execute(agency);
+                Costumer costumer = new Costumer();
+                agency.getChooseRestaurantMenu().execute(agency,costumer);
                 return true;
-            case "b":
-                System.out.println("fuck you");
-                break;
-            default:
-                System.out.println("fuck you");
+            case "e":
+                System.out.println("aight then imma exit");
                 return false;
+            default:
+                System.out.println("Bad input");
+                return true;
         }
-        return false;
     }
 }

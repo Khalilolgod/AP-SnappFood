@@ -1,33 +1,32 @@
 package ir.ac.kntu.services;
 
 import ir.ac.kntu.Agency;
-import ir.ac.kntu.Menu;
 import ir.ac.kntu.ScannerWrapper;
 
 import java.util.ArrayList;
 
-public class ChooseRestaurant extends Menu {
+public class ChooseRestaurantMenu  {
 
     ArrayList<Restaurant> activeRestaurants;
 
-    public void execute(Agency agency){
+    public void execute(Agency agency,Costumer costumer){
         showMenu(agency);
-        inputProcessor(agency);
+        inputProcessor(agency,costumer );
     }
 
     public void showMenu(Agency agency){
         activeRestaurants =  agency.activeRestaurants();
-        int i = 1;
+        char i = 'a';
         for(Restaurant r : activeRestaurants){
-            System.out.println(i+" "+r);
+            System.out.println(i+". "+r);
+            i++;
         }
     }
 
-    @Override
-    public boolean inputProcessor(Agency agency) {
-        int choice = ScannerWrapper.getInstance().nextInt();
-        Restaurant theChosenOne = agency.getRestaurants().get(choice - 1);
-        theChosenOne.getFoodMenu().execute(Agency);
+    public boolean inputProcessor(Agency agency,Costumer costumer) {
+        int choice = ScannerWrapper.getInstance().next()-'a';
+        Restaurant theChosenOne = agency.getRestaurants().get(choice);
+        theChosenOne.getFoodMenu().execute(theChosenOne,costumer);
         return false;
     }
 }

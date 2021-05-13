@@ -11,7 +11,12 @@ public class Food {
     //TODO private ArrayList<Review> reviews;// not sure if its needed tho
 
 
-
+    /**
+     *
+     * @param name name of your food
+     * @param price by Tomans
+     * @param prepTime by minutes
+     */
     public Food(String name, double price, int prepTime) {
         this.setName(name);
         this.setPrice(price);

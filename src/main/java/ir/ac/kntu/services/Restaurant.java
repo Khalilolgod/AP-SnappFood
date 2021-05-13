@@ -14,20 +14,37 @@ public class Restaurant {
     private RestaurantType restaurantType;
     private FoodMenu foodMenu;
     private HashMap <String , Delivery> deliveries;//delivery id , Deliveryguy
-    private HashMap <String , Order> orders;
+    private HashMap <Costumer , Order> orders;
     //private ArrayList <Review> reviews;
     private double rate;
     private Schedule schedule;
 
     public Restaurant(String name) {
         this.name = name;
-        Shift shift = new Shift(LocalTime.of(0,12) , LocalTime.of(20,00) );
+        orders = new HashMap<>();
+        //making random shifts
         ArrayList<Shift> shifts =  new ArrayList<Shift>();
-        shifts.add(shift);
-        WorkDay workDay1 = new WorkDay(DayOfWeek.THURSDAY,shifts);
+        Shift shift1 = new Shift(LocalTime.of(0,00) , LocalTime.of(20,00) );
+        Shift shift2 = new Shift(LocalTime.of(21,0) , LocalTime.of(23,59) );
+        shifts.add(shift1);
+        shifts.add(shift2);
+        //random workdays
         ArrayList <WorkDay> workDays = new ArrayList<WorkDay>();
+        WorkDay workDay1 = new WorkDay(DayOfWeek.THURSDAY,shifts);
         workDays.add(workDay1);
+        //random schedule
         this.schedule = new Schedule(workDays);
+
+        ArrayList <Food> foods = new ArrayList<>();
+        Food food1 = new Food("kabab",1000,30);
+        Food food2 = new Food("morgh",2000,3);
+        Food food3 = new Food("goh",3000,2);
+        foods.add(food1);
+        foods.add(food2);
+        foods.add(food3);
+
+        foodMenu = new FoodMenu(foods);
+
     }
 
     @Override
@@ -82,11 +99,11 @@ public class Restaurant {
         this.deliveries = deliveries;
     }
 
-    public HashMap<String, Order> getOrders() {
+    public HashMap<Costumer, Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(HashMap<String, Order> orders) {
+    public void setOrders(HashMap<Costumer, Order> orders) {
         this.orders = orders;
     }
 

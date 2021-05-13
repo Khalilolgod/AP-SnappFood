@@ -15,8 +15,12 @@ public class ScannerWrapper {
 		return instance;
 	}
 	
-	public String next() {
-		return scanner.next();
+	public char next() {
+		String input = scanner.nextLine().trim();
+		if(input.length() == 1){
+			return input.charAt(0);
+		}
+		return '!';
 	}
 
 	public String nextLine() {

@@ -9,13 +9,13 @@ public class Agency {
     private ArrayList <Restaurant> restaurants;
     private Operator operator;
 
-    private ChooseRestaurant chooseRestaurant;
+    private ChooseRestaurantMenu chooseRestaurantMenu;
 
     Agency()
     {
         this.setOperator(new Operator("admin" , "1234"));
         this.restaurants = new ArrayList<>();
-        this.chooseRestaurant = new ChooseRestaurant();
+        this.chooseRestaurantMenu = new ChooseRestaurantMenu();
     }
 
     public void operatorlogin(){
@@ -25,6 +25,7 @@ public class Agency {
             }
         }
         operator.getOperatorMenu().execute(this);
+        System.out.println("Exit");
     }
 
 
@@ -54,11 +55,11 @@ public class Agency {
         this.operator = operator;
     }
 
-    public ChooseRestaurant getChooseRestaurant() {
-        return chooseRestaurant;
+    public ChooseRestaurantMenu getChooseRestaurantMenu() {
+        return chooseRestaurantMenu;
     }
 
-    public void setChooseRestaurant(ChooseRestaurant chooseRestaurant) {
-        this.chooseRestaurant = chooseRestaurant;
+    public void setChooseRestaurantMenu(ChooseRestaurantMenu chooseRestaurantMenu) {
+        this.chooseRestaurantMenu = chooseRestaurantMenu;
     }
 }
