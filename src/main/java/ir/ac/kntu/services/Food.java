@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.services;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Food {
     private double price;
     private int prepTime;
     private double rate;
-    private ArrayList<Review> reviews;// not sure if its needed tho
+    //TODO private ArrayList<Review> reviews;// not sure if its needed tho
 
 
 
@@ -61,11 +61,13 @@ public class Food {
         this.rate = rate;
     }
 
-    public ArrayList<Review> getReviews() {
+    /*public ArrayList<Review> getReviews() {
         return reviews;
     }
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
     }
+
+     */
 }

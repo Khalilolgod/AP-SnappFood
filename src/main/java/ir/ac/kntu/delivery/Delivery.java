@@ -1,6 +1,9 @@
-package ir.ac.kntu;
+package ir.ac.kntu.delivery;
 
 import java.util.ArrayList;
+import ir.ac.kntu.time.*;
+import ir.ac.kntu.services.*;
+
 
 public class Delivery {
     String id;

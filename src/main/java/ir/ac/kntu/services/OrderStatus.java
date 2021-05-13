@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.services;
 
 public enum OrderStatus {
     PROCESSING,SENDING,DELIVERED;

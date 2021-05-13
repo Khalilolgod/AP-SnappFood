@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.time;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.time;
 
 import java.util.ArrayList;
 

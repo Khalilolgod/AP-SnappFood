@@ -1,4 +1,7 @@
-package ir.ac.kntu;
+package ir.ac.kntu.services;
+
+import ir.ac.kntu.delivery.*;
+import ir.ac.kntu.time.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -12,7 +15,7 @@ public class Restaurant {
     private FoodMenu foodMenu;
     private HashMap <String , Delivery> deliveries;//delivery id , Deliveryguy
     private HashMap <String , Order> orders;
-    private ArrayList <Review> reviews;
+    //private ArrayList <Review> reviews;
     private double rate;
     private Schedule schedule;
 
@@ -34,7 +37,7 @@ public class Restaurant {
                 '}';
     }
 
-    boolean isActive(){
+    public boolean isActive(){
         return getSchedule().isTodayWorkDay();
     }
 
@@ -87,13 +90,16 @@ public class Restaurant {
         this.orders = orders;
     }
 
-    public ArrayList<Review> getReviews() {
+   /*
+   public ArrayList<Review> getReviews() {
         return reviews;
     }
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
     }
+
+    */
 
     public double getRate() {
         return rate;

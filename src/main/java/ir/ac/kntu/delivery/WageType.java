@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.delivery;
 
 public enum WageType {
     HOURLY,ByDELIVERY;

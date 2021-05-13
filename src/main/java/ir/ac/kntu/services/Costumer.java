@@ -1,4 +1,6 @@
-package ir.ac.kntu;
+package ir.ac.kntu.services;
+
+import ir.ac.kntu.ScannerWrapper;
 
 import java.util.Objects;
 

@@ -1,6 +1,11 @@
 package ir.ac.kntu;
 
+import ir.ac.kntu.services.*;
+import ir.ac.kntu.time.*;
+import ir.ac.kntu.delivery.*;
+
 import java.util.ArrayList;
+
 
 public class Agency {
     private ArrayList <Restaurant> restaurants;
@@ -18,13 +23,13 @@ public class Agency {
                 break;
             }
         }
-        operator.operatorMenu.execute(this);
+        operator.getOperatorMenu().execute(this);
     }
 
     public void takeOrder(){
         showActiveRestaurants();
         int choice = ScannerWrapper.getInstance().nextInt();
-        restaurants.get(choice - 1).getFoodMenu().showFoods();
+        //restaurants.get(choice - 1).getFoodMenu().showFoods();
     }
 
     void showActiveRestaurants(){

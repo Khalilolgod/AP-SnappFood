@@ -1,12 +1,10 @@
 package ir.ac.kntu;
 
-import java.util.Scanner;
-
 public class Operator {
 
     private String username;
     private String password;
-    OperatorMenu operatorMenu;
+    private OperatorMenu operatorMenu;
 
     public Operator(String username, String password) {
         this.username = username;
@@ -47,5 +45,13 @@ public class Operator {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public OperatorMenu getOperatorMenu() {
+        return operatorMenu;
+    }
+
+    public void setOperatorMenu(OperatorMenu operatorMenu) {
+        this.operatorMenu = operatorMenu;
     }
 }
