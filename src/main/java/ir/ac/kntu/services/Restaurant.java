@@ -13,8 +13,10 @@ public class Restaurant {
     private String address;//could be a class too
     private RestaurantType restaurantType;
     private FoodMenu foodMenu;
-    private HashMap <String , Delivery> deliveries;//delivery id , Deliveryguy
+    private ArrayList <Delivery> deliveries;//delivery id , Deliveryguy
     private HashMap <Costumer , Order> orders;
+    private ArrayList<Order> deliveredOrders;
+
     //private ArrayList <Review> reviews;
     private double rate;
     private Schedule schedule;
@@ -58,6 +60,24 @@ public class Restaurant {
         return getSchedule().isTodayWorkDay();
     }
 
+    public int availableDelivery(){
+        int i = 0;
+        for (Delivery delivery : deliveries){
+            if(delivery.getActiveOrder() == null){
+                return  i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
+    public void sendOrder(Order order){
+        int index = availableDelivery();
+        if(index != -1){
+            getDeliveries().get(index).setActiveOrder(order);
+            order.setOrderStatus(OrderStatus.SENDING);
+        }
+    }
 
     public String getName() {
         return name;
@@ -91,11 +111,11 @@ public class Restaurant {
         this.foodMenu = foodMenu;
     }
 
-    public HashMap<String, Delivery> getDeliveries() {
+    public ArrayList <Delivery> getDeliveries() {
         return deliveries;
     }
 
-    public void setDeliveries(HashMap<String, Delivery> deliveries) {
+    public void setDeliveries(ArrayList <Delivery> deliveries) {
         this.deliveries = deliveries;
     }
 
