@@ -41,6 +41,7 @@ public class FoodMenu  {
         }
         System.out.println("Total : "+order.getFinalPrice());
         restaurant.getOrders().put(costumer,order);
+        restaurant.processOrder(order);
         return false;
     }
 

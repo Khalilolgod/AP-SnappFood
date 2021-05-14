@@ -30,6 +30,14 @@ public class Delivery {
     }
 
 
+    @Override
+    public String toString() {
+        return "Delivery{" +
+                "id='" + id + '\'' +
+                ", vehicleType=" + vehicleType.name().toLowerCase() +
+                ", wageType=" + wageType.name().toLowerCase() +
+                '}';
+    }
 
     public String getAlphaNumericString(int n) {
         String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

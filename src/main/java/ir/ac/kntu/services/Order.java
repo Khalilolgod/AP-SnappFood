@@ -1,5 +1,7 @@
 package ir.ac.kntu.services;
 
+import ir.ac.kntu.delivery.Delivery;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,6 +12,7 @@ public class Order {
     private double finalPrice;
     private HashMap<Food , Integer> foods;
     private Costumer costumer;
+    private Delivery delivery;
 
     public Order(Costumer costumer){
         this.costumer = costumer;
@@ -94,5 +97,13 @@ public class Order {
 
     public void setCostumer(Costumer costumer) {
         this.costumer = costumer;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 }

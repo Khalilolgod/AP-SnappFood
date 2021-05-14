@@ -71,11 +71,16 @@ public class Restaurant {
         return -1;
     }
 
-    public void sendOrder(Order order){
-        int index = availableDelivery();
-        if(index != -1){
-            getDeliveries().get(index).setActiveOrder(order);
-            order.setOrderStatus(OrderStatus.SENDING);
+    public void processOrder(Order order){
+        if(order.getOrderStatus() == OrderStatus.PROCESSING) {
+            int index = availableDelivery();
+            if (index != -1) {
+                getDeliveries().get(index).setActiveOrder(order);
+                order.setDelivery(getDeliveries().get(index));
+                order.setOrderStatus(OrderStatus.SENDING);
+            }
+        }else if(order.getOrderStatus() == OrderStatus.SENDING){
+            //TODO
         }
     }
 
