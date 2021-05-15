@@ -12,16 +12,14 @@ public class Delivery {
     private double paycheck;
     // i guess rating Delivery is quite absurd so fuck it
     private Order activeOrder;
-    private Restaurant restaurant1;
-    private Restaurant restaurant2;
+    private ArrayList <Restaurant> restaurants;
     private ArrayList <Order> orderHistory;
     private Schedule schedule;
 
-    public Delivery(VehicleType vehicleType, WageType wageType, Restaurant restaurant1, Restaurant restaurant2, Schedule schedule) {
+    public Delivery(VehicleType vehicleType, WageType wageType, ArrayList <Restaurant> restaurants, Schedule schedule) {
         this.vehicleType = vehicleType;
         this.wageType = wageType;
-        this.restaurant1 = restaurant1;
-        this.restaurant2 = restaurant2;
+        this.restaurants = restaurants;
         this.schedule = schedule;
         this.id = getAlphaNumericString(5);
         this.paycheck = 0.0;
@@ -91,22 +89,6 @@ public class Delivery {
         this.activeOrder = activeOrder;
     }
 
-    public Restaurant getRestaurant1() {
-        return restaurant1;
-    }
-
-    public void setRestaurant1(Restaurant restaurant1) {
-        this.restaurant1 = restaurant1;
-    }
-
-    public Restaurant getRestaurant2() {
-        return restaurant2;
-    }
-
-    public void setRestaurant2(Restaurant restaurant2) {
-        this.restaurant2 = restaurant2;
-    }
-
     public ArrayList<Order> getOrderHistory() {
         return orderHistory;
     }
@@ -121,5 +103,13 @@ public class Delivery {
 
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
+    }
+
+    public ArrayList<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(ArrayList<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 }

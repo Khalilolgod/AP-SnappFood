@@ -3,13 +3,12 @@ package ir.ac.kntu.services;
 import ir.ac.kntu.Agency;
 import ir.ac.kntu.Menu;
 import ir.ac.kntu.ScannerWrapper;
-import ir.ac.kntu.delivery.Delivery;
-import ir.ac.kntu.delivery.VehicleType;
-import ir.ac.kntu.delivery.WageType;
-import ir.ac.kntu.time.Schedule;
+import ir.ac.kntu.delivery.*;
+import ir.ac.kntu.time.*;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class NewDelivery extends Menu {
 
@@ -66,12 +65,52 @@ public class NewDelivery extends Menu {
         System.out.println(i+". Done");
     }
 
-    //TODO write schedule input
+    public LocalTime makeTime(){
+        System.out.println("enter hour (0-23) : ");
+        int hour = ScannerWrapper.getInstance().nextInt();
+        System.out.println("enter minute (0-59) : ");
+        int minute = ScannerWrapper.getInstance().nextInt();
+        LocalTime time =  LocalTime.of(hour,minute);
+        return time;
+    }
 
-    //public Delivery(VehicleType vehicleType, WageType wageType, Restaurant restaurant1, Restaurant restaurant2, Schedule schedule)
+    public Schedule getSchedule(){
+        System.out.println("Number of workdays in a week : ");
+        int daysInWeek = ScannerWrapper.getInstance().next() - '0';
+        int numberOfshifts;
+        int dayOfTheWeek;
+        ArrayList <WorkDay> workDays = new ArrayList<>();
+        for (int i = 0 ; i<daysInWeek ; i++){
+            for (int d = 0 ; d< DayOfWeek.values().length ; d++){
+                System.out.println((char)(d+'a')+". "+DayOfWeek.values()[d].name());
+            }
+            dayOfTheWeek = ScannerWrapper.getInstance().next()-'a';
+            System.out.println("number of shifts : ");
+            numberOfshifts = ScannerWrapper.getInstance().next()-'0';
+            ArrayList <Shift> shifts = new ArrayList<>();
+            for(int s  = 0 ; s < numberOfshifts ; s++){
+                System.out.println("start time");
+                LocalTime start = makeTime();
+                System.out.println("end time");
+                LocalTime end = makeTime();
+                Shift shift = new Shift(start,end);
+                shifts.add(shift);
+
+            }
+            WorkDay workDay = new WorkDay(DayOfWeek.values()[dayOfTheWeek],shifts);
+            workDays.add(workDay);
+        }
+        return new Schedule(workDays);
+    }
 
     @Override
     public boolean inputProcessor(Agency agency) {
+        VehicleType vehicleType = getVehicleType();
+        WageType wageType = getWageType();
+        ArrayList <Restaurant> restaurants = getRestaurants(agency);
+        Schedule schedule = getSchedule();
+        Delivery delivery = new Delivery(vehicleType,wageType,restaurants,schedule);
+        agency.getAllDeliveries().add(delivery);
         return false;
     }
 }
