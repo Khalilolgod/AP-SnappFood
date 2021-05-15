@@ -27,7 +27,7 @@ public class OperatorMenu extends Menu {
                 agency.getChooseRestaurantMenu().execute(agency,costumer);
                 return true;
             case "b":
-
+                agency.getDeliveryMenu().execute(agency);
                 return true;
             case "e":
                 System.out.println("aight then imma exit");

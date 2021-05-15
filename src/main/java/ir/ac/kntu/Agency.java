@@ -69,6 +69,14 @@ public class Agency {
         this.chooseRestaurantMenu = chooseRestaurantMenu;
     }
 
+    public DeliveryMenu getDeliveryMenu() {
+        return deliveryMenu;
+    }
+
+    public void setDeliveryMenu(DeliveryMenu deliveryMenu) {
+        this.deliveryMenu = deliveryMenu;
+    }
+
     public ArrayList<Delivery> getAllDeliveries() {
         return allDeliveries;
     }
