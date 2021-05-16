@@ -14,7 +14,7 @@ public class Restaurant {
     private RestaurantType restaurantType;
     private FoodMenu foodMenu;
     private ArrayList <Delivery> deliveries;//delivery id , Deliveryguy
-    private HashMap <Costumer , Order> orders;
+    private ArrayList <Order> orders;
     private ArrayList<Order> deliveredOrders;
 
     //private ArrayList <Review> reviews;
@@ -23,7 +23,7 @@ public class Restaurant {
 
     public Restaurant(String name) {
         this.name = name;
-        orders = new HashMap<>();
+        orders = new ArrayList<Order>();
         //making random shifts
         ArrayList<Shift> shifts =  new ArrayList<Shift>();
         Shift shift1 = new Shift(LocalTime.of(0,00) , LocalTime.of(20,00) );
@@ -124,11 +124,11 @@ public class Restaurant {
         this.deliveries = deliveries;
     }
 
-    public HashMap<Costumer, Order> getOrders() {
+    public ArrayList<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(HashMap<Costumer, Order> orders) {
+    public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
     }
 
