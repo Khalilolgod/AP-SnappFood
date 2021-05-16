@@ -11,7 +11,10 @@ public class EditRestaurant extends Menu {
     }
 
     public void editName(){
-        System.out.println();
+        System.out.println(restaurant.getName());
+        System.out.println("new name : ");
+        String name = ScannerWrapper.getInstance().nextLine();
+        restaurant.setName(name);
     }
 
     Restaurant selectRestaurant(Agency agency){
