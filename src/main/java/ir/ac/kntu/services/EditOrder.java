@@ -4,8 +4,11 @@ import ir.ac.kntu.*;
 
 public class EditOrder extends Menu {
 
-    public EditOrder(){
+    private Order order;
+
+    public EditOrder(Order order){
         super("EditOrder.txt");
+        this.order = order;
     }
 
     public boolean execute(Restaurant restaurant){
@@ -42,10 +45,13 @@ public class EditOrder extends Menu {
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice){
             case "a":
+                editStatus(order);
                 break;
             case "b":
+                editFinalPrice(order);
                 break;
             case "c":
+                editPrepTime(order);
                 break;
             case "d":
                 break;

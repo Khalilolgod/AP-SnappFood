@@ -23,7 +23,7 @@ public class Order {
         setFinalPrice(0.0);
         setPrepTime(0);
         setFoods(new HashMap<>());
-        this.editOrder = new EditOrder();
+        this.editOrder = new EditOrder(this);
     }
 
     /**
