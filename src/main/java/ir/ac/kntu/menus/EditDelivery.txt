@@ -1,0 +1,12 @@
+**************************************************
+*                                                *
+*                     Edit...                    *
+*                                                *
+*      a. Vehicle Type       b. Wage Type        *
+*                                                *
+*      c. Paycheck           d. Active Order     *
+*                                                *
+*      e. Restaurants        f. Schedule         *
+*                                                *
+*                  g. Exit                       *
+**************************************************

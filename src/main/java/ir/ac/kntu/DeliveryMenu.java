@@ -27,14 +27,16 @@ public class DeliveryMenu extends Menu {
 
     @Override
     public boolean inputProcessor(Agency agency) {
-        int choice = ScannerWrapper.getInstance().next()-'a';
+        String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice)
         {
             case "a":
                 showAllDeliveries(agency);
                 break;
             case "b":
-                editDelivery.execute(agency);
+                showAllDeliveries(agency);
+                int index = ScannerWrapper.getInstance().next()-'a' ;
+                editDelivery.execute(agency,agency.getAllDeliveries().get(index));
                 break;
             case "c":
                 newDelivery.execute(agency);

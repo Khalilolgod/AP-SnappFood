@@ -10,6 +10,19 @@ public class Schedule {
         this.workDays = workDays;
     }
 
+    @Override
+    public String toString() {
+        String result = "";
+        for(WorkDay workDay : workDays){
+            result += workDay.getDay().name();
+            for(Shift shift : workDay.getShifts()){
+                result += (" "+shift);
+            }
+            result+= '\n';
+        }
+        return result;
+    }
+
     public boolean isTodayWorkDay(){
         for(WorkDay workDay : workDays){
             if(workDay.isWorkDay()){

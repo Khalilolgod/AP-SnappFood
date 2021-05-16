@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class WorkDay {
 
@@ -17,6 +18,19 @@ public class WorkDay {
 
     //Todo write a constructor using user input;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WorkDay)) return false;
+        WorkDay workDay = (WorkDay) o;
+        return Objects.equals(getShifts(), workDay.getShifts()) && getDay() == workDay.getDay();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getShifts(), getDay());
+    }
 
     public boolean isWorkDay(){
         DayOfWeek today = LocalDate.now().getDayOfWeek();
