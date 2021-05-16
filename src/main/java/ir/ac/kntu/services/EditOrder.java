@@ -23,7 +23,6 @@ public class EditOrder extends Menu {
         order.setOrderStatus(OrderStatus.values()[choice]);
     }
 
-
     public void editFinalPrice(Order order){
         System.out.println("current Total  : " + order.getFinalPrice());
         System.out.println("new Total : ");
@@ -31,12 +30,18 @@ public class EditOrder extends Menu {
         order.setFinalPrice(finalPrice);
     }
 
+    public void editPrepTime(Order order){
+        System.out.println("current prep time  : " + order.getPrepTime());
+        System.out.println("new prep time : ");
+        int prepTime = ScannerWrapper.getInstance().nextInt();
+        order.setPrepTime(prepTime);
+    }
+
 
     public boolean inputProcessor(Restaurant restaurant) {
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice){
             case "a":
-
                 break;
             case "b":
                 break;
