@@ -36,6 +36,18 @@ public class EditRestaurant extends Menu {
         restaurant.setRestaurantType(RestaurantType.values()[choice]);
     }
 
+    public void showOrders(){
+        char i = 'a';
+        for(Order order : restaurant.getOrders().values()){
+            System.out.println(i + ". " + order);
+            i++;
+        }
+    }
+
+
+
+
+
     Restaurant selectRestaurant(Agency agency){
         char i = 'a';
         for (Restaurant restaurant : agency.getRestaurants()){
