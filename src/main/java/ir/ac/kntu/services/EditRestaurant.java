@@ -55,6 +55,12 @@ public class EditRestaurant extends Menu {
         restaurant.getOrders().remove(choice);
     }
 
+    public void editOrder(Restaurant restaurant){
+        showOrders();
+        int choice = ScannerWrapper.getInstance().next() - 'a';
+        restaurant.getOrders().get(choice).getEditOrder().execute(restaurant);
+    }
+
     public void editOrders(){
         System.out.println("a. Add         b. Remove         c. Edit");
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -66,7 +72,7 @@ public class EditRestaurant extends Menu {
                 removeOrder();
                 break;
             case "c":
-                editOrder();
+                editOrder(restaurant);
                 break;
             default:
                 break;
