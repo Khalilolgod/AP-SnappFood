@@ -10,6 +10,8 @@ public class DeliveryMenu extends Menu {
     
     public DeliveryMenu(){
         super("DeliveryMenu.txt");
+        this.editDelivery = new EditDelivery();
+        this.newDelivery = new NewDelivery();
     }
 
     public boolean execute(Agency agency){
