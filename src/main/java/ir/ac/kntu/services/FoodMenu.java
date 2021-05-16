@@ -40,7 +40,7 @@ public class FoodMenu  {
             choice = ScannerWrapper.getInstance().next()-'a';
         }
         System.out.println("Total : "+order.getFinalPrice());
-        restaurant.getOrders().put(costumer,order);
+        restaurant.getOrders().add(order);
         restaurant.processOrder(order);
         return false;
     }
