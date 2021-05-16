@@ -38,7 +38,7 @@ public class EditRestaurant extends Menu {
 
     public void showOrders(){
         char i = 'a';
-        for(Order order : restaurant.getOrders().values()){
+        for(Order order : restaurant.getOrders()){
             System.out.println(i + ". " + order);
             i++;
         }
@@ -47,6 +47,12 @@ public class EditRestaurant extends Menu {
     public void addOrder(){
         Costumer costumer = new Costumer();//costumer(phone , address)
         restaurant.getFoodMenu().execute(restaurant,costumer);
+    }
+
+    public void removeOrder(){
+        showOrders();
+        int choice = ScannerWrapper.getInstance().next() - 'a';
+        restaurant.getOrders().remove(choice);
     }
 
     public void editOrders(){
