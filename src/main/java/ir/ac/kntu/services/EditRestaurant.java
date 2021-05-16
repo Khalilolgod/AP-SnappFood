@@ -44,6 +44,11 @@ public class EditRestaurant extends Menu {
         }
     }
 
+    public void addOrder(){
+        Costumer costumer = new Costumer();//costumer(phone , address)
+        restaurant.getFoodMenu().execute(restaurant,costumer);
+    }
+
     public void editOrders(){
         System.out.println("a. Add         b. Remove         c. Edit");
         String choice = ScannerWrapper.getInstance().nextLine();
