@@ -17,6 +17,13 @@ public class EditRestaurant extends Menu {
         restaurant.setName(name);
     }
 
+    public void editAddress(){
+        System.out.println(restaurant.getAddress());
+        System.out.println("new address : ");
+        String address = ScannerWrapper.getInstance().nextLine();
+        restaurant.setAddress(address);
+    }
+
     Restaurant selectRestaurant(Agency agency){
         char i = 'a';
         for (Restaurant restaurant : agency.getRestaurants()){
