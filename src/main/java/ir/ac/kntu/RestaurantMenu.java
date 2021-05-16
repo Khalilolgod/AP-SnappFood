@@ -1,18 +1,15 @@
-package ir.ac.kntu.services;
+package ir.ac.kntu;
 
-import ir.ac.kntu.*;
 import ir.ac.kntu.delivery.*;
+import ir.ac.kntu.services.*;
 import ir.ac.kntu.time.*;
-
-import java.time.DayOfWeek;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.ArrayList;
-import java.util.spi.AbstractResourceBundleProvider;
 
 
-public class EditRestaurant extends Menu {
+public class RestaurantMenu extends Menu {
 
-    public EditRestaurant(){
+    public RestaurantMenu(){
         super("RestaurantsMenu.txt");
     }
 
