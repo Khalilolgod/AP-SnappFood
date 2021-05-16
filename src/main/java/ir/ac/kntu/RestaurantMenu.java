@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class RestaurantMenu extends Menu {
 
+    private EditRestaurant editRestaurant;
+
     public RestaurantMenu(){
         super("RestaurantsMenu.txt");
     }
@@ -153,7 +155,7 @@ public class RestaurantMenu extends Menu {
                 showRestaurants(agency);
                 return true;
             case "b":
-                editRestaurant(agency);
+                editRestaurant.execute(agency);
                 return true;
             case "c":
                 newRestaurant(agency);

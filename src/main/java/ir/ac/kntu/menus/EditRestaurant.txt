@@ -1,0 +1,14 @@
+**************************************************
+*                                                *
+*                     Edit...                    *
+*                                                *
+*      a. Name                 b. Address        *
+*                                                *
+*      c. Restaurant Type      d. Orders         *
+*                                                *
+*      e. foodMenu             f. Schedule       *
+*                                                *
+*      g. Deliveries           h. Rate           *
+*                                                *
+*                  g. Exit                       *
+**************************************************
