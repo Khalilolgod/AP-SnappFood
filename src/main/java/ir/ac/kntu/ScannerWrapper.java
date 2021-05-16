@@ -28,11 +28,11 @@ public class ScannerWrapper {
 	}
 	
 	public Double nextDouble() {
-		return scanner.nextDouble();
+		return Double.parseDouble(scanner.nextLine());
 	}
 
 	public Integer nextInt() {
-		return scanner.nextInt();
+		return Integer.parseInt(scanner.nextLine());
 	}
 	
 	public void close() {
