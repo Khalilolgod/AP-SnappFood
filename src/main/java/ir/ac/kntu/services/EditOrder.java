@@ -16,6 +16,25 @@ public class EditOrder extends Menu {
 
 
     public boolean inputProcessor(Restaurant restaurant) {
+        String choice = ScannerWrapper.getInstance().nextLine();
+        switch (choice){
+            case "a":
+
+                break;
+            case "b":
+                break;
+            case "c":
+                break;
+            case "d":
+                break;
+            case "e":
+                break;
+            case "f":
+                break;
+            default:
+                break;
+
+        }
         return true;
     }
 
