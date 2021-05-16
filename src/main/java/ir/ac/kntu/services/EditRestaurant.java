@@ -44,7 +44,24 @@ public class EditRestaurant extends Menu {
         }
     }
 
+    public void editOrders(){
+        System.out.println("a. Add         b. Remove         c. Edit");
+        String choice = ScannerWrapper.getInstance().nextLine();
+        switch (choice){
+            case "a":
+                addOrder();
+                break;
+            case "b":
+                removeOrder();
+                break;
+            case "c":
+                editOrder();
+                break;
+            default:
+                break;
+        }
 
+    }
 
 
 
