@@ -14,6 +14,8 @@ public class Order {
     private Costumer costumer;
     private Delivery delivery;
 
+    private EditOrder editOrder;
+
     public Order(Costumer costumer){
         this.costumer = costumer;
         this.id = getAlphaNumericString(10);
@@ -21,6 +23,7 @@ public class Order {
         setFinalPrice(0.0);
         setPrepTime(0);
         setFoods(new HashMap<>());
+        this.editOrder = new EditOrder();
     }
 
     /**
@@ -105,5 +108,13 @@ public class Order {
 
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
+    }
+
+    public EditOrder getEditOrder() {
+        return editOrder;
+    }
+
+    public void setEditOrder(EditOrder editOrder) {
+        this.editOrder = editOrder;
     }
 }

@@ -28,12 +28,6 @@ public class RestaurantMenu extends Menu {
         }
     }
 
-    private String name;
-    private String address;//could be a class too
-    private RestaurantType restaurantType;
-    private FoodMenu foodMenu;
-    private ArrayList<Delivery> deliveries;
-
     public String getRestaurantName(){
         System.out.println("Restaurant name : ");
         return ScannerWrapper.getInstance().nextLine();
