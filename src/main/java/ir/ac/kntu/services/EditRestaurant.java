@@ -1,15 +1,32 @@
 package ir.ac.kntu.services;
 
-import ir.ac.kntu.Agency;
-import ir.ac.kntu.Menu;
+import ir.ac.kntu.*;
 
 public class EditRestaurant extends Menu {
+
+    private Restaurant restaurant;
 
     public EditRestaurant (){
         super("EditRestaurant.txt");
     }
 
+    public void editName(){
+        System.out.println();
+    }
+
+    Restaurant selectRestaurant(Agency agency){
+        char i = 'a';
+        for (Restaurant restaurant : agency.getRestaurants()){
+            System.out.println(i + ". " + restaurant);
+            i++;
+        }
+        //System.out.println(i + ". Done");
+        int choice = ScannerWrapper.getInstance().nextInt();
+        return agency.getRestaurants().get(choice);
+    }
+
     public boolean execute(Agency agency){
+        this.restaurant = selectRestaurant(agency);
         showMenu();
         return inputProcessor(agency);
     }
