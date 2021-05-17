@@ -36,6 +36,15 @@ public class Agency {
         System.out.println("Exit");
     }
 
+    public ArrayList<Delivery> getAddableDeliveries(){
+        ArrayList<Delivery> deliveries = new ArrayList<>();
+        for (Delivery delivery : getAllDeliveries()) {
+            if (delivery.getRestaurants().size()<2){
+                deliveries.add(delivery);
+            }
+        }
+        return deliveries;
+    }
 
     public ArrayList<Restaurant> activeRestaurants() {
         ArrayList<Restaurant> activeOnes = new ArrayList<>();

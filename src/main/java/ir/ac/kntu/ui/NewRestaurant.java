@@ -79,20 +79,10 @@ public class NewRestaurant extends Menu {
         return new FoodMenu(foods);
     }
 
-    public ArrayList<Delivery> getValidDeliveries(Agency agency) {
-        ArrayList<Delivery> deliveries = new ArrayList<>();
-        for (Delivery delivery : agency.getAllDeliveries()) {
-            if (delivery.getRestaurants().size()<2){
-                deliveries.add(delivery);
-            }
-        }
-        return deliveries;
-    }
-
 
     public ArrayList<Delivery> getDeliveries(Agency agency,Restaurant restaurant) {
         ArrayList<Delivery> deliveries = new ArrayList<>();
-        ArrayList<Delivery> validDeliveries =  getValidDeliveries(agency);
+        ArrayList<Delivery> validDeliveries =  agency.getAddableDeliveries();
         char i = 'a';
         for (Delivery delivery : validDeliveries) {
             System.out.println(i + ". " + delivery);
