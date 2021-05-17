@@ -13,6 +13,7 @@ public class Agency {
 
     private ChooseRestaurantMenu chooseRestaurantMenu;
     private DeliveryMenu deliveryMenu;
+    private RestaurantMenu restaurantMenu;
 
     Agency()
     {
@@ -20,6 +21,7 @@ public class Agency {
         this.restaurants = new ArrayList<>();
         this.chooseRestaurantMenu = new ChooseRestaurantMenu();
         this.deliveryMenu = new DeliveryMenu();
+        this.restaurantMenu = new RestaurantMenu();
         this.allDeliveries = new ArrayList<>();
     }
 
@@ -83,5 +85,13 @@ public class Agency {
 
     public void setAllDeliveries(ArrayList<Delivery> allDeliveries) {
         this.allDeliveries = allDeliveries;
+    }
+
+    public RestaurantMenu getRestaurantMenu() {
+        return restaurantMenu;
+    }
+
+    public void setRestaurantMenu(RestaurantMenu restaurantMenu) {
+        this.restaurantMenu = restaurantMenu;
     }
 }

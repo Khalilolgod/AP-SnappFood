@@ -29,6 +29,9 @@ public class OperatorMenu extends Menu {
             case "b":
                 agency.getDeliveryMenu().execute(agency);
                 return true;
+            case "c":
+                agency.getRestaurantMenu().editRestaurant(agency);
+                return true;
             case "e":
                 System.out.println("aight then imma exit");
                 return false;
