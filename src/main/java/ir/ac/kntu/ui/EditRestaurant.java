@@ -8,71 +8,71 @@ public class EditRestaurant extends Menu {
 
     private Restaurant restaurant;
 
-    public EditRestaurant (){
+    public EditRestaurant() {
         super("EditRestaurant.txt");
     }
 
-    public boolean execute(Agency agency){
+    public boolean execute(Agency agency) {
         this.restaurant = selectRestaurant(agency);
         showMenu();
         return inputProcessor(agency);
     }
 
-    public void editName(){
+    public void editName() {
         System.out.println(restaurant.getName());
         System.out.println("new name : ");
         String name = ScannerWrapper.getInstance().nextLine();
         restaurant.setName(name);
     }
 
-    public void editAddress(){
+    public void editAddress() {
         System.out.println(restaurant.getAddress());
         System.out.println("new address : ");
         String address = ScannerWrapper.getInstance().nextLine();
         restaurant.setAddress(address);
     }
 
-    public void editRestaurantType(){
+    public void editRestaurantType() {
         System.out.println(restaurant.getRestaurantType().name());
         int i = 'a';
-        for(RestaurantType restaurantType : RestaurantType.values()){
-            System.out.println(i+". "+restaurantType.name());
+        for (RestaurantType restaurantType : RestaurantType.values()) {
+            System.out.println(i + ". " + restaurantType.name());
             i++;
         }
         System.out.println("new restaurant type : ");
-        int choice = ScannerWrapper.getInstance().next()-'a';
+        int choice = ScannerWrapper.getInstance().next() - 'a';
         restaurant.setRestaurantType(RestaurantType.values()[choice]);
     }
 
-    public void showOrders(){
+    public void showOrders() {
         char i = 'a';
-        for(Order order : restaurant.getOrders()){
+        for (Order order : restaurant.getOrders()) {
             System.out.println(i + ". " + order);
             i++;
         }
     }
 
-    public void addOrder(){
+    public void addOrder() {
         Costumer costumer = new Costumer();//costumer(phone , address)
-        restaurant.getFoodMenu().execute(restaurant,costumer);
+        restaurant.getFoodMenu().execute(restaurant, costumer);
     }
 
-    public void removeOrder(){
+    public void removeOrder() {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
         restaurant.getOrders().remove(choice);
     }
 
-    public void editOrder(Restaurant restaurant){
+    public void editOrder(Restaurant restaurant) {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
         restaurant.getOrders().get(choice).getEditOrder().execute(restaurant);
     }
 
-    public void editOrders(){
+    public void editOrders() {
         System.out.println("a. Add         b. Remove         c. Edit");
         String choice = ScannerWrapper.getInstance().nextLine();
-        switch (choice){
+        switch (choice) {
             case "a":
                 addOrder();
                 break;
@@ -88,22 +88,21 @@ public class EditRestaurant extends Menu {
 
     }
 
-    Restaurant selectRestaurant(Agency agency){
+    Restaurant selectRestaurant(Agency agency) {
         char i = 'a';
-        for (Restaurant restaurant : agency.getRestaurants()){
+        for (Restaurant restaurant : agency.getRestaurants()) {
             System.out.println(i + ". " + restaurant);
             i++;
         }
-        int choice = ScannerWrapper.getInstance().next()-'a';
+        int choice = ScannerWrapper.getInstance().next() - 'a';
         return agency.getRestaurants().get(choice);
     }
-
 
 
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
-        switch (choice){
+        switch (choice) {
             case "a":
                 editName();
                 return true;

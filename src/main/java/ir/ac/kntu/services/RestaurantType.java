@@ -3,7 +3,7 @@ package ir.ac.kntu.services;
 public enum RestaurantType {
     LUXURY(10),NORMAL(5),ECONOMIC(2);
 
-    double brandRate;
+    private double brandRate;
 
     /**
      *

@@ -2,12 +2,13 @@ package ir.ac.kntu;
 
 import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.services.*;
+import ir.ac.kntu.ui.*;
 
 import java.util.ArrayList;
 
 
 public class Agency {
-    private ArrayList <Restaurant> restaurants;
+    private ArrayList<Restaurant> restaurants;
     private Operator operator;
     private ArrayList<Delivery> allDeliveries;
 
@@ -15,9 +16,8 @@ public class Agency {
     private DeliveryMenu deliveryMenu;
     private RestaurantMenu restaurantMenu;
 
-    Agency()
-    {
-        this.setOperator(new Operator("admin" , "1234"));
+    Agency() {
+        this.setOperator(new Operator("admin", "1234"));
         this.restaurants = new ArrayList<>();
         this.chooseRestaurantMenu = new ChooseRestaurantMenu();
         this.deliveryMenu = new DeliveryMenu();
@@ -25,9 +25,9 @@ public class Agency {
         this.allDeliveries = new ArrayList<>();
     }
 
-    public void operatorlogin(){
-        while(true) {
-            if(operator.verifyUser()){
+    public void operatorlogin() {
+        while (true) {
+            if (operator.verifyUser()) {
                 break;
             }
         }
@@ -36,10 +36,10 @@ public class Agency {
     }
 
 
-    public  ArrayList <Restaurant> activeRestaurants(){
-        ArrayList <Restaurant> activeOnes = new ArrayList<>();
-        for(Restaurant r :  getRestaurants()){
-            if(r.isActive()){
+    public ArrayList<Restaurant> activeRestaurants() {
+        ArrayList<Restaurant> activeOnes = new ArrayList<>();
+        for (Restaurant r : getRestaurants()) {
+            if (r.isActive()) {
                 activeOnes.add(r);
             }
         }

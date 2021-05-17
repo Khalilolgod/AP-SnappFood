@@ -11,7 +11,7 @@ public class WorkDay {
     private ArrayList<Shift> shifts;
     private DayOfWeek day;
 
-    public WorkDay(DayOfWeek day , ArrayList<Shift> shifts) {
+    public WorkDay(DayOfWeek day, ArrayList<Shift> shifts) {
         this.shifts = shifts;
         this.day = day;
     }
@@ -21,8 +21,12 @@ public class WorkDay {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof WorkDay)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof WorkDay)) {
+            return false;
+        }
         WorkDay workDay = (WorkDay) o;
         return Objects.equals(getShifts(), workDay.getShifts()) && getDay() == workDay.getDay();
     }
@@ -32,14 +36,14 @@ public class WorkDay {
         return Objects.hash(getShifts(), getDay());
     }
 
-    public boolean isWorkDay(){
+    public boolean isWorkDay() {
         DayOfWeek today = LocalDate.now().getDayOfWeek();
         LocalTime time = LocalTime.now();
-        if(!today.equals(getDay())){
+        if (!today.equals(getDay())) {
             return false;
         }
-        for(Shift shift : shifts){
-            if(shift.isShift(time)){
+        for (Shift shift : shifts) {
+            if (shift.isShift(time)) {
                 return true;
             }
         }

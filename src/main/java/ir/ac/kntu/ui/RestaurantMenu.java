@@ -14,43 +14,43 @@ public class RestaurantMenu extends Menu {
 
     private EditRestaurant editRestaurant;
 
-    public RestaurantMenu(){
+    public RestaurantMenu() {
         super("RestaurantsMenu.txt");
         this.editRestaurant = new EditRestaurant();
     }
 
-    public boolean execute(Agency agency){
+    public boolean execute(Agency agency) {
         do {
             showMenu();
-        }while (inputProcessor(agency));
+        } while (inputProcessor(agency));
         return false;
     }
 
-    public void showRestaurants(Agency agency){
+    public void showRestaurants(Agency agency) {
         char i = 'a';
-        for(Restaurant r : agency.getRestaurants()){
-            System.out.println(i+". "+r);
+        for (Restaurant r : agency.getRestaurants()) {
+            System.out.println(i + ". " + r);
             i++;
         }
     }
 
-    public String getRestaurantName(){
+    public String getRestaurantName() {
         System.out.println("Restaurant name : ");
         return ScannerWrapper.getInstance().nextLine();
     }
 
-    public String getRestaurantAddress(){
+    public String getRestaurantAddress() {
         System.out.println("Restaurant address : ");
         return ScannerWrapper.getInstance().nextLine();
     }
 
-    public RestaurantType getRestaurantType(){
+    public RestaurantType getRestaurantType() {
         char i = 'a';
-        for(RestaurantType restaurantType :  RestaurantType.values()){
+        for (RestaurantType restaurantType : RestaurantType.values()) {
             System.out.println(i + ". " + restaurantType.name());
             i++;
         }
-        int choice = ScannerWrapper.getInstance().next()-'a';
+        int choice = ScannerWrapper.getInstance().next() - 'a';
         return RestaurantType.values()[choice];
     }
 
@@ -59,34 +59,34 @@ public class RestaurantMenu extends Menu {
         ArrayList<Food> foods = new ArrayList<>();
         int choice;
         System.out.println("food menu: ");
-        while(true) {
+        while (true) {
             System.out.println("a. Add Food       b. Done");
             choice = ScannerWrapper.getInstance().next();
-            if(choice == 'a') {
+            if (choice == 'a') {
                 System.out.println("food name : ");
                 String name = ScannerWrapper.getInstance().nextLine();
                 System.out.println("Price : ");
                 double price = Double.parseDouble(ScannerWrapper.getInstance().nextLine());
                 System.out.println("preptime : ");
                 int preptime = Integer.parseInt(ScannerWrapper.getInstance().nextLine());
-                Food food = new Food(name,price,preptime);
+                Food food = new Food(name, price, preptime);
                 foods.add(food);
-            }else{
+            } else {
                 break;
             }
         }
         return new FoodMenu(foods);
     }
 
-    public ArrayList<Delivery> getDeliveries (Agency agency){
+    public ArrayList<Delivery> getDeliveries(Agency agency) {
         ArrayList<Delivery> deliveries = new ArrayList<>();
         char i = 'a';
-        for(Delivery delivery : agency.getAllDeliveries()){
-            System.out.println(i+". "+delivery);
+        for (Delivery delivery : agency.getAllDeliveries()) {
+            System.out.println(i + ". " + delivery);
             i++;
         }
-        System.out.println(i+". Done");
-        while(true) {
+        System.out.println(i + ". Done");
+        while (true) {
             int choice = ScannerWrapper.getInstance().next() - 'a';
             if (choice < agency.getAllDeliveries().size()) {
                 deliveries.add(agency.getAllDeliveries().get(choice));
@@ -97,60 +97,60 @@ public class RestaurantMenu extends Menu {
         return deliveries;
     }
 
-    public LocalTime makeTime(){
+    public LocalTime makeTime() {
         System.out.println("enter hour (0-23) : ");
         int hour = ScannerWrapper.getInstance().nextInt();
         System.out.println("enter minute (0-59) : ");
         int minute = ScannerWrapper.getInstance().nextInt();
-        LocalTime time =  LocalTime.of(hour,minute);
+        LocalTime time = LocalTime.of(hour, minute);
         return time;
     }
 
-    public Schedule getSchedule(){
+    public Schedule getSchedule() {
         //change it so (a.add b.done)
         System.out.println("Number of workdays in a week : ");
         int daysInWeek = ScannerWrapper.getInstance().next() - '0';
         int numberOfshifts;
         int dayOfTheWeek;
-        ArrayList <WorkDay> workDays = new ArrayList<>();
-        for (int i = 0 ; i<daysInWeek ; i++){
-            for (int d = 0; d< DayOfWeek.values().length ; d++){
-                System.out.println((char)(d+'a')+". "+DayOfWeek.values()[d].name());
+        ArrayList<WorkDay> workDays = new ArrayList<>();
+        for (int i = 0; i < daysInWeek; i++) {
+            for (int d = 0; d < DayOfWeek.values().length; d++) {
+                System.out.println((char) (d + 'a') + ". " + DayOfWeek.values()[d].name());
             }
-            dayOfTheWeek = ScannerWrapper.getInstance().next()-'a';
+            dayOfTheWeek = ScannerWrapper.getInstance().next() - 'a';
             System.out.println("number of shifts : ");
-            numberOfshifts = ScannerWrapper.getInstance().next()-'0';
-            ArrayList <Shift> shifts = new ArrayList<>();
-            for(int s  = 0 ; s < numberOfshifts ; s++){
+            numberOfshifts = ScannerWrapper.getInstance().next() - '0';
+            ArrayList<Shift> shifts = new ArrayList<>();
+            for (int s = 0; s < numberOfshifts; s++) {
                 System.out.println("start time");
                 LocalTime start = makeTime();
                 System.out.println("end time");
                 LocalTime end = makeTime();
-                Shift shift = new Shift(start,end);
+                Shift shift = new Shift(start, end);
                 shifts.add(shift);
 
             }
-            WorkDay workDay = new WorkDay(DayOfWeek.values()[dayOfTheWeek],shifts);
+            WorkDay workDay = new WorkDay(DayOfWeek.values()[dayOfTheWeek], shifts);
             workDays.add(workDay);
         }
         return new Schedule(workDays);
     }
 
-    public void newRestaurant(Agency agency){
+    public void newRestaurant(Agency agency) {
         String name = getRestaurantName();
         String address = getRestaurantAddress();
         RestaurantType restaurantType = getRestaurantType();
         FoodMenu foodMenu = getFoodMenu();
         ArrayList<Delivery> deliveries = getDeliveries(agency);
         Schedule schedule = getSchedule();
-        Restaurant restaurant = new Restaurant(name,address,restaurantType,foodMenu,deliveries,schedule);
+        Restaurant restaurant = new Restaurant(name, address, restaurantType, foodMenu, deliveries, schedule);
         agency.getRestaurants().add(restaurant);
     }
 
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
-        switch (choice){
+        switch (choice) {
             case "a":
                 showRestaurants(agency);
                 return true;

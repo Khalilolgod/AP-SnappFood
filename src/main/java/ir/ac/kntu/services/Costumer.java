@@ -26,8 +26,12 @@ public class Costumer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Costumer)) return false;
+        if (this == o){
+            return true;
+        }
+        if (!(o instanceof Costumer)) {
+            return false;
+        }
         Costumer costumer = (Costumer) o;
         return Objects.equals(getAddress(), costumer.getAddress()) && Objects.equals(getPhoneNumber(), costumer.getPhoneNumber());
     }

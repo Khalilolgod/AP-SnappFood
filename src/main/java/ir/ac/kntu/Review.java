@@ -1,6 +1,6 @@
 package ir.ac.kntu;
 
 public class Review {
-    String review;
+    private String review;
     //Maybe rate too not sure
 }

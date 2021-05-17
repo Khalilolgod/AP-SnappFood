@@ -13,8 +13,8 @@ public class Restaurant {
     private String address;//could be a class too
     private RestaurantType restaurantType;
     private FoodMenu foodMenu;
-    private ArrayList <Delivery> deliveries;//delivery id , Deliveryguy
-    private ArrayList <Order> orders;
+    private ArrayList<Delivery> deliveries;//delivery id , Deliveryguy
+    private ArrayList<Order> orders;
     private ArrayList<Order> deliveredOrders;
 
     //private ArrayList <Review> reviews;
@@ -34,22 +34,22 @@ public class Restaurant {
         this.name = name;
         orders = new ArrayList<Order>();
         //making random shifts
-        ArrayList<Shift> shifts =  new ArrayList<Shift>();
-        Shift shift1 = new Shift(LocalTime.of(0,00) , LocalTime.of(20,00) );
-        Shift shift2 = new Shift(LocalTime.of(21,0) , LocalTime.of(23,59) );
+        ArrayList<Shift> shifts = new ArrayList<Shift>();
+        Shift shift1 = new Shift(LocalTime.of(0, 00), LocalTime.of(20, 00));
+        Shift shift2 = new Shift(LocalTime.of(21, 0), LocalTime.of(23, 59));
         shifts.add(shift1);
         shifts.add(shift2);
         //random workdays
-        ArrayList <WorkDay> workDays = new ArrayList<WorkDay>();
-        WorkDay workDay1 = new WorkDay(DayOfWeek.THURSDAY,shifts);
+        ArrayList<WorkDay> workDays = new ArrayList<WorkDay>();
+        WorkDay workDay1 = new WorkDay(DayOfWeek.THURSDAY, shifts);
         workDays.add(workDay1);
         //random schedule
         this.schedule = new Schedule(workDays);
 
-        ArrayList <Food> foods = new ArrayList<>();
-        Food food1 = new Food("kabab",1000,30);
-        Food food2 = new Food("morgh",2000,3);
-        Food food3 = new Food("goh",3000,2);
+        ArrayList<Food> foods = new ArrayList<>();
+        Food food1 = new Food("kabab", 1000, 30);
+        Food food2 = new Food("morgh", 2000, 3);
+        Food food3 = new Food("goh", 3000, 2);
         foods.add(food1);
         foods.add(food2);
         foods.add(food3);
@@ -67,31 +67,32 @@ public class Restaurant {
                 '}';
     }
 
-    public boolean isActive(){
+    public boolean isActive() {
         return getSchedule().isTodayWorkDay();
     }
 
-    public int availableDelivery(){
+    public int availableDelivery() {
         int i = 0;
-        for (Delivery delivery : deliveries){
-            if(delivery.getActiveOrder() == null){
-                return  i;
+        for (Delivery delivery : deliveries) {
+            if (delivery.getActiveOrder() == null) {
+                return i;
             }
             i++;
         }
         return -1;
     }
 
-    public void processOrder(Order order){
-        if(order.getOrderStatus() == OrderStatus.PROCESSING) {
+    public void processOrder(Order order) {
+        if (order.getOrderStatus() == OrderStatus.PROCESSING) {
             int index = availableDelivery();
             if (index != -1) {
                 getDeliveries().get(index).setActiveOrder(order);
                 order.setDelivery(getDeliveries().get(index));
                 order.setOrderStatus(OrderStatus.SENDING);
             }
-        }else if(order.getOrderStatus() == OrderStatus.SENDING){
+        } else if (order.getOrderStatus() == OrderStatus.SENDING) {
             //TODO
+            System.out.println("nigaaaaaaaaa");
         }
     }
 
@@ -127,11 +128,11 @@ public class Restaurant {
         this.foodMenu = foodMenu;
     }
 
-    public ArrayList <Delivery> getDeliveries() {
+    public ArrayList<Delivery> getDeliveries() {
         return deliveries;
     }
 
-    public void setDeliveries(ArrayList <Delivery> deliveries) {
+    public void setDeliveries(ArrayList<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
 

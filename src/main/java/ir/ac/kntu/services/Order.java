@@ -1,8 +1,8 @@
 package ir.ac.kntu.services;
 
 import ir.ac.kntu.delivery.Delivery;
+import ir.ac.kntu.ui.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Order {
@@ -10,13 +10,13 @@ public class Order {
     private OrderStatus orderStatus;
     private int prepTime;
     private double finalPrice;
-    private HashMap<Food , Integer> foods;
+    private HashMap<Food, Integer> foods;
     private Costumer costumer;
     private Delivery delivery;
 
     private EditOrder editOrder;
 
-    public Order(Costumer costumer){
+    public Order(Costumer costumer) {
         this.costumer = costumer;
         this.id = getAlphaNumericString(10);
         setOrderStatus(OrderStatus.PROCESSING);
@@ -27,25 +27,23 @@ public class Order {
     }
 
     /**
-     *
      * if food doesn't exists it will add it to the hashMap
      * if it does exist , it will +1 the count of that food in the hashMap
      */
-    public void addFood(Food food){
+    public void addFood(Food food) {
         setOrderStatus(OrderStatus.PROCESSING);
         setPrepTime(getPrepTime() + food.getPrepTime());
         setFinalPrice(getFinalPrice() + food.getPrice());
-        if(getFoods().containsKey(food))
-        {
-            getFoods().put(food,getFoods().get(food)+1);
-        }else {
-            getFoods().put(food,1);
+        if (getFoods().containsKey(food)) {
+            getFoods().put(food, getFoods().get(food) + 1);
+        } else {
+            getFoods().put(food, 1);
         }
     }
 
-    public void removeFood(Food food){
-        if(foods.containsKey(food) && foods.get(food) > 0){
-            foods.put(food,foods.get(food)-1);
+    public void removeFood(Food food) {
+        if (foods.containsKey(food) && foods.get(food) > 0) {
+            foods.put(food, foods.get(food) - 1);
         }
     }
 
@@ -93,11 +91,11 @@ public class Order {
         this.finalPrice = finalPrice;
     }
 
-    public HashMap<Food , Integer> getFoods() {
+    public HashMap<Food, Integer> getFoods() {
         return foods;
     }
 
-    public void setFoods(HashMap<Food , Integer> foods) {
+    public void setFoods(HashMap<Food, Integer> foods) {
         this.foods = foods;
     }
 
