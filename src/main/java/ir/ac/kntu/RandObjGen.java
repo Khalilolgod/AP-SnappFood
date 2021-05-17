@@ -101,7 +101,7 @@ public class RandObjGen {
 
     public Food foodGen(String name){
         double price = rand.nextDouble()*100;
-        int prepTime = rand.nextInt(49)+10;
+        int prepTime = rand.nextInt(120)+10;
         return new Food(name,price,prepTime);
     }
 

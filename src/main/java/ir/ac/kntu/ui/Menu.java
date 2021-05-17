@@ -13,7 +13,7 @@ public abstract class Menu {
     private File file;
 
     public Menu(String filePath) {
-        this.filePath = "src/main/java/ir/ac/kntu/ui/menus"+filePath;
+        this.filePath = "src/main/java/ir/ac/kntu/ui/menus/"+filePath;
         this.file = new File(this.filePath);
     }
 

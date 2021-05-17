@@ -88,9 +88,17 @@ public class NewRestaurant extends Menu {
         }
         System.out.println(i + ". Done");
         while (true) {
+            System.out.println("delivery : ");
             int choice = ScannerWrapper.getInstance().next() - 'a';
             if (choice < agency.getAllDeliveries().size()) {
                 deliveries.add(agency.getAllDeliveries().get(choice));
+                /*todo when adding a delivery to a restaurant the delivery should
+                 1. have less than 2 restaurants
+                 2. add the restaurant to the delivery.restaurants "issue : we dont have the restaurant beforehand"
+                 SOLUTION : have a checker to only show availble deliveries
+                            make a Restaurant constructor
+                 agency.getAllDeliveries().get(choice).getRestaurants().add(restaurant);
+                */
             } else {
                 break;
             }
