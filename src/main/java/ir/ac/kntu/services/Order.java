@@ -42,6 +42,13 @@ public class Order {
             getFoods().put(food,1);
         }
     }
+
+    public void removeFood(Food food){
+        if(foods.containsKey(food) && foods.get(food) > 0){
+            foods.put(food,foods.get(food)-1);
+        }
+    }
+
     public String getAlphaNumericString(int n) {
         String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789";
