@@ -15,7 +15,7 @@ public class RandObjGen {
 
     private final Random rand;
     private final String[] restaurentNames = {"alborz", "orkide", "lak lak", "mahan", "pars", "shandiz", "hani", "asil", "narenjestan", "morshed"};
-    private final String[] foodNames = {"my own fucking flesh"};//todo write some names
+    private final String[] foodNames = {"pizza" , "hamburger" , "kabab" , "jooje" , "ghorme sabzi" , "makaroni" , "zereshk polo", "lazania" };
 
 
     RandObjGen() {
@@ -85,14 +85,14 @@ public class RandObjGen {
         String address = stringGen(20);
         RestaurantType restaurantType = RestaurantType.values()[rand.nextInt(RestaurantType.values().length)];
         FoodMenu foodMenu = foodmenuGen();
-        ArrayList<Delivery> deliveries = new ArrayList<>();
+        ArrayList<Delivery> deliveries = new ArrayList<>();//todo
         Schedule schedule  = scheduleGen();
         return new Restaurant(name,address,restaurantType,foodMenu,deliveries,schedule);
     }
 
     public FoodMenu foodmenuGen() {
         ArrayList<Food> foods  = new ArrayList<>();
-        int numberOfFoods = rand.nextInt();
+        int numberOfFoods = rand.nextInt(foodNames.length)+1;
         for (int i = 0; i < numberOfFoods; i++) {
             foods.add(foodGen(foodNames[i]));
         }
@@ -100,21 +100,16 @@ public class RandObjGen {
     }
 
     public Food foodGen(String name){
-        double price = rand.nextDouble();
+        double price = rand.nextDouble()*100;
         int prepTime = rand.nextInt(49)+10;
         return new Food(name,price,prepTime);
     }
-
-    public Costumer costumerGen() {
-
-    }
-
 
     public void generate(Agency agency) {
         for (int i = 0; i < 15; i++) {
             agency.getAllDeliveries().add(deliveryGen());
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < restaurentNames.length ; i++) {
             agency.getRestaurants().add(restaurentGen(restaurentNames[i]));
         }
     }
