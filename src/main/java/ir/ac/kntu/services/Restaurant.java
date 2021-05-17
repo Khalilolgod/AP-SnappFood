@@ -30,36 +30,6 @@ public class Restaurant {
         this.schedule = schedule;
     }
 
-    public Restaurant(String name) {
-        this.name = name;
-        orders = new ArrayList<Order>();
-        //making random shifts
-        ArrayList<Shift> shifts = new ArrayList<Shift>();
-        Shift shift1 = new Shift(LocalTime.of(0, 00), LocalTime.of(20, 00));
-        Shift shift2 = new Shift(LocalTime.of(21, 0), LocalTime.of(23, 59));
-        shifts.add(shift1);
-        shifts.add(shift2);
-        //random workdays
-        ArrayList<WorkDay> workDays = new ArrayList<WorkDay>();
-        WorkDay workDay1 = new WorkDay(DayOfWeek.THURSDAY, shifts);
-        workDays.add(workDay1);
-        //random schedule
-        this.schedule = new Schedule(workDays);
-
-        ArrayList<Food> foods = new ArrayList<>();
-        Food food1 = new Food("kabab", 1000, 30);
-        Food food2 = new Food("morgh", 2000, 3);
-        Food food3 = new Food("goh", 3000, 2);
-        foods.add(food1);
-        foods.add(food2);
-        foods.add(food3);
-
-        foodMenu = new FoodMenu(foods);
-
-        this.deliveries = new ArrayList<>();
-
-    }
-
     @Override
     public String toString() {
         return "Restaurant{" +
