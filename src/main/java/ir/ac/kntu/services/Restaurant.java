@@ -56,6 +56,8 @@ public class Restaurant {
 
         foodMenu = new FoodMenu(foods);
 
+        this.deliveries = new ArrayList<>();
+
     }
 
     @Override

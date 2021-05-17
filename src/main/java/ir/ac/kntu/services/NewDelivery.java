@@ -42,7 +42,7 @@ public class NewDelivery extends Menu {
 
         ArrayList <Restaurant> restaurants = new ArrayList<>();
         ArrayList <Restaurant> allrestaurants = new ArrayList<>(agency.getRestaurants());
-
+        System.out.println("restaurants to work for : ");
         for(int i = 0; i < 2; i++){
             showRestaurants(allrestaurants);
             int choice = ScannerWrapper.getInstance().next()-'a';

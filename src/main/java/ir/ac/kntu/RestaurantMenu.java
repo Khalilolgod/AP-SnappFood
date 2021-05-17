@@ -13,11 +13,14 @@ public class RestaurantMenu extends Menu {
 
     public RestaurantMenu(){
         super("RestaurantsMenu.txt");
+        this.editRestaurant = new EditRestaurant();
     }
 
     public boolean execute(Agency agency){
-        showMenu();
-        return inputProcessor(agency);
+        do {
+            showMenu();
+        }while (inputProcessor(agency));
+        return false;
     }
 
     public void showRestaurants(Agency agency){
@@ -42,6 +45,7 @@ public class RestaurantMenu extends Menu {
         char i = 'a';
         for(RestaurantType restaurantType :  RestaurantType.values()){
             System.out.println(i + ". " + restaurantType.name());
+            i++;
         }
         int choice = ScannerWrapper.getInstance().next()-'a';
         return RestaurantType.values()[choice];
@@ -51,11 +55,12 @@ public class RestaurantMenu extends Menu {
 
         ArrayList<Food> foods = new ArrayList<>();
         int choice;
+        System.out.println("food menu: ");
         while(true) {
-            System.out.println("a. Add        b. Done");
+            System.out.println("a. Add Food       b. Done");
             choice = ScannerWrapper.getInstance().next();
             if(choice == 'a') {
-                System.out.println("name : ");
+                System.out.println("food name : ");
                 String name = ScannerWrapper.getInstance().nextLine();
                 System.out.println("Price : ");
                 double price = Double.parseDouble(ScannerWrapper.getInstance().nextLine());
@@ -136,10 +141,7 @@ public class RestaurantMenu extends Menu {
         ArrayList<Delivery> deliveries = getDeliveries(agency);
         Schedule schedule = getSchedule();
         Restaurant restaurant = new Restaurant(name,address,restaurantType,foodMenu,deliveries,schedule);
-    }
-
-    public void editRestaurant(Agency agency){
-
+        agency.getRestaurants().add(restaurant);
     }
 
     @Override

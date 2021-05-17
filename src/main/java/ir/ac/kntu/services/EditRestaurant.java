@@ -10,6 +10,12 @@ public class EditRestaurant extends Menu {
         super("EditRestaurant.txt");
     }
 
+    public boolean execute(Agency agency){
+        this.restaurant = selectRestaurant(agency);
+        showMenu();
+        return inputProcessor(agency);
+    }
+
     public void editName(){
         System.out.println(restaurant.getName());
         System.out.println("new name : ");
@@ -80,27 +86,46 @@ public class EditRestaurant extends Menu {
 
     }
 
-
-
     Restaurant selectRestaurant(Agency agency){
         char i = 'a';
         for (Restaurant restaurant : agency.getRestaurants()){
             System.out.println(i + ". " + restaurant);
             i++;
         }
-        //System.out.println(i + ". Done");
-        int choice = ScannerWrapper.getInstance().nextInt();
+        int choice = ScannerWrapper.getInstance().next()-'a';
         return agency.getRestaurants().get(choice);
     }
 
-    public boolean execute(Agency agency){
-        this.restaurant = selectRestaurant(agency);
-        showMenu();
-        return inputProcessor(agency);
-    }
+
 
     @Override
     public boolean inputProcessor(Agency agency) {
-        return false;
+        String choice = ScannerWrapper.getInstance().nextLine();
+        switch (choice){
+            case "a":
+                editName();
+                return true;
+            case "b":
+                editAddress();
+                return true;
+            case "c":
+                editRestaurantType();
+                return true;
+            case "d":
+                editOrders();
+                return true;
+            case "e":
+                return true;
+            case "f":
+                return true;
+            case "g":
+                return true;
+            case "h":
+                return true;
+            case "i":
+                return false;
+            default:
+                return false;
+        }
     }
 }

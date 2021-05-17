@@ -15,8 +15,10 @@ public class DeliveryMenu extends Menu {
     }
 
     public boolean execute(Agency agency){
-        showMenu();
-        return inputProcessor(agency);
+        do {
+            showMenu();
+        }while (inputProcessor(agency));
+        return false;
     }
 
     public void showAllDeliveries(Agency agency){
@@ -34,20 +36,19 @@ public class DeliveryMenu extends Menu {
         {
             case "a":
                 showAllDeliveries(agency);
-                break;
+                return true;
             case "b":
                 showAllDeliveries(agency);
                 int index = ScannerWrapper.getInstance().next()-'a' ;
                 editDelivery.execute(agency,agency.getAllDeliveries().get(index));
-                break;
+                return true;
             case "c":
                 newDelivery.execute(agency);
-                break;
+                return true;
             case "d":
                 return false;
             default:
                 return false;//TODO make all defaults return true
         }
-        return true;
     }
 }
