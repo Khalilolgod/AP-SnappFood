@@ -87,7 +87,7 @@ public class RandObjGen {
         FoodMenu foodMenu = foodmenuGen();
         ArrayList<Delivery> deliveries = new ArrayList<>();//todo
         Schedule schedule  = scheduleGen();
-        return new Restaurant(name,address,restaurantType,foodMenu,deliveries,schedule);
+        return new Restaurant(name,address,restaurantType, deliveries,schedule);
     }
 
     public FoodMenu foodmenuGen() {

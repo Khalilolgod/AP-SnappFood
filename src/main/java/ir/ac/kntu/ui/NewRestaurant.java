@@ -79,10 +79,22 @@ public class NewRestaurant extends Menu {
         return new FoodMenu(foods);
     }
 
-    public ArrayList<Delivery> getDeliveries(Agency agency) {
+    public ArrayList<Delivery> getValidDeliveries(Agency agency) {
         ArrayList<Delivery> deliveries = new ArrayList<>();
-        char i = 'a';
         for (Delivery delivery : agency.getAllDeliveries()) {
+            if (delivery.getRestaurants().size()<2){
+                deliveries.add(delivery);
+            }
+        }
+        return deliveries;
+    }
+
+
+    public ArrayList<Delivery> getDeliveries(Agency agency,Restaurant restaurant) {
+        ArrayList<Delivery> deliveries = new ArrayList<>();
+        ArrayList<Delivery> validDeliveries =  getValidDeliveries(agency);
+        char i = 'a';
+        for (Delivery delivery : validDeliveries) {
             System.out.println(i + ". " + delivery);
             i++;
         }
@@ -90,15 +102,9 @@ public class NewRestaurant extends Menu {
         while (true) {
             System.out.println("delivery : ");
             int choice = ScannerWrapper.getInstance().next() - 'a';
-            if (choice < agency.getAllDeliveries().size()) {
-                deliveries.add(agency.getAllDeliveries().get(choice));
-                /*todo when adding a delivery to a restaurant the delivery should
-                 1. have less than 2 restaurants
-                 2. add the restaurant to the delivery.restaurants "issue : we dont have the restaurant beforehand"
-                 SOLUTION : have a checker to only show availble deliveries
-                            make a Restaurant constructor
-                 agency.getAllDeliveries().get(choice).getRestaurants().add(restaurant);
-                */
+            if (choice <  validDeliveries.size()) {
+                deliveries.add( validDeliveries.get(choice));
+                validDeliveries.get(choice).addRestaurant(restaurant);
             } else {
                 break;
             }
@@ -111,8 +117,7 @@ public class NewRestaurant extends Menu {
         int hour = ScannerWrapper.getInstance().nextInt();
         System.out.println("enter minute (0-59) : ");
         int minute = ScannerWrapper.getInstance().nextInt();
-        LocalTime time = LocalTime.of(hour, minute);
-        return time;
+        return LocalTime.of(hour, minute);
     }
 
     public Schedule getSchedule() {
@@ -150,9 +155,10 @@ public class NewRestaurant extends Menu {
         String address = getRestaurantAddress();
         RestaurantType restaurantType = getRestaurantType();
         FoodMenu foodMenu = getFoodMenu();
-        ArrayList<Delivery> deliveries = getDeliveries(agency);
         Schedule schedule = getSchedule();
-        Restaurant restaurant = new Restaurant(name, address, restaurantType, foodMenu, deliveries, schedule);
+        Restaurant restaurant = new Restaurant(name, address,restaurantType,foodMenu, schedule);
+        ArrayList<Delivery> deliveries = getDeliveries(agency,restaurant );
+        restaurant.setDeliveries(deliveries);
         agency.getRestaurants().add(restaurant);
     }
 

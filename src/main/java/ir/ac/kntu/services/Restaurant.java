@@ -6,24 +6,26 @@ import java.util.ArrayList;
 
 public class Restaurant {
     private String name;
-    private String address;//could be a class too
+    private String address;
     private RestaurantType restaurantType;
     private FoodMenu foodMenu;
-    private ArrayList<Delivery> deliveries;//delivery id , Deliveryguy
+    private ArrayList<Delivery> deliveries;
     private ArrayList<Order> orders;
     private ArrayList<Order> deliveredOrders;
-
     //private ArrayList <Review> reviews;
     private double rate;
     private Schedule schedule;
 
-    public Restaurant(String name, String address, RestaurantType restaurantType, FoodMenu foodMenu, ArrayList<Delivery> deliveries, Schedule schedule) {
+    public Restaurant(String name, String address, RestaurantType restaurantType, FoodMenu foodMenu, Schedule schedule) {
         this.name = name;
         this.address = address;
         this.restaurantType = restaurantType;
         this.foodMenu = foodMenu;
-        this.deliveries = deliveries;
+        this.deliveries = new ArrayList<>();
         this.schedule = schedule;
+        this.rate = 5;
+        this.orders = new ArrayList<>();
+        this.deliveredOrders = new ArrayList<>();
     }
 
     @Override

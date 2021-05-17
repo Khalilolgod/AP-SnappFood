@@ -37,6 +37,12 @@ public class Delivery {
                 '}';
     }
 
+    public void addRestaurant(Restaurant restaurant){
+        if(restaurants.size() < 2){
+            restaurants.add(restaurant);
+        }
+    }
+
     public String getAlphaNumericString(int n) {
         String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789";
