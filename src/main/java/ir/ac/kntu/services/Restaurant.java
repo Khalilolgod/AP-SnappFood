@@ -21,6 +21,15 @@ public class Restaurant {
     private double rate;
     private Schedule schedule;
 
+    public Restaurant(String name, String address, RestaurantType restaurantType, FoodMenu foodMenu, ArrayList<Delivery> deliveries, Schedule schedule) {
+        this.name = name;
+        this.address = address;
+        this.restaurantType = restaurantType;
+        this.foodMenu = foodMenu;
+        this.deliveries = deliveries;
+        this.schedule = schedule;
+    }
+
     public Restaurant(String name) {
         this.name = name;
         orders = new ArrayList<Order>();

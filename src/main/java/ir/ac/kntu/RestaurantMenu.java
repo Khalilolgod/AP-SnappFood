@@ -135,6 +135,7 @@ public class RestaurantMenu extends Menu {
         FoodMenu foodMenu = getFoodMenu();
         ArrayList<Delivery> deliveries = getDeliveries(agency);
         Schedule schedule = getSchedule();
+        Restaurant restaurant = new Restaurant(name,address,restaurantType,foodMenu,deliveries,schedule);
     }
 
     public void editRestaurant(Agency agency){
