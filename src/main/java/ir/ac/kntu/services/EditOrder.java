@@ -1,6 +1,7 @@
 package ir.ac.kntu.services;
 
 import ir.ac.kntu.*;
+import ir.ac.kntu.delivery.Delivery;
 
 import java.util.ArrayList;
 
@@ -55,6 +56,7 @@ public class EditOrder extends Menu {
                 foods.addAll(order.getFoods().keySet());
                 for (Food food : foods){
                     System.out.println(i+". "+food + ": " + order.getFoods().get(food));
+                    i++;
                 }
                 int chois = ScannerWrapper.getInstance().next()-'a';
                 order.removeFood(foods.get(chois));
@@ -64,6 +66,26 @@ public class EditOrder extends Menu {
         }
     }
 
+    public void editDelivery(Restaurant restaurant , Order order){
+        System.out.println("a. Replace       b. Remove");
+        String choice = ScannerWrapper.getInstance().nextLine();
+        switch (choice){
+            case "a":
+                char i = 'a';
+                for(Delivery delivery : restaurant.getDeliveries()){
+                    System.out.println(i+". "+delivery);
+                    i++;
+                }
+                int chois = ScannerWrapper.getInstance().next()-'a';
+                order.setDelivery(restaurant.getDeliveries().get(chois));
+                break;
+            case "b":
+                order.setDelivery(null);
+                break;
+            default:
+                break;
+        }
+    }
 
     public boolean inputProcessor(Restaurant restaurant) {
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -81,11 +103,12 @@ public class EditOrder extends Menu {
                 editFoods(restaurant,order);
                 break;
             case "e":
+                editDelivery(restaurant,order);
                 break;
             case "f":
-                break;
+                return false;
             default:
-                break;
+                return false;
 
         }
         return true;
