@@ -81,6 +81,14 @@ public class RandObjGen {
         return sb.toString();
     }
 
+    public Restaurant restaurentGen(String name) {
+        String address = stringGen(20);
+        RestaurantType restaurantType = RestaurantType.values()[rand.nextInt(RestaurantType.values().length)];
+        FoodMenu foodMenu = foodmenuGen();
+        ArrayList<Delivery> deliveries = new ArrayList<>();
+        Schedule schedule  = scheduleGen();
+        return new Restaurant(name,address,restaurantType,foodMenu,deliveries,schedule);
+    }
 
     public FoodMenu foodmenuGen() {
 
