@@ -1,7 +1,9 @@
-package ir.ac.kntu.services;
+package ir.ac.kntu.ui;
 
 import ir.ac.kntu.Agency;
 import ir.ac.kntu.ScannerWrapper;
+import ir.ac.kntu.services.Costumer;
+import ir.ac.kntu.services.Restaurant;
 
 import java.util.ArrayList;
 
@@ -9,7 +11,7 @@ public class ChooseRestaurantMenu  {
 
     ArrayList<Restaurant> activeRestaurants;
 
-    public void execute(Agency agency,Costumer costumer){
+    public void execute(Agency agency, Costumer costumer){
         showMenu(agency);
         inputProcessor(agency,costumer );
     }

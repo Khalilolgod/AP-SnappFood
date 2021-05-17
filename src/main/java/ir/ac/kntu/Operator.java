@@ -1,5 +1,7 @@
 package ir.ac.kntu;
 
+import ir.ac.kntu.ui.OperatorMenu;
+
 public class Operator {
 
     private String username;

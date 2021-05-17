@@ -1,6 +1,8 @@
-package ir.ac.kntu.services;
+package ir.ac.kntu.ui;
 
 import ir.ac.kntu.*;
+import ir.ac.kntu.services.*;
+
 
 public class EditRestaurant extends Menu {
 

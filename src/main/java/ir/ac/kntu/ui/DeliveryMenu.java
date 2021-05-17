@@ -1,6 +1,7 @@
-package ir.ac.kntu;
+package ir.ac.kntu.ui;
 
-import ir.ac.kntu.services.*;
+import ir.ac.kntu.Agency;
+import ir.ac.kntu.ScannerWrapper;
 import ir.ac.kntu.delivery.*;
 
 public class DeliveryMenu extends Menu {

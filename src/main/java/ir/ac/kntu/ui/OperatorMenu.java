@@ -1,10 +1,13 @@
-package ir.ac.kntu;
+package ir.ac.kntu.ui;
 
+import ir.ac.kntu.Agency;
+import ir.ac.kntu.ScannerWrapper;
 import ir.ac.kntu.services.Costumer;
+import ir.ac.kntu.ui.Menu;
 
 public class OperatorMenu extends Menu {
 
-    OperatorMenu(){
+    public OperatorMenu(){
         super("OperatorMenu.txt");
     }
 

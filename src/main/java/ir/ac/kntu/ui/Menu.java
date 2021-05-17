@@ -1,4 +1,6 @@
-package ir.ac.kntu;
+package ir.ac.kntu.ui;
+
+import ir.ac.kntu.Agency;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +13,7 @@ public abstract class Menu {
     private File file;
 
     public Menu(String filePath) {
-        this.filePath = "src/main/java/ir/ac/kntu/menus/"+filePath;
+        this.filePath = "src/main/java/ir/ac/kntu/ui/menus"+filePath;
         this.file = new File(this.filePath);
     }
 

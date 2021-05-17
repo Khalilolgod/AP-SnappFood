@@ -1,7 +1,8 @@
-package ir.ac.kntu.services;
+package ir.ac.kntu.ui;
 
 import ir.ac.kntu.Agency;
-import ir.ac.kntu.Menu;
+import ir.ac.kntu.services.Restaurant;
+import ir.ac.kntu.ui.Menu;
 import ir.ac.kntu.ScannerWrapper;
 import ir.ac.kntu.delivery.*;
 import ir.ac.kntu.time.*;
