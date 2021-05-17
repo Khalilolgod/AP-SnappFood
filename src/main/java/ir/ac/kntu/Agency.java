@@ -16,6 +16,7 @@ public class Agency {
     private DeliveryMenu deliveryMenu;
     private RestaurantMenu restaurantMenu;
 
+
     Agency() {
         this.setOperator(new Operator("admin", "1234"));
         this.restaurants = new ArrayList<>();
@@ -94,4 +95,5 @@ public class Agency {
     public void setRestaurantMenu(RestaurantMenu restaurantMenu) {
         this.restaurantMenu = restaurantMenu;
     }
+
 }
