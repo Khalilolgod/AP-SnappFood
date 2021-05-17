@@ -22,5 +22,17 @@ public class RandObjGen {
         this.rand = new Random();
     }
 
+    /**
+     * @return a random Delivery object
+     */
+    public Delivery deliveryGen() {
+        VehicleType vehicleType = VehicleType.values()[rand.nextInt(VehicleType.values().length)];
+        WageType wageType = WageType.values()[rand.nextInt(WageType.values().length)];
+        ArrayList<Restaurant> restaurants = new ArrayList<>();//todo make sure it meets with the restaurant schedule
+        Schedule schedule = scheduleGen();
+        return new Delivery(vehicleType, wageType, restaurants, schedule);
+    }
+
+
 
 }
