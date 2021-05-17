@@ -2,6 +2,8 @@ package ir.ac.kntu.services;
 
 import ir.ac.kntu.*;
 
+import java.util.ArrayList;
+
 public class EditOrder extends Menu {
 
     private Order order;
@@ -40,6 +42,28 @@ public class EditOrder extends Menu {
         order.setPrepTime(prepTime);
     }
 
+    public void editFoods(Restaurant restaurant,Order order){
+        System.out.println("a. Add       b. Remove");
+        String choice = ScannerWrapper.getInstance().nextLine();
+        switch (choice){
+            case "a":
+                restaurant.getFoodMenu().execute(restaurant,order.getCostumer());
+                break;
+            case "b":
+                char i = 'a';
+                ArrayList <Food> foods  = new ArrayList<>();
+                foods.addAll(order.getFoods().keySet());
+                for (Food food : foods){
+                    System.out.println(i+". "+food + ": " + order.getFoods().get(food));
+                }
+                int chois = ScannerWrapper.getInstance().next()-'a';
+                order.removeFood(foods.get(chois));
+                break;
+            default:
+                break;
+        }
+    }
+
 
     public boolean inputProcessor(Restaurant restaurant) {
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -54,6 +78,7 @@ public class EditOrder extends Menu {
                 editPrepTime(order);
                 break;
             case "d":
+                editFoods(restaurant,order);
                 break;
             case "e":
                 break;
