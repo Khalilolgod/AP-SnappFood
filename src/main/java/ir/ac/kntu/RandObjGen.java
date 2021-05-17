@@ -91,11 +91,18 @@ public class RandObjGen {
     }
 
     public FoodMenu foodmenuGen() {
-
+        ArrayList<Food> foods  = new ArrayList<>();
+        int numberOfFoods = rand.nextInt();
+        for (int i = 0; i < numberOfFoods; i++) {
+            foods.add(foodGen(foodNames[i]));
+        }
+        return new FoodMenu(foods);
     }
 
     public Food foodGen(String name){
-
+        double price = rand.nextDouble();
+        int prepTime = rand.nextInt(49)+10;
+        return new Food(name,price,prepTime);
     }
 
     public Costumer costumerGen() {
