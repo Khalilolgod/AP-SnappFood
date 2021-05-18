@@ -39,22 +39,21 @@ public class NewDelivery extends Menu {
         return WageType.values()[choice];
     }
 
-    public ArrayList<Restaurant> getRestaurants(Agency agency) {
+    public void getRestaurants(Agency agency,Delivery delivery) {
 
-        ArrayList<Restaurant> restaurants = new ArrayList<>();
         ArrayList<Restaurant> allrestaurants = new ArrayList<>(agency.getRestaurants());
         System.out.println("restaurants to work for : ");
         for (int i = 0; i < 2; i++) {
             showRestaurants(allrestaurants);
             int choice = ScannerWrapper.getInstance().next() - 'a';
             if (choice < allrestaurants.size()) {
-                restaurants.add(allrestaurants.get(choice));
+                delivery.addRestaurant(allrestaurants.get(choice));
                 allrestaurants.remove(choice);
             } else {
                 break;
             }
         }
-        return restaurants;
+
     }
 
     void showRestaurants(ArrayList<Restaurant> restaurants) {
@@ -108,9 +107,9 @@ public class NewDelivery extends Menu {
     public boolean inputProcessor(Agency agency) {
         VehicleType vehicleType = getVehicleType();
         WageType wageType = getWageType();
-        ArrayList<Restaurant> restaurants = getRestaurants(agency);
         Schedule schedule = getSchedule();
-        Delivery delivery = new Delivery(vehicleType, wageType, restaurants, schedule);
+        Delivery delivery = new Delivery(vehicleType, wageType, schedule);
+        getRestaurants(agency,delivery);
         agency.getAllDeliveries().add(delivery);
         return false;
     }

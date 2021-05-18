@@ -28,9 +28,9 @@ public class RandObjGen {
     public Delivery deliveryGen() {
         VehicleType vehicleType = VehicleType.values()[rand.nextInt(VehicleType.values().length)];
         WageType wageType = WageType.values()[rand.nextInt(WageType.values().length)];
-        ArrayList<Restaurant> restaurants = new ArrayList<>();//todo make sure it meets with the restaurant schedule
+        //ArrayList<Restaurant> restaurants = new ArrayList<>();//todo make sure it meets with the restaurant schedule
         Schedule schedule = scheduleGen();
-        return new Delivery(vehicleType, wageType, restaurants, schedule);
+        return new Delivery(vehicleType, wageType, schedule);
     }
 
     /**
@@ -81,13 +81,13 @@ public class RandObjGen {
         return sb.toString();
     }
 
-    public Restaurant restaurentGen(String name) {
+    public Restaurant restaurantGen(String name) {
         String address = stringGen(20);
         RestaurantType restaurantType = RestaurantType.values()[rand.nextInt(RestaurantType.values().length)];
         FoodMenu foodMenu = foodmenuGen();
-        ArrayList<Delivery> deliveries = new ArrayList<>();//todo
         Schedule schedule  = scheduleGen();
-        return new Restaurant(name,address,restaurantType, deliveries,schedule);
+        //todo sort the deliveries out to
+        return new Restaurant(name,address,restaurantType,foodMenu,schedule);
     }
 
     public FoodMenu foodmenuGen() {
@@ -110,7 +110,7 @@ public class RandObjGen {
             agency.getAllDeliveries().add(deliveryGen());
         }
         for (int i = 0; i < restaurentNames.length ; i++) {
-            agency.getRestaurants().add(restaurentGen(restaurentNames[i]));
+            agency.getRestaurants().add(restaurantGen(restaurentNames[i]));
         }
     }
 

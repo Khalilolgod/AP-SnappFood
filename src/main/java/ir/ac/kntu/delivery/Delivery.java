@@ -16,10 +16,9 @@ public class Delivery {
     private ArrayList <Order> orderHistory;
     private Schedule schedule;
 
-    public Delivery(VehicleType vehicleType, WageType wageType, ArrayList <Restaurant> restaurants, Schedule schedule) {
+    public Delivery(VehicleType vehicleType, WageType wageType, Schedule schedule) {
         this.vehicleType = vehicleType;
         this.wageType = wageType;
-        this.restaurants = restaurants;
         this.schedule = schedule;
         this.id = getAlphaNumericString(5);
         this.paycheck = 0.0;
