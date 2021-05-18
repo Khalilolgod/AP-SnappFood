@@ -26,8 +26,9 @@ public class ChooseRestaurantMenu {
     }
 
     public boolean inputProcessor(Agency agency, Costumer costumer) {
+        System.out.println("restaurant : ");
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        Restaurant theChosenOne = agency.getRestaurants().get(choice);
+        Restaurant theChosenOne = activeRestaurants.get(choice);
         theChosenOne.getFoodMenu().execute(theChosenOne, costumer);
         return false;
     }

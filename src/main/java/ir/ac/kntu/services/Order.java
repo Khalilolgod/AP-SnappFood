@@ -26,6 +26,19 @@ public class Order {
         this.editOrder = new EditOrder(this);
     }
 
+    @Override
+    public String toString() {
+        String output =  "Order{" +
+                "orderStatus=" + orderStatus +
+                ", prepTime=" + prepTime +
+                ", finalPrice=" + finalPrice +
+                "}\n";
+        for (Object food : foods.keySet().toArray()) {
+            output+= food.toString() + "\n";
+        }
+        return output;
+    }
+
     /**
      * if food doesn't exists it will add it to the hashMap
      * if it does exist , it will +1 the count of that food in the hashMap

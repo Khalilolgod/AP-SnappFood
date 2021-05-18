@@ -23,6 +23,7 @@ public class Delivery {
         this.id = getAlphaNumericString(5);
         this.paycheck = 0.0;
         this.orderHistory = new ArrayList<>();
+        this.restaurants = new ArrayList<>();
         activeOrder = null;
     }
 

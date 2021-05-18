@@ -56,7 +56,7 @@ public class EditDelivery extends Menu {
 
     public void showRestaurants(ArrayList<Restaurant> restaurants) {
         char i = 'a';
-        for (Restaurant r : delivery.getRestaurants()) {
+        for (Restaurant r : restaurants) {
             System.out.println(i + ". " + r);
             i++;
         }
@@ -70,8 +70,7 @@ public class EditDelivery extends Menu {
             case "a":
                 showRestaurants(agency.getRestaurants());
                 int choice1 = ScannerWrapper.getInstance().next() - 'a';
-                delivery.getRestaurants().add(agency.getRestaurants().get(choice1));
-                agency.getRestaurants().get(choice1).getDeliveries().add(delivery);
+                agency.getRestaurants().get(choice1).addDelivery(delivery);
                 break;
             case "b":
                 showRestaurants(delivery.getRestaurants());

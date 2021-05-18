@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.util.Random;
 
 import java.util.ArrayList;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class RandObjGen {
 
@@ -122,7 +123,13 @@ public class RandObjGen {
         for (int i = 0; i < restaurentNames.length ; i++) {
             agency.getRestaurants().add(restaurantGen(restaurentNames[i],agency));
         }
+        ArrayList <Shift> shifts = new ArrayList<>();
+        Shift shift = new Shift(LocalTime.of(1,0),LocalTime.of(23,59));
+        shifts.add(shift);
+        WorkDay workDay = new WorkDay(DayOfWeek.TUESDAY,shifts);
+        agency.getRestaurants().get(3).getSchedule().getWorkDays().add(workDay);
     }
+
 
 
 }

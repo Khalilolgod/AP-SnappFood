@@ -33,8 +33,8 @@ public class EditRestaurant extends Menu {
     }
 
     public void editRestaurantType() {
-        System.out.println(restaurant.getRestaurantType().name());
-        int i = 'a';
+        System.out.println("current Type : " + restaurant.getRestaurantType().name());
+        char i = 'a';
         for (RestaurantType restaurantType : RestaurantType.values()) {
             System.out.println(i + ". " + restaurantType.name());
             i++;
@@ -46,6 +46,7 @@ public class EditRestaurant extends Menu {
 
     public void showOrders() {
         char i = 'a';
+        System.out.println(restaurant.getOrders().get(0));
         for (Order order : restaurant.getOrders()) {
             System.out.println(i + ". " + order);
             i++;
@@ -60,13 +61,18 @@ public class EditRestaurant extends Menu {
     public void removeOrder() {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        restaurant.getOrders().remove(choice);
+        if(choice < restaurant.getOrders().size())
+        {
+            restaurant.getOrders().remove(choice);
+        }
     }
 
     public void editOrder(Restaurant restaurant) {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        restaurant.getOrders().get(choice).getEditOrder().execute(restaurant);
+        if(choice < restaurant.getOrders().size()) {
+            restaurant.getOrders().get(choice).getEditOrder().execute(restaurant);
+        }
     }
 
     public void editOrders() {
@@ -95,6 +101,7 @@ public class EditRestaurant extends Menu {
             i++;
         }
         int choice = ScannerWrapper.getInstance().next() - 'a';
+        System.out.println(agency.getRestaurants().get(choice).hashCode());
         return agency.getRestaurants().get(choice);
     }
 
