@@ -87,17 +87,31 @@ public class EditDelivery extends Menu {
     public void showSchedule() {
         char i = 'a';
         for (WorkDay workDay : delivery.getSchedule().getWorkDays()) {
-            System.out.println("todo");
-            //TODO
+            System.out.println(i+". "+workDay);
+            i++;
         }
-
     }
 
+
+/*
     public void editSchedule() {
-        System.out.println("todo");
-        //TODO
-    }
+        //todo make shifts editable
+        System.out.println("a. Add workday    b. Remove workday ");
+        String choice = ScannerWrapper.getInstance().nextLine();
+        switch (choice){
+            case "a":
+                showSchedule();
 
+            case "b":
+                showSchedule();
+            default:
+                break;
+        }
+        showSchedule();
+        System.out.println("todo");
+
+    }
+*/
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -118,7 +132,8 @@ public class EditDelivery extends Menu {
                 editRestaurant(agency);
                 break;
             case "f":
-                editSchedule();
+                //editSchedule();
+                //todo
                 break;
             case "g":
                 return false;

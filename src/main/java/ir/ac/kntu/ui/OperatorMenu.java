@@ -26,7 +26,11 @@ public class OperatorMenu extends Menu {
         System.out.println(choice);
         switch (choice){
             case "a":
-                Costumer costumer = new Costumer();
+                System.out.println("enter phone number");
+                String phonenumber = ScannerWrapper.getInstance().nextLine();
+                System.out.println("enter address");
+                String address = ScannerWrapper.getInstance().nextLine();
+                Costumer costumer = new Costumer(phonenumber,address);
                 agency.getChooseRestaurantMenu().execute(agency,costumer);
                 return true;
             case "b":

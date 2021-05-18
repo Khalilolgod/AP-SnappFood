@@ -14,16 +14,6 @@ public class Costumer {
         this.setPhoneNumber(phoneNumber);
     }
 
-    public Costumer() {
-        System.out.println("enter phone number");
-        String phonenumber = ScannerWrapper.getInstance().nextLine();
-        System.out.println("enter address");
-        String address = ScannerWrapper.getInstance().nextLine();
-        this.phoneNumber = phonenumber;
-        this.address = address;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o){

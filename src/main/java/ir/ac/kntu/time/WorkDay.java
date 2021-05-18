@@ -16,8 +16,14 @@ public class WorkDay {
         this.day = day;
     }
 
-    //Todo write a constructor using user input;
-
+    @Override
+    public String toString() {
+        String output = "day=" + day.name();
+        for(int i = 0 ; i < shifts.size() ; i++){
+            output+= ("   "+(i+1)+". "+shifts.get(i));
+        }
+        return output;
+    }
 
     @Override
     public boolean equals(Object o) {

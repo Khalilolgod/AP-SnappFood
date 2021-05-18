@@ -4,9 +4,9 @@
 *                                                *
 *      a. Vehicle Type       b. Wage Type        *
 *                                                *
-*      c. Paycheck           d. Active Order     *
+*      c. Paycheck          d. Active Order(todo)*
 *                                                *
-*      e. Restaurants        f. Schedule         *
+*      e. Restaurants        f. Schedule(todo)   *
 *                                                *
 *                  g. Exit                       *
 **************************************************

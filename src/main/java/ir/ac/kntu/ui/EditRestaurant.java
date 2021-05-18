@@ -54,7 +54,11 @@ public class EditRestaurant extends Menu {
     }
 
     public void addOrder() {
-        Costumer costumer = new Costumer();//costumer(phone , address)
+        System.out.println("enter phone number");
+        String phonenumber = ScannerWrapper.getInstance().nextLine();
+        System.out.println("enter address");
+        String address = ScannerWrapper.getInstance().nextLine();
+        Costumer costumer = new Costumer(phonenumber,address);
         restaurant.getFoodMenu().execute(restaurant, costumer);
     }
 
