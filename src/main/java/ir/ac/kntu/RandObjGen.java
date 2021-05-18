@@ -128,6 +128,9 @@ public class RandObjGen {
         shifts.add(shift);
         WorkDay workDay = new WorkDay(DayOfWeek.TUESDAY, shifts);
         agency.getRestaurants().get(3).getSchedule().getWorkDays().add(workDay);
+        agency.getRestaurants().get(4).getSchedule().getWorkDays().add(workDay);
+        agency.getRestaurants().get(5).getSchedule().getWorkDays().add(workDay);
+
     }
 
 

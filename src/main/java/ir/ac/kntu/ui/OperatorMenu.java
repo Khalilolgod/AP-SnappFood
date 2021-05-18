@@ -23,7 +23,6 @@ public class OperatorMenu extends Menu {
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
-        System.out.println(choice);
         switch (choice){
             case "a":
                 System.out.println("enter phone number");
