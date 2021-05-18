@@ -34,6 +34,7 @@ public class Delivery {
                 "id='" + id + '\'' +
                 ", vehicleType=" + vehicleType.name().toLowerCase() +
                 ", wageType=" + wageType.name().toLowerCase() +
+                ", restaurants=" + restaurants.size() +
                 '}';
     }
 

@@ -16,7 +16,7 @@ public class RandObjGen {
 
     private final Random rand;
     private final String[] restaurentNames = {"alborz", "orkide", "lak lak", "mahan", "pars", "shandiz", "hani", "asil", "narenjestan", "morshed"};
-    private final String[] foodNames = {"pizza" , "hamburger" , "kabab" , "jooje" , "ghorme sabzi" , "makaroni" , "zereshk polo", "lazania" };
+    private final String[] foodNames = {"pizza", "hamburger", "kabab", "jooje", "ghorme sabzi", "makaroni", "zereshk polo", "lazania"};
 
 
     RandObjGen() {
@@ -82,54 +82,53 @@ public class RandObjGen {
         return sb.toString();
     }
 
-    public void assignRandomDeliveris(Agency agency,Restaurant restaurant){
-        int numberOfDeliveries = rand.nextInt(2)+1;
+    public void assignRandomDeliveris(Agency agency, Restaurant restaurant) {
+        int numberOfDeliveries = rand.nextInt(2) + 1;
         for (int i = 0; i < numberOfDeliveries; i++) {
             restaurant.addDelivery(agency.getAddableDeliveries().get(i));
             //not safe change this later
         }
     }
 
-    public Restaurant restaurantGen(String name,Agency agency) {
+    public Restaurant restaurantGen(String name, Agency agency) {
         String address = stringGen(20);
         RestaurantType restaurantType = RestaurantType.values()[rand.nextInt(RestaurantType.values().length)];
         FoodMenu foodMenu = foodmenuGen();
-        Schedule schedule  = scheduleGen();
+        Schedule schedule = scheduleGen();
         //todo sort the deliveries out
-        Restaurant restaurant = new Restaurant(name,address,restaurantType,foodMenu,schedule);
-        assignRandomDeliveris(agency,restaurant);
+        Restaurant restaurant = new Restaurant(name, address, restaurantType, foodMenu, schedule);
+        assignRandomDeliveris(agency, restaurant);
         return restaurant;
     }
 
     public FoodMenu foodmenuGen() {
-        ArrayList<Food> foods  = new ArrayList<>();
-        int numberOfFoods = rand.nextInt(foodNames.length)+1;
+        ArrayList<Food> foods = new ArrayList<>();
+        int numberOfFoods = rand.nextInt(foodNames.length) + 1;
         for (int i = 0; i < numberOfFoods; i++) {
             foods.add(foodGen(foodNames[i]));
         }
         return new FoodMenu(foods);
     }
 
-    public Food foodGen(String name){
-        double price = rand.nextDouble()*100;
-        int prepTime = rand.nextInt(120)+10;
-        return new Food(name,price,prepTime);
+    public Food foodGen(String name) {
+        double price = rand.nextDouble() * 100;
+        int prepTime = rand.nextInt(120) + 10;
+        return new Food(name, price, prepTime);
     }
 
     public void generate(Agency agency) {
         for (int i = 0; i < 15; i++) {
             agency.getAllDeliveries().add(deliveryGen());
         }
-        for (int i = 0; i < restaurentNames.length ; i++) {
-            agency.getRestaurants().add(restaurantGen(restaurentNames[i],agency));
+        for (int i = 0; i < restaurentNames.length; i++) {
+            agency.getRestaurants().add(restaurantGen(restaurentNames[i], agency));
         }
-        ArrayList <Shift> shifts = new ArrayList<>();
-        Shift shift = new Shift(LocalTime.of(1,0),LocalTime.of(23,59));
+        ArrayList<Shift> shifts = new ArrayList<>();
+        Shift shift = new Shift(LocalTime.of(1, 0), LocalTime.of(23, 59));
         shifts.add(shift);
-        WorkDay workDay = new WorkDay(DayOfWeek.TUESDAY,shifts);
+        WorkDay workDay = new WorkDay(DayOfWeek.TUESDAY, shifts);
         agency.getRestaurants().get(3).getSchedule().getWorkDays().add(workDay);
     }
-
 
 
 }

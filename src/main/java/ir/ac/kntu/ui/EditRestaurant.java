@@ -58,15 +58,14 @@ public class EditRestaurant extends Menu {
         String phonenumber = ScannerWrapper.getInstance().nextLine();
         System.out.println("enter address");
         String address = ScannerWrapper.getInstance().nextLine();
-        Costumer costumer = new Costumer(phonenumber,address);
+        Costumer costumer = new Costumer(phonenumber, address);
         restaurant.getFoodMenu().execute(restaurant, costumer);
     }
 
     public void removeOrder() {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        if(choice < restaurant.getOrders().size())
-        {
+        if (choice < restaurant.getOrders().size()) {
             restaurant.getOrders().remove(choice);
         }
     }
@@ -74,7 +73,7 @@ public class EditRestaurant extends Menu {
     public void editOrder(Restaurant restaurant) {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        if(choice < restaurant.getOrders().size()) {
+        if (choice < restaurant.getOrders().size()) {
             restaurant.getOrders().get(choice).getEditOrder().execute(restaurant);
         }
     }
@@ -110,12 +109,11 @@ public class EditRestaurant extends Menu {
     }
 
     public void editRate() {
-        System.out.println("current rate : "+restaurant.getRate());
+        System.out.println("current rate : " + restaurant.getRate());
         System.out.println("new rate : ");
         double rate = ScannerWrapper.getInstance().nextDouble();
         restaurant.setRate(rate);
     }
-
 
 
     @Override

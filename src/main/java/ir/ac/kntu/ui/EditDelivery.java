@@ -17,9 +17,11 @@ public class EditDelivery extends Menu {
     }
 
     public boolean execute(Agency agency, Delivery delivery) {
-        showMenu();
-        this.delivery = delivery;
-        return inputProcessor(agency);
+        do {
+            showMenu();
+            this.delivery = delivery;
+        }while (inputProcessor(agency));
+        return false;
     }
 
     public void editVehicleType() {

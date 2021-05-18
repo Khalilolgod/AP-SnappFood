@@ -19,8 +19,8 @@ public class WorkDay {
     @Override
     public String toString() {
         String output = "day=" + day.name();
-        for(int i = 0 ; i < shifts.size() ; i++){
-            output+= ("   "+(i+1)+". "+shifts.get(i));
+        for (int i = 0; i < shifts.size(); i++) {
+            output += ("   " + (i + 1) + ". " + shifts.get(i));
         }
         return output;
     }

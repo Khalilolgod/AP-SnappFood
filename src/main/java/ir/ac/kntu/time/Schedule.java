@@ -18,7 +18,7 @@ public class Schedule {
             for(Shift shift : workDay.getShifts()){
                 result += (" "+shift);
             }
-            result+= '\n';
+            result+= ' ';
         }
         return result;
     }
