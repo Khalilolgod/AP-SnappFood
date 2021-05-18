@@ -116,6 +116,8 @@ public class EditRestaurant extends Menu {
         restaurant.setRate(rate);
     }
 
+
+
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();

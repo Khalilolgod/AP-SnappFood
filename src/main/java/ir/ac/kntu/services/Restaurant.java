@@ -11,7 +11,7 @@ public class Restaurant {
     private FoodMenu foodMenu;
     private ArrayList<Delivery> deliveries;
     private ArrayList<Order> orders;
-    private ArrayList<Order> deliveredOrders;
+    private ArrayList<Order> deliveredOrders;//todo
     //private ArrayList <Review> reviews;
     private double rate;
     private Schedule schedule;
@@ -32,6 +32,11 @@ public class Restaurant {
     public String toString() {
         return "Restaurant{" +
                 "name='" + name + '\'' +
+                ", restaurantType=" + restaurantType.name() +
+                ", deliveries=" + deliveries.size() +
+                ", orders=" + orders.size() +
+                ", rate=" + rate +
+                ", schedule=" + schedule +
                 '}';
     }
 
