@@ -81,13 +81,23 @@ public class RandObjGen {
         return sb.toString();
     }
 
-    public Restaurant restaurantGen(String name) {
+    public void assignRandomDeliveris(Agency agency,Restaurant restaurant){
+        int numberOfDeliveries = rand.nextInt(2)+1;
+        for (int i = 0; i < numberOfDeliveries; i++) {
+            restaurant.addDelivery(agency.getAddableDeliveries().get(i));
+            //not safe change this later
+        }
+    }
+
+    public Restaurant restaurantGen(String name,Agency agency) {
         String address = stringGen(20);
         RestaurantType restaurantType = RestaurantType.values()[rand.nextInt(RestaurantType.values().length)];
         FoodMenu foodMenu = foodmenuGen();
         Schedule schedule  = scheduleGen();
-        //todo sort the deliveries out to
-        return new Restaurant(name,address,restaurantType,foodMenu,schedule);
+        //todo sort the deliveries out
+        Restaurant restaurant = new Restaurant(name,address,restaurantType,foodMenu,schedule);
+        assignRandomDeliveris(agency,restaurant);
+        return restaurant;
     }
 
     public FoodMenu foodmenuGen() {
@@ -110,7 +120,7 @@ public class RandObjGen {
             agency.getAllDeliveries().add(deliveryGen());
         }
         for (int i = 0; i < restaurentNames.length ; i++) {
-            agency.getRestaurants().add(restaurantGen(restaurentNames[i]));
+            agency.getRestaurants().add(restaurantGen(restaurentNames[i],agency));
         }
     }
 

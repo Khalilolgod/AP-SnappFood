@@ -36,10 +36,13 @@ public class Delivery {
                 '}';
     }
 
-    public void addRestaurant(Restaurant restaurant){
+    public boolean addRestaurant(Restaurant restaurant){
         if(restaurants.size() < 2){
             restaurants.add(restaurant);
+            restaurant.getDeliveries().add(this);
+            return true;
         }
+        return false;
     }
 
     public String getAlphaNumericString(int n) {

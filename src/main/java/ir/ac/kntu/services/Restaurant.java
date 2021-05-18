@@ -50,6 +50,10 @@ public class Restaurant {
         return -1;
     }
 
+    public boolean addDelivery(Delivery delivery){
+        return delivery.addRestaurant(this);
+    }
+
     public void processOrder(Order order) {
         if (order.getOrderStatus() == OrderStatus.PROCESSING) {
             int index = availableDelivery();
