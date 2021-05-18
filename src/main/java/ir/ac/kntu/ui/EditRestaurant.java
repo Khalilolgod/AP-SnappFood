@@ -109,6 +109,12 @@ public class EditRestaurant extends Menu {
         return agency.getRestaurants().get(choice);
     }
 
+    public void editRate() {
+        System.out.println("current rate : "+restaurant.getRate());
+        System.out.println("new rate : ");
+        double rate = ScannerWrapper.getInstance().nextDouble();
+        restaurant.setRate(rate);
+    }
 
     @Override
     public boolean inputProcessor(Agency agency) {
@@ -133,6 +139,7 @@ public class EditRestaurant extends Menu {
             case "g":
                 return true;
             case "h":
+                editRate();
                 return true;
             case "i":
                 return false;

@@ -133,7 +133,6 @@ public class EditDelivery extends Menu {
                 break;
             case "f":
                 //editSchedule();
-                //todo
                 break;
             case "g":
                 return false;

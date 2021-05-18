@@ -6,9 +6,9 @@
 *                                                *
 *      c. Restaurant Type      d. Orders         *
 *                                                *
-*      e. foodMenu             f. Schedule       *
+*      e. foodMenu(todo)       f. Schedule(todo) *
 *                                                *
-*      g. Deliveries           h. Rate           *
+*      g. Deliveries(todo)     h. Rate           *
 *                                                *
 *                  i. Exit                       *
 **************************************************
