@@ -1,14 +1,11 @@
 package ir.ac.kntu.model.services;
 
-import ir.ac.kntu.model.deliverySystem.Deliverer;
 import ir.ac.kntu.model.deliverySystem.DeliveryShift;
 import ir.ac.kntu.model.deliverySystem.DeliverySystem;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 import ir.ac.kntu.model.users.Costumer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ProductMenu {
 
@@ -54,10 +51,12 @@ public class ProductMenu {
     public void processOrder(Order order) {
         if (order.getOrderStatus() == OrderStatus.PROCESSING) {
             DeliveryShift deliveryShift = selectDeliveryShift(order);
+            order.setDeliveryShift(deliveryShift);
+            //todo remove the chosen shift from restaurants shifts
             order.setOrderStatus(OrderStatus.RESERVED);
         }else if(order.getOrderStatus() == OrderStatus.RESERVED){
             // todo check if its time
-            order.setDeliverer(DeliverySystem.findDeliverer(order.getCostumer(),order.getProvider()));
+            order.setDeliverer(DeliverySystem.findDeliverer(order.getCostumer(),order.getProvider(), ));
             order.setOrderStatus(OrderStatus.SENDING);
         } else if (order.getOrderStatus() == OrderStatus.SENDING) {
             //TODO check if its Delivered by ETA

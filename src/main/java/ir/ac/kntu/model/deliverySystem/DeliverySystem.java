@@ -1,5 +1,6 @@
 package ir.ac.kntu.model.deliverySystem;
 
+import ir.ac.kntu.model.services.Order;
 import ir.ac.kntu.model.services.Provider;
 import ir.ac.kntu.model.users.Costumer;
 
@@ -17,7 +18,7 @@ public class DeliverySystem
         deliverers = new ArrayList<>();
     }
 
-    public static Deliverer findDeliverer(Costumer costumer , Provider provider){
+    public static Deliverer findDeliverer(Costumer costumer , Provider provider, Order order){
         double minDist = Double.MAX_VALUE;
         double dist = 0;
         Deliverer deliverer =  null;
