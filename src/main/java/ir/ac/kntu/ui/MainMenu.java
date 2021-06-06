@@ -20,30 +20,59 @@ public class MainMenu extends Menu {
         }
     }
 
-    private boolean verifyUser(User user){
+    public boolean verifyUser(User user){
+        if(user == null){
+            System.out.println("no such user exists");
+            return false;
+        }
         System.out.print("Password : ");
         String password = ScannerWrapper.getInstance().nextLine();
         if(user.verifyUser(user.getUsername(), password)){
             return true;
         }
+        System.out.println("wrong password");
         return false;
     }
 
+    public boolean loginCostumer(Agency agency){
+        System.out.print("costumer username : ");
+        String username = ScannerWrapper.getInstance().nextLine();
+        Costumer costumer =  agency.findCustumer(username);
+        return verifyUser(costumer);
+    }
 
+    public boolean loginOperator(Agency agency){
+        System.out.print("operator username : ");
+        String username = ScannerWrapper.getInstance().nextLine();
+        Costumer costumer =  agency.findCustumer(username);
+        return verifyUser(costumer);
+    }
 
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice){
             case "a":
-
+                System.out.println("admin username : ");
+                String username = ScannerWrapper.getInstance().nextLine();
+                if(agency.getAdmin().getUsername().equals(username)){
+                    if(verifyUser(agency.getAdmin())){
+                        agency.getAdmin().getAdminMenu().execute(agency);
+                    }
+                }
                 return true;
             case "b":
-
+                if(loginOperator(agency)){
+                    //Operator menu
+                }
                 return true;
             case "c":
-
+                if(loginCostumer(agency)){
+                    //Costumer menu
+                }
                 return true;
+            case "d":
+                //setting menu
             case "e":
                 System.out.println("aight then imma exit");
                 return false;
