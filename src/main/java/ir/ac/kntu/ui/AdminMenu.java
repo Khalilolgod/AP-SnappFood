@@ -24,12 +24,10 @@ public class AdminMenu extends Menu {
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice){
             case "a":
-                System.out.println("enter phone number");
-                String phonenumber = ScannerWrapper.getInstance().nextLine();
-                System.out.println("enter address");
-                String address = ScannerWrapper.getInstance().nextLine();
-                Costumer costumer = new Costumer(phonenumber,address);
-                agency.getChooseRestaurantMenu().execute(agency,costumer);
+                System.out.println("enter Costumer UserName");
+                String userName = ScannerWrapper.getInstance().nextLine();
+                Costumer costumer = agency.findCustumer(userName);
+                agency.getChooseProviderMenu().execute(agency,costumer);
                 return true;
             case "b":
                 agency.getDeliveryMenu().execute(agency);
