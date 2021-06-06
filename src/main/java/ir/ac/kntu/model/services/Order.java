@@ -1,6 +1,7 @@
 package ir.ac.kntu.model.services;
 
 import ir.ac.kntu.model.deliverySystem.Deliverer;
+import ir.ac.kntu.model.deliverySystem.DeliveryShift;
 import ir.ac.kntu.model.users.Costumer;
 import ir.ac.kntu.ui.*;
 
@@ -11,9 +12,11 @@ public class Order {
     private OrderStatus orderStatus;
     private int prepTime;
     private double finalPrice;
-    private HashMap<Product, Integer> foods;
+    private HashMap<Product, Integer> products;
     private Costumer costumer;
+    private Provider provider;
     private Deliverer deliverer;
+    private DeliveryShift deliveryShift;
 
     private EditOrder editOrder;
 
@@ -23,7 +26,7 @@ public class Order {
         setOrderStatus(OrderStatus.PROCESSING);
         setFinalPrice(0.0);
         setPrepTime(0);
-        setFoods(new HashMap<>());
+        setProducts(new HashMap<>());
         this.editOrder = new EditOrder(this);
     }
 
@@ -34,7 +37,7 @@ public class Order {
                 ", prepTime=" + prepTime +
                 ", finalPrice=" + finalPrice +
                 "}\n";
-        for (Object food : foods.keySet().toArray()) {
+        for (Object food : products.keySet().toArray()) {
             output+= food.toString() + "\n";
         }
         return output;
@@ -44,20 +47,21 @@ public class Order {
      * if product doesn't exists it will add it to the hashMap
      * if it does exist , it will +1 the count of that product in the hashMap
      */
-    public void addFood(Product product) {
+    public void addProduct(Product product) {
         setOrderStatus(OrderStatus.PROCESSING);
         setPrepTime(getPrepTime() + product.getPrepTime());
         setFinalPrice(getFinalPrice() + product.getPrice());
-        if (getFoods().containsKey(product)) {
-            getFoods().put(product, getFoods().get(product) + 1);
+        if (getProducts().containsKey(product)) {
+            getProducts().put(product, getProducts().get(product) + 1);
+            product.getProvider().getProductMenu().removeOne(product);
         } else {
-            getFoods().put(product, 1);
+            getProducts().put(product, 1);
         }
     }
 
     public void removeFood(Product product) {
-        if (foods.containsKey(product) && foods.get(product) > 0) {
-            foods.put(product, foods.get(product) - 1);
+        if (products.containsKey(product) && products.get(product) > 0) {
+            products.put(product, products.get(product) - 1);
         }
     }
 
@@ -105,12 +109,12 @@ public class Order {
         this.finalPrice = finalPrice;
     }
 
-    public HashMap<Product, Integer> getFoods() {
-        return foods;
+    public HashMap<Product, Integer> getProducts() {
+        return products;
     }
 
-    public void setFoods(HashMap<Product, Integer> foods) {
-        this.foods = foods;
+    public void setProducts(HashMap<Product, Integer> products) {
+        this.products = products;
     }
 
     public Costumer getCostumer() {
@@ -121,11 +125,11 @@ public class Order {
         this.costumer = costumer;
     }
 
-    public Deliverer getDelivery() {
+    public Deliverer getDeliverer() {
         return deliverer;
     }
 
-    public void setDelivery(Deliverer deliverer) {
+    public void setDeliverer(Deliverer deliverer) {
         this.deliverer = deliverer;
     }
 
@@ -135,5 +139,21 @@ public class Order {
 
     public void setEditOrder(EditOrder editOrder) {
         this.editOrder = editOrder;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    public DeliveryShift getDeliveryShift() {
+        return deliveryShift;
+    }
+
+    public void setDeliveryShift(DeliveryShift deliveryShift) {
+        this.deliveryShift = deliveryShift;
     }
 }

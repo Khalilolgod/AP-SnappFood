@@ -15,7 +15,6 @@ public class Shift {
     @Override
     public String toString() {
         return start + "-" + end;
-        //not sure if LocalTime has the right toString() method
     }
 
     @Override

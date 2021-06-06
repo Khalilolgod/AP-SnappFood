@@ -64,6 +64,7 @@ public class EditDelivery extends Menu {
         }
     }
 
+    /*
     public void editRestaurant(Agency agency) {
         showRestaurants(deliverer.getRestaurants());
         System.out.println("a. Add            b. Remove");
@@ -86,14 +87,18 @@ public class EditDelivery extends Menu {
 
     }
 
+     */
+
+    /*
     public void showSchedule() {
         char i = 'a';
+        //todo fix what ever the shit this is
         for (WorkDay workDay : deliverer.getSchedule().getWorkDays()) {
             System.out.println(i+". "+workDay);
             i++;
         }
     }
-
+    */
 
 /*
     public void editSchedule() {
@@ -131,7 +136,7 @@ public class EditDelivery extends Menu {
                 //todo
                 break;
             case "e":
-                editRestaurant(agency);
+                //editRestaurant(agency);
                 break;
             case "f":
                 //editSchedule();

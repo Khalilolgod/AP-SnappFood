@@ -127,9 +127,9 @@ public class RandObjGen {
         Shift shift = new Shift(LocalTime.of(1, 0), LocalTime.of(23, 59));
         shifts.add(shift);
         WorkDay workDay = new WorkDay(DayOfWeek.TUESDAY, shifts);
-        agency.getRestaurants().get(3).getSchedule().getWorkDays().add(workDay);
-        agency.getRestaurants().get(4).getSchedule().getWorkDays().add(workDay);
-        agency.getRestaurants().get(5).getSchedule().getWorkDays().add(workDay);
+        agency.getProviders().get(3).getSchedule().getWorkDays().add(workDay);
+        agency.getProviders().get(4).getSchedule().getWorkDays().add(workDay);
+        agency.getProviders().get(5).getSchedule().getWorkDays().add(workDay);
 
     }
 

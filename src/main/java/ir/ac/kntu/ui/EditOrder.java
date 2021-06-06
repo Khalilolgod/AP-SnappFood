@@ -58,9 +58,9 @@ public class EditOrder extends Menu {
             case "b":
                 char i = 'a';
                 ArrayList<Product> products = new ArrayList<>();
-                products.addAll(order.getFoods().keySet());
+                products.addAll(order.getProducts().keySet());
                 for (Product product : products) {
-                    System.out.println(i + ". " + product + ": " + order.getFoods().get(product));
+                    System.out.println(i + ". " + product + ": " + order.getProducts().get(product));
                     i++;
                 }
                 int chois = ScannerWrapper.getInstance().next() - 'a';
@@ -82,10 +82,10 @@ public class EditOrder extends Menu {
                     i++;
                 }
                 int chois = ScannerWrapper.getInstance().next() - 'a';
-                order.setDelivery(provider.getDeliveries().get(chois));
+                order.setDeliverer(provider.getDeliveries().get(chois));
                 break;
             case "b":
-                order.setDelivery(null);
+                order.setDeliverer(null);
                 break;
             default:
                 break;

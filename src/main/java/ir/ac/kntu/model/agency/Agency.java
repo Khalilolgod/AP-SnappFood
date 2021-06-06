@@ -17,8 +17,9 @@ public class Agency {
     private ArrayList<Deliverer> allDeliveries;
     private ArrayList<Costumer> costumers;
 
+    private ArrayList<Order> pendingOrders;
 
-    private ChooseRestaurantMenu chooseRestaurantMenu;
+    private ChooseProviderMenu chooseProviderMenu;
     private DeliveryMenu deliveryMenu;
     private RestaurantMenu restaurantMenu;
 
@@ -26,10 +27,11 @@ public class Agency {
     Agency() {
         this.setAdmin(new Admin("admin", "1234"));
         this.providers = new ArrayList<>();
-        this.chooseRestaurantMenu = new ChooseRestaurantMenu();
+        this.chooseProviderMenu = new ChooseProviderMenu();
         this.deliveryMenu = new DeliveryMenu();
         this.restaurantMenu = new RestaurantMenu();
         this.allDeliveries = new ArrayList<>();
+        this.pendingOrders = new ArrayList<>();
     }
 
     public Costumer findCustumer(String username){
@@ -50,6 +52,8 @@ public class Agency {
         return null;
     }
 
+
+    //TODO
     public void operatorlogin() {
         while (true) {
             if (admin.verifyUser()) {
@@ -61,7 +65,7 @@ public class Agency {
     }
 
 
-    public ArrayList<Provider> activeRestaurants() {
+    public ArrayList<Provider> activeProviders() {
         ArrayList<Provider> activeOnes = new ArrayList<>();
         for (Provider r : getProviders()) {
             if (r.isActive()) {
@@ -96,12 +100,12 @@ public class Agency {
         this.allDeliveries = allDeliveries;
     }
 
-    public ChooseRestaurantMenu getChooseRestaurantMenu() {
-        return chooseRestaurantMenu;
+    public ChooseProviderMenu getChooseProviderMenu() {
+        return chooseProviderMenu;
     }
 
-    public void setChooseRestaurantMenu(ChooseRestaurantMenu chooseRestaurantMenu) {
-        this.chooseRestaurantMenu = chooseRestaurantMenu;
+    public void setChooseProviderMenu(ChooseProviderMenu chooseProviderMenu) {
+        this.chooseProviderMenu = chooseProviderMenu;
     }
 
     public DeliveryMenu getDeliveryMenu() {
@@ -126,5 +130,13 @@ public class Agency {
 
     public void setCostumers(ArrayList<Costumer> costumers) {
         this.costumers = costumers;
+    }
+
+    public ArrayList<Order> getPendingOrders() {
+        return pendingOrders;
+    }
+
+    public void setPendingOrders(ArrayList<Order> pendingOrders) {
+        this.pendingOrders = pendingOrders;
     }
 }

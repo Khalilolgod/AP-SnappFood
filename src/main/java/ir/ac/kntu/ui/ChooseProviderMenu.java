@@ -7,7 +7,7 @@ import ir.ac.kntu.model.users.Costumer;
 
 import java.util.ArrayList;
 
-public class ChooseRestaurantMenu {
+public class ChooseProviderMenu {
 
     private ArrayList<Provider> activeProviders;
 
@@ -17,7 +17,7 @@ public class ChooseRestaurantMenu {
     }
 
     public void showMenu(Agency agency) {
-        activeProviders = agency.activeRestaurants();
+        activeProviders = agency.activeProviders();
         char i = 'a';
         for (Provider r : activeProviders) {
             System.out.println(i + ". " + r);
@@ -26,18 +26,19 @@ public class ChooseRestaurantMenu {
     }
 
     public boolean inputProcessor(Agency agency, Costumer costumer) {
-        System.out.println("restaurant : ");
+        System.out.println("providers : ");
         int choice = ScannerWrapper.getInstance().next() - 'a';
         Provider theChosenOne = activeProviders.get(choice);
-        theChosenOne.getFoodMenu().execute(theChosenOne, costumer);
+        theChosenOne.getProductMenu().execute(theChosenOne, costumer);
         return false;
     }
 
-    public ArrayList<Provider> getActiveRestaurants() {
+
+    public ArrayList<Provider> getActiveProviders() {
         return activeProviders;
     }
 
-    public void setActiveRestaurants(ArrayList<Provider> activeProviders) {
+    public void setActiveProviders(ArrayList<Provider> activeProviders) {
         this.activeProviders = activeProviders;
     }
 }
