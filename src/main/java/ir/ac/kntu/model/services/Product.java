@@ -20,10 +20,12 @@ public class Product {
      * @param price by Tomans
      * @param prepTime by minutes
      */
-    public Product(String name, double price, int prepTime) {
+    public Product(String name, double price, int prepTime,Provider provider) {
         this.setName(name);
         this.setPrice(price);
         this.setPrepTime(prepTime);
+        this.provider = provider;
+        reviews = new ArrayList<>();
         this.setRate(5);
     }
 
@@ -67,6 +69,22 @@ public class Product {
 
     public void setRate(double rate) {
         this.rate = rate;
+    }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     /*public ArrayList<Review> getReviews() {

@@ -49,22 +49,6 @@ public class Provider {
         return getSchedule().isTodayWorkDay();
     }
 
-
-    public void processOrder(Order order) {
-        if (order.getOrderStatus() == OrderStatus.PROCESSING) {
-            int index = availableDelivery();
-            if (index != -1) {
-                getDeliveries().get(index).setActiveOrder(order);
-                order.setDelivery(getDeliveries().get(index));
-                order.setOrderStatus(OrderStatus.SENDING);
-            }
-        } else if (order.getOrderStatus() == OrderStatus.SENDING) {
-            //TODO
-            System.out.println("nigaaaaaaaaa");
-        }
-    }
-
-
     public String getName() {
         return name;
     }
