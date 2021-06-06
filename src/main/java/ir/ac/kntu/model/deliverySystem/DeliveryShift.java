@@ -17,6 +17,14 @@ public class DeliveryShift extends Shift {
         this.orders = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return "DeliveryShift{ " +
+                super.toString()+
+                " capacity=" + capacity +
+                '}';
+    }
+
     public ArrayList<Order> getOrders() {
         return orders;
     }
