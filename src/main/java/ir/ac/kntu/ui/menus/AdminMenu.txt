@@ -1,9 +1,11 @@
 **************************************************
-*               so what you up to?               *
+*                   Admin Menu                   *
 *                                                *
-*         a. Order            b. Delivery        *
+*         a. Order            b. DeliverySystem  *
 *                                                *
-*         c. Restaurant       d. Settings        *
+*         c. Providers        d. Costumers       *
+*                                                *
+*         e. Operators        f. Settings        *
 *                                                *
 *                     e.Exit                     *
 **************************************************

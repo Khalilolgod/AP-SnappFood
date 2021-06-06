@@ -1,15 +1,15 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.Agency;
-import ir.ac.kntu.ScannerWrapper;
-import ir.ac.kntu.delivery.Delivery;
-import ir.ac.kntu.services.Food;
-import ir.ac.kntu.services.FoodMenu;
-import ir.ac.kntu.services.Restaurant;
-import ir.ac.kntu.services.RestaurantType;
-import ir.ac.kntu.time.Schedule;
-import ir.ac.kntu.time.Shift;
-import ir.ac.kntu.time.WorkDay;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.deliverySystem.Deliverer;
+import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.utils.ScannerWrapper;
+import ir.ac.kntu.model.services.Product;
+import ir.ac.kntu.model.services.ProductMenu;
+import ir.ac.kntu.model.services.ServiceType;
+import ir.ac.kntu.model.time.Schedule;
+import ir.ac.kntu.model.time.Shift;
+import ir.ac.kntu.model.time.WorkDay;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -29,63 +29,63 @@ public class NewRestaurant extends Menu {
 
     public void showRestaurants(Agency agency) {
         char i = 'a';
-        for (Restaurant r : agency.getRestaurants()) {
+        for (Provider r : agency.getRestaurants()) {
             System.out.println(i + ". " + r);
             i++;
         }
     }
 
     public String getRestaurantName() {
-        System.out.println("Restaurant name : ");
+        System.out.println("Provider name : ");
         return ScannerWrapper.getInstance().nextLine();
     }
 
     public String getRestaurantAddress() {
-        System.out.println("Restaurant address : ");
+        System.out.println("Provider address : ");
         return ScannerWrapper.getInstance().nextLine();
     }
 
-    public RestaurantType getRestaurantType() {
+    public ServiceType getRestaurantType() {
         char i = 'a';
-        for (RestaurantType restaurantType : RestaurantType.values()) {
-            System.out.println(i + ". " + restaurantType.name());
+        for (ServiceType serviceType : ServiceType.values()) {
+            System.out.println(i + ". " + serviceType.name());
             i++;
         }
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        return RestaurantType.values()[choice];
+        return ServiceType.values()[choice];
     }
 
-    public FoodMenu getFoodMenu() {
+    public ProductMenu getFoodMenu() {
 
-        ArrayList<Food> foods = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
         int choice;
         System.out.println("food menu: ");
         while (true) {
-            System.out.println("a. Add Food       b. Done");
+            System.out.println("a. Add Product       b. Done");
             choice = ScannerWrapper.getInstance().next();
             if (choice == 'a') {
-                System.out.println("food name : ");
+                System.out.println("product name : ");
                 String name = ScannerWrapper.getInstance().nextLine();
                 System.out.println("Price : ");
                 double price = Double.parseDouble(ScannerWrapper.getInstance().nextLine());
                 System.out.println("preptime : ");
                 int preptime = Integer.parseInt(ScannerWrapper.getInstance().nextLine());
-                Food food = new Food(name, price, preptime);
-                foods.add(food);
+                Product product = new Product(name, price, preptime);
+                products.add(product);
             } else {
                 break;
             }
         }
-        return new FoodMenu(foods);
+        return new ProductMenu(products);
     }
 
 
-    public ArrayList<Delivery> getDeliveries(Agency agency,Restaurant restaurant) {
-        ArrayList<Delivery> deliveries = new ArrayList<>();
-        ArrayList<Delivery> validDeliveries =  agency.getAddableDeliveries();
+    public ArrayList<Deliverer> getDeliveries(Agency agency, Provider provider) {
+        ArrayList<Deliverer> deliveries = new ArrayList<>();
+        ArrayList<Deliverer> validDeliveries =  agency.getAddableDeliveries();
         char i = 'a';
-        for (Delivery delivery : validDeliveries) {
-            System.out.println(i + ". " + delivery);
+        for (Deliverer deliverer : validDeliveries) {
+            System.out.println(i + ". " + deliverer);
             i++;
         }
         System.out.println(i + ". Done");
@@ -94,7 +94,7 @@ public class NewRestaurant extends Menu {
             int choice = ScannerWrapper.getInstance().next() - 'a';
             if (choice <  validDeliveries.size()) {
                 deliveries.add( validDeliveries.get(choice));
-                validDeliveries.get(choice).addRestaurant(restaurant);
+                validDeliveries.get(choice).addRestaurant(provider);
             } else {
                 break;
             }
@@ -143,13 +143,13 @@ public class NewRestaurant extends Menu {
     public void newRestaurant(Agency agency) {
         String name = getRestaurantName();
         String address = getRestaurantAddress();
-        RestaurantType restaurantType = getRestaurantType();
-        FoodMenu foodMenu = getFoodMenu();
+        ServiceType serviceType = getRestaurantType();
+        ProductMenu productMenu = getFoodMenu();
         Schedule schedule = getSchedule();
-        Restaurant restaurant = new Restaurant(name, address,restaurantType,foodMenu, schedule);
-        ArrayList<Delivery> deliveries = getDeliveries(agency,restaurant );
-        restaurant.setDeliveries(deliveries);
-        agency.getRestaurants().add(restaurant);
+        Provider provider = new Provider(name, address, serviceType, productMenu, schedule);
+        ArrayList<Deliverer> deliveries = getDeliveries(agency, provider);
+        provider.setDeliveries(deliveries);
+        agency.getRestaurants().add(provider);
     }
 
     @Override

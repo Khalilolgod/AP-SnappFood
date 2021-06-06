@@ -1,6 +1,6 @@
-package ir.ac.kntu.services;
+package ir.ac.kntu.model.services;
 
-public enum RestaurantType {
+public enum ServiceType {
     LUXURY(10),NORMAL(5),ECONOMIC(2);
 
     private double brandRate;
@@ -9,7 +9,7 @@ public enum RestaurantType {
      *
      * @param brandRate a percentage that is added to the price of an order
      */
-    RestaurantType(double brandRate){
+    ServiceType(double brandRate){
         this.brandRate = brandRate;
     }
 

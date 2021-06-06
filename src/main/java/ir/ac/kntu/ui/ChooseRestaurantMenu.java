@@ -1,15 +1,15 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.Agency;
-import ir.ac.kntu.ScannerWrapper;
-import ir.ac.kntu.services.Costumer;
-import ir.ac.kntu.services.Restaurant;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.utils.ScannerWrapper;
+import ir.ac.kntu.model.users.Costumer;
 
 import java.util.ArrayList;
 
 public class ChooseRestaurantMenu {
 
-    private ArrayList<Restaurant> activeRestaurants;
+    private ArrayList<Provider> activeProviders;
 
     public void execute(Agency agency, Costumer costumer) {
         showMenu(agency);
@@ -17,9 +17,9 @@ public class ChooseRestaurantMenu {
     }
 
     public void showMenu(Agency agency) {
-        activeRestaurants = agency.activeRestaurants();
+        activeProviders = agency.activeRestaurants();
         char i = 'a';
-        for (Restaurant r : activeRestaurants) {
+        for (Provider r : activeProviders) {
             System.out.println(i + ". " + r);
             i++;
         }
@@ -28,16 +28,16 @@ public class ChooseRestaurantMenu {
     public boolean inputProcessor(Agency agency, Costumer costumer) {
         System.out.println("restaurant : ");
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        Restaurant theChosenOne = activeRestaurants.get(choice);
+        Provider theChosenOne = activeProviders.get(choice);
         theChosenOne.getFoodMenu().execute(theChosenOne, costumer);
         return false;
     }
 
-    public ArrayList<Restaurant> getActiveRestaurants() {
-        return activeRestaurants;
+    public ArrayList<Provider> getActiveRestaurants() {
+        return activeProviders;
     }
 
-    public void setActiveRestaurants(ArrayList<Restaurant> activeRestaurants) {
-        this.activeRestaurants = activeRestaurants;
+    public void setActiveRestaurants(ArrayList<Provider> activeProviders) {
+        this.activeProviders = activeProviders;
     }
 }

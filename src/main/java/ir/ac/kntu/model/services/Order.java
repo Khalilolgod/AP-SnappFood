@@ -1,6 +1,7 @@
-package ir.ac.kntu.services;
+package ir.ac.kntu.model.services;
 
-import ir.ac.kntu.delivery.Delivery;
+import ir.ac.kntu.model.deliverySystem.Deliverer;
+import ir.ac.kntu.model.users.Costumer;
 import ir.ac.kntu.ui.*;
 
 import java.util.HashMap;
@@ -10,9 +11,9 @@ public class Order {
     private OrderStatus orderStatus;
     private int prepTime;
     private double finalPrice;
-    private HashMap<Food, Integer> foods;
+    private HashMap<Product, Integer> foods;
     private Costumer costumer;
-    private Delivery delivery;
+    private Deliverer deliverer;
 
     private EditOrder editOrder;
 
@@ -40,23 +41,23 @@ public class Order {
     }
 
     /**
-     * if food doesn't exists it will add it to the hashMap
-     * if it does exist , it will +1 the count of that food in the hashMap
+     * if product doesn't exists it will add it to the hashMap
+     * if it does exist , it will +1 the count of that product in the hashMap
      */
-    public void addFood(Food food) {
+    public void addFood(Product product) {
         setOrderStatus(OrderStatus.PROCESSING);
-        setPrepTime(getPrepTime() + food.getPrepTime());
-        setFinalPrice(getFinalPrice() + food.getPrice());
-        if (getFoods().containsKey(food)) {
-            getFoods().put(food, getFoods().get(food) + 1);
+        setPrepTime(getPrepTime() + product.getPrepTime());
+        setFinalPrice(getFinalPrice() + product.getPrice());
+        if (getFoods().containsKey(product)) {
+            getFoods().put(product, getFoods().get(product) + 1);
         } else {
-            getFoods().put(food, 1);
+            getFoods().put(product, 1);
         }
     }
 
-    public void removeFood(Food food) {
-        if (foods.containsKey(food) && foods.get(food) > 0) {
-            foods.put(food, foods.get(food) - 1);
+    public void removeFood(Product product) {
+        if (foods.containsKey(product) && foods.get(product) > 0) {
+            foods.put(product, foods.get(product) - 1);
         }
     }
 
@@ -104,11 +105,11 @@ public class Order {
         this.finalPrice = finalPrice;
     }
 
-    public HashMap<Food, Integer> getFoods() {
+    public HashMap<Product, Integer> getFoods() {
         return foods;
     }
 
-    public void setFoods(HashMap<Food, Integer> foods) {
+    public void setFoods(HashMap<Product, Integer> foods) {
         this.foods = foods;
     }
 
@@ -120,12 +121,12 @@ public class Order {
         this.costumer = costumer;
     }
 
-    public Delivery getDelivery() {
-        return delivery;
+    public Deliverer getDelivery() {
+        return deliverer;
     }
 
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
+    public void setDelivery(Deliverer deliverer) {
+        this.deliverer = deliverer;
     }
 
     public EditOrder getEditOrder() {

@@ -1,53 +1,55 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.*;
-import ir.ac.kntu.services.*;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.services.*;
+import ir.ac.kntu.model.users.Costumer;
+import ir.ac.kntu.model.utils.ScannerWrapper;
 
 
 public class EditRestaurant extends Menu {
 
-    private Restaurant restaurant;
+    private Provider provider;
 
     public EditRestaurant() {
         super("EditRestaurant.txt");
     }
 
     public boolean execute(Agency agency) {
-        this.restaurant = selectRestaurant(agency);
+        this.provider = selectRestaurant(agency);
         showMenu();
         return inputProcessor(agency);
     }
 
     public void editName() {
-        System.out.println(restaurant.getName());
+        System.out.println(provider.getName());
         System.out.println("new name : ");
         String name = ScannerWrapper.getInstance().nextLine();
-        restaurant.setName(name);
+        provider.setName(name);
     }
 
     public void editAddress() {
-        System.out.println(restaurant.getAddress());
+        System.out.println(provider.getAddress());
         System.out.println("new address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        restaurant.setAddress(address);
+        provider.setAddress(address);
     }
 
     public void editRestaurantType() {
-        System.out.println("current Type : " + restaurant.getRestaurantType().name());
+        System.out.println("current Type : " + provider.getRestaurantType().name());
         char i = 'a';
-        for (RestaurantType restaurantType : RestaurantType.values()) {
-            System.out.println(i + ". " + restaurantType.name());
+        for (ServiceType serviceType : ServiceType.values()) {
+            System.out.println(i + ". " + serviceType.name());
             i++;
         }
-        System.out.println("new restaurant type : ");
+        System.out.println("new provider type : ");
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        restaurant.setRestaurantType(RestaurantType.values()[choice]);
+        provider.setRestaurantType(ServiceType.values()[choice]);
     }
 
     public void showOrders() {
         char i = 'a';
-        System.out.println(restaurant.getOrders().get(0));
-        for (Order order : restaurant.getOrders()) {
+        System.out.println(provider.getOrders().get(0));
+        for (Order order : provider.getOrders()) {
             System.out.println(i + ". " + order);
             i++;
         }
@@ -59,22 +61,22 @@ public class EditRestaurant extends Menu {
         System.out.println("enter address");
         String address = ScannerWrapper.getInstance().nextLine();
         Costumer costumer = new Costumer(phonenumber, address);
-        restaurant.getFoodMenu().execute(restaurant, costumer);
+        provider.getFoodMenu().execute(provider, costumer);
     }
 
     public void removeOrder() {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        if (choice < restaurant.getOrders().size()) {
-            restaurant.getOrders().remove(choice);
+        if (choice < provider.getOrders().size()) {
+            provider.getOrders().remove(choice);
         }
     }
 
-    public void editOrder(Restaurant restaurant) {
+    public void editOrder(Provider provider) {
         showOrders();
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        if (choice < restaurant.getOrders().size()) {
-            restaurant.getOrders().get(choice).getEditOrder().execute(restaurant);
+        if (choice < provider.getOrders().size()) {
+            provider.getOrders().get(choice).getEditOrder().execute(provider);
         }
     }
 
@@ -89,7 +91,7 @@ public class EditRestaurant extends Menu {
                 removeOrder();
                 break;
             case "c":
-                editOrder(restaurant);
+                editOrder(provider);
                 break;
             default:
                 break;
@@ -97,10 +99,10 @@ public class EditRestaurant extends Menu {
 
     }
 
-    Restaurant selectRestaurant(Agency agency) {
+    Provider selectRestaurant(Agency agency) {
         char i = 'a';
-        for (Restaurant restaurant : agency.getRestaurants()) {
-            System.out.println(i + ". " + restaurant);
+        for (Provider provider : agency.getRestaurants()) {
+            System.out.println(i + ". " + provider);
             i++;
         }
         int choice = ScannerWrapper.getInstance().next() - 'a';
@@ -109,10 +111,10 @@ public class EditRestaurant extends Menu {
     }
 
     public void editRate() {
-        System.out.println("current rate : " + restaurant.getRate());
+        System.out.println("current rate : " + provider.getRate());
         System.out.println("new rate : ");
         double rate = ScannerWrapper.getInstance().nextDouble();
-        restaurant.setRate(rate);
+        provider.setRate(rate);
     }
 
 

@@ -1,6 +1,6 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.Agency;
+import ir.ac.kntu.model.agency.Agency;
 
 import java.io.File;
 import java.io.FileNotFoundException;

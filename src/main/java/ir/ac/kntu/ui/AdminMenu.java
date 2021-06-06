@@ -1,14 +1,13 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.Agency;
-import ir.ac.kntu.ScannerWrapper;
-import ir.ac.kntu.services.Costumer;
-import ir.ac.kntu.ui.Menu;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.utils.ScannerWrapper;
+import ir.ac.kntu.model.users.Costumer;
 
-public class OperatorMenu extends Menu {
+public class AdminMenu extends Menu {
 
-    public OperatorMenu(){
-        super("OperatorMenu.txt");
+    public AdminMenu(){
+        super("AdminMenu.txt");
     }
 
     public void execute(Agency agency){

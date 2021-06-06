@@ -6,7 +6,7 @@
 *                                                *
 *      c. Restaurant Type      d. Orders         *
 *                                                *
-*      e. foodMenu(todo)       f. Schedule(todo) *
+*      e. productMenu(todo)       f. Schedule(todo) *
 *                                                *
 *      g. Deliveries(todo)     h. Rate           *
 *                                                *

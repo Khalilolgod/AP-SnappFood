@@ -1,6 +1,4 @@
-package ir.ac.kntu.time;
-
-import ir.ac.kntu.ScannerWrapper;
+package ir.ac.kntu.model.time;
 
 import java.time.LocalTime;
 import java.util.Objects;

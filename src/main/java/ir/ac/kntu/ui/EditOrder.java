@@ -1,11 +1,12 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.*;
-import ir.ac.kntu.delivery.Delivery;
-import ir.ac.kntu.services.Food;
-import ir.ac.kntu.services.Order;
-import ir.ac.kntu.services.OrderStatus;
-import ir.ac.kntu.services.Restaurant;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.deliverySystem.Deliverer;
+import ir.ac.kntu.model.services.Product;
+import ir.ac.kntu.model.services.Order;
+import ir.ac.kntu.model.services.OrderStatus;
+import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.utils.ScannerWrapper;
 
 import java.util.ArrayList;
 
@@ -18,9 +19,9 @@ public class EditOrder extends Menu {
         this.order = order;
     }
 
-    public boolean execute(Restaurant restaurant) {
+    public boolean execute(Provider provider) {
         showMenu();
-        return inputProcessor(restaurant);
+        return inputProcessor(provider);
     }
 
     public void editStatus(Order order) {
@@ -47,41 +48,41 @@ public class EditOrder extends Menu {
         order.setPrepTime(prepTime);
     }
 
-    public void editFoods(Restaurant restaurant, Order order) {
+    public void editFoods(Provider provider, Order order) {
         System.out.println("a. Add       b. Remove");
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case "a":
-                restaurant.getFoodMenu().execute(restaurant, order.getCostumer());
+                provider.getFoodMenu().execute(provider, order.getCostumer());
                 break;
             case "b":
                 char i = 'a';
-                ArrayList<Food> foods = new ArrayList<>();
-                foods.addAll(order.getFoods().keySet());
-                for (Food food : foods) {
-                    System.out.println(i + ". " + food + ": " + order.getFoods().get(food));
+                ArrayList<Product> products = new ArrayList<>();
+                products.addAll(order.getFoods().keySet());
+                for (Product product : products) {
+                    System.out.println(i + ". " + product + ": " + order.getFoods().get(product));
                     i++;
                 }
                 int chois = ScannerWrapper.getInstance().next() - 'a';
-                order.removeFood(foods.get(chois));
+                order.removeFood(products.get(chois));
                 break;
             default:
                 break;
         }
     }
 
-    public void editDelivery(Restaurant restaurant, Order order) {
+    public void editDelivery(Provider provider, Order order) {
         System.out.println("a. Replace       b. Remove");
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case "a":
                 char i = 'a';
-                for (Delivery delivery : restaurant.getDeliveries()) {
-                    System.out.println(i + ". " + delivery);
+                for (Deliverer deliverer : provider.getDeliveries()) {
+                    System.out.println(i + ". " + deliverer);
                     i++;
                 }
                 int chois = ScannerWrapper.getInstance().next() - 'a';
-                order.setDelivery(restaurant.getDeliveries().get(chois));
+                order.setDelivery(provider.getDeliveries().get(chois));
                 break;
             case "b":
                 order.setDelivery(null);
@@ -91,7 +92,7 @@ public class EditOrder extends Menu {
         }
     }
 
-    public boolean inputProcessor(Restaurant restaurant) {
+    public boolean inputProcessor(Provider provider) {
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case "a":
@@ -104,10 +105,10 @@ public class EditOrder extends Menu {
                 editPrepTime(order);
                 break;
             case "d":
-                editFoods(restaurant, order);
+                editFoods(provider, order);
                 break;
             case "e":
-                editDelivery(restaurant, order);
+                editDelivery(provider, order);
                 break;
             case "f":
                 return false;

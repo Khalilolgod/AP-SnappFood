@@ -1,84 +1,84 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.*;
-import ir.ac.kntu.delivery.*;
-import ir.ac.kntu.services.Restaurant;
-import ir.ac.kntu.time.WorkDay;
-import ir.ac.kntu.ui.Menu;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.deliverySystem.*;
+import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.time.WorkDay;
+import ir.ac.kntu.model.utils.ScannerWrapper;
 
 import java.util.ArrayList;
 
 public class EditDelivery extends Menu {
 
-    private Delivery delivery;
+    private Deliverer deliverer;
 
     public EditDelivery() {
         super("EditDelivery.txt");
     }
 
-    public boolean execute(Agency agency, Delivery delivery) {
+    public boolean execute(Agency agency, Deliverer deliverer) {
         do {
             showMenu();
-            this.delivery = delivery;
+            this.deliverer = deliverer;
         }while (inputProcessor(agency));
         return false;
     }
 
     public void editVehicleType() {
-        System.out.println("current vehicle type " + delivery.getVehicleType().name());
+        System.out.println("current vehicle type " + deliverer.getVehicleType().name());
         char i = 'a';
         for (VehicleType vehicleType : VehicleType.values()) {
             System.out.println(i + ". " + vehicleType.name());
             i++;
         }
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        delivery.setVehicleType(VehicleType.values()[choice]);
-        System.out.println("current vehicle type " + delivery.getVehicleType().name());
+        deliverer.setVehicleType(VehicleType.values()[choice]);
+        System.out.println("current vehicle type " + deliverer.getVehicleType().name());
     }
 
     public void editWageType() {
-        System.out.println("current wage type " + delivery.getWageType().name());
+        System.out.println("current wage type " + deliverer.getWageType().name());
         char i = 'a';
         for (WageType wageType : WageType.values()) {
             System.out.println(i + ". " + wageType.name());
             i++;
         }
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        delivery.setWageType(WageType.values()[choice]);
-        System.out.println("current wage type " + delivery.getWageType().name());
+        deliverer.setWageType(WageType.values()[choice]);
+        System.out.println("current wage type " + deliverer.getWageType().name());
     }
 
     public void editPaycheck() {
-        System.out.println("current paycheck  " + delivery.getPaycheck());
+        System.out.println("current paycheck  " + deliverer.getPaycheck());
         System.out.println("new paycheck : ");
         double newpaycheck = Double.parseDouble(ScannerWrapper.getInstance().nextLine());
-        delivery.setPaycheck(newpaycheck);
-        System.out.println("current paycheck  " + delivery.getPaycheck());
+        deliverer.setPaycheck(newpaycheck);
+        System.out.println("current paycheck  " + deliverer.getPaycheck());
     }
 
-    public void showRestaurants(ArrayList<Restaurant> restaurants) {
+    public void showRestaurants(ArrayList<Provider> providers) {
         char i = 'a';
-        for (Restaurant r : restaurants) {
+        for (Provider r : providers) {
             System.out.println(i + ". " + r);
             i++;
         }
     }
 
     public void editRestaurant(Agency agency) {
-        showRestaurants(delivery.getRestaurants());
+        showRestaurants(deliverer.getRestaurants());
         System.out.println("a. Add            b. Remove");
         String input = ScannerWrapper.getInstance().nextLine();
         switch (input) {
             case "a":
                 showRestaurants(agency.getRestaurants());
                 int choice1 = ScannerWrapper.getInstance().next() - 'a';
-                agency.getRestaurants().get(choice1).addDelivery(delivery);
+                agency.getRestaurants().get(choice1).addDelivery(deliverer);
                 break;
             case "b":
-                showRestaurants(delivery.getRestaurants());
+                showRestaurants(deliverer.getRestaurants());
                 int choice2 = ScannerWrapper.getInstance().next() - 'a';
-                delivery.getRestaurants().get(choice2).getDeliveries().remove(delivery);
-                delivery.getRestaurants().remove(choice2);
+                deliverer.getRestaurants().get(choice2).getDeliveries().remove(deliverer);
+                deliverer.getRestaurants().remove(choice2);
                 break;
             default:
                 break;
@@ -88,7 +88,7 @@ public class EditDelivery extends Menu {
 
     public void showSchedule() {
         char i = 'a';
-        for (WorkDay workDay : delivery.getSchedule().getWorkDays()) {
+        for (WorkDay workDay : deliverer.getSchedule().getWorkDays()) {
             System.out.println(i+". "+workDay);
             i++;
         }

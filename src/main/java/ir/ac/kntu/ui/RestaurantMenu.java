@@ -1,13 +1,8 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.Agency;
-import ir.ac.kntu.ScannerWrapper;
-import ir.ac.kntu.delivery.*;
-import ir.ac.kntu.services.*;
-import ir.ac.kntu.time.*;
-
-import java.time.*;
-import java.util.ArrayList;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.utils.ScannerWrapper;
+import ir.ac.kntu.model.services.*;
 
 
 public class RestaurantMenu extends Menu {
@@ -31,7 +26,7 @@ public class RestaurantMenu extends Menu {
 
     public void showRestaurants(Agency agency) {
         char i = 'a';
-        for (Restaurant r : agency.getRestaurants()) {
+        for (Provider r : agency.getRestaurants()) {
             System.out.println(i + ". " + r);
             i++;
         }

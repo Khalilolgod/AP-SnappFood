@@ -1,8 +1,8 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.Agency;
-import ir.ac.kntu.ScannerWrapper;
-import ir.ac.kntu.delivery.*;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.utils.ScannerWrapper;
+import ir.ac.kntu.model.deliverySystem.*;
 
 public class DeliveryMenu extends Menu {
 
@@ -24,8 +24,8 @@ public class DeliveryMenu extends Menu {
 
     public void showAllDeliveries(Agency agency) {
         char i = 'a';
-        for (Delivery delivery : agency.getAllDeliveries()) {
-            System.out.println(i + ". " + delivery);
+        for (Deliverer deliverer : agency.getAllDeliveries()) {
+            System.out.println(i + ". " + deliverer);
             i++;
         }
     }

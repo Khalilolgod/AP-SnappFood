@@ -1,6 +1,7 @@
 package ir.ac.kntu;
 
-import ir.ac.kntu.services.*;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.utils.RandObjGen;
 
 public class Main {
     public static void main(String[] args) {

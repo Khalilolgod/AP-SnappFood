@@ -1,14 +1,17 @@
-package ir.ac.kntu.services;
+package ir.ac.kntu.model.services;
+
+import ir.ac.kntu.model.utils.Review;
 
 import java.util.ArrayList;
 
-public class Food {
+public class Product {
 
     private String name;
     private double price;
     private int prepTime;
     private double rate;
-    //TODO private ArrayList<Review> reviews;// not sure if its needed tho
+    private ArrayList<Review> reviews;
+    private Provider provider;
 
 
     /**
@@ -17,7 +20,7 @@ public class Food {
      * @param price by Tomans
      * @param prepTime by minutes
      */
-    public Food(String name, double price, int prepTime) {
+    public Product(String name, double price, int prepTime) {
         this.setName(name);
         this.setPrice(price);
         this.setPrepTime(prepTime);
@@ -26,7 +29,7 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food{" +
+        return "Product{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
                 ", prepTime=" + prepTime +

@@ -1,11 +1,10 @@
 package ir.ac.kntu.ui;
 
-import ir.ac.kntu.Agency;
-import ir.ac.kntu.services.Restaurant;
-import ir.ac.kntu.ui.Menu;
-import ir.ac.kntu.ScannerWrapper;
-import ir.ac.kntu.delivery.*;
-import ir.ac.kntu.time.*;
+import ir.ac.kntu.model.agency.Agency;
+import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.utils.ScannerWrapper;
+import ir.ac.kntu.model.deliverySystem.*;
+import ir.ac.kntu.model.time.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -39,15 +38,15 @@ public class NewDelivery extends Menu {
         return WageType.values()[choice];
     }
 
-    public void getRestaurants(Agency agency,Delivery delivery) {
+    public void getRestaurants(Agency agency, Deliverer deliverer) {
 
-        ArrayList<Restaurant> allrestaurants = new ArrayList<>(agency.getRestaurants());
+        ArrayList<Provider> allrestaurants = new ArrayList<>(agency.getRestaurants());
         System.out.println("restaurants to work for : ");
         for (int i = 0; i < 2; i++) {
             showRestaurants(allrestaurants);
             int choice = ScannerWrapper.getInstance().next() - 'a';
             if (choice < allrestaurants.size()) {
-                delivery.addRestaurant(allrestaurants.get(choice));
+                deliverer.addRestaurant(allrestaurants.get(choice));
                 allrestaurants.remove(choice);
             } else {
                 break;
@@ -56,10 +55,10 @@ public class NewDelivery extends Menu {
 
     }
 
-    void showRestaurants(ArrayList<Restaurant> restaurants) {
+    void showRestaurants(ArrayList<Provider> providers) {
         char i = 'a';
-        for (Restaurant restaurant : restaurants) {
-            System.out.println(i + ". " + restaurant);
+        for (Provider provider : providers) {
+            System.out.println(i + ". " + provider);
             i++;
         }
         System.out.println(i + ". Done");
@@ -108,9 +107,9 @@ public class NewDelivery extends Menu {
         VehicleType vehicleType = getVehicleType();
         WageType wageType = getWageType();
         Schedule schedule = getSchedule();
-        Delivery delivery = new Delivery(vehicleType, wageType, schedule);
-        getRestaurants(agency,delivery);
-        agency.getAllDeliveries().add(delivery);
+        Deliverer deliverer = new Deliverer(vehicleType, wageType, schedule);
+        getRestaurants(agency, deliverer);
+        agency.getAllDeliveries().add(deliverer);
         return false;
     }
 }
