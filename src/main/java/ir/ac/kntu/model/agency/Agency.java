@@ -23,6 +23,7 @@ public class Agency {
     private ChooseProviderMenu chooseProviderMenu;
     private DeliverySystemMenu deliverySystemMenu;
     private EditCostumersMenu editCostumersMenu;
+    private OperatorMenu operatorMenu;
     private MainMenu mainMenu;
     private ProviderMenu providerMenu;
 
@@ -37,6 +38,7 @@ public class Agency {
         this.pendingOrders = new ArrayList<>();
         this.mainMenu = new MainMenu();
         this.editCostumersMenu = new EditCostumersMenu();
+        this.operatorMenu = new OperatorMenu();
     }
 
     public Costumer findCustumer(String username){
@@ -152,5 +154,13 @@ public class Agency {
 
     public void setEditCostumersMenu(EditCostumersMenu editCostumersMenu) {
         this.editCostumersMenu = editCostumersMenu;
+    }
+
+    public OperatorMenu getOperatorMenu() {
+        return operatorMenu;
+    }
+
+    public void setOperatorMenu(OperatorMenu operatorMenu) {
+        this.operatorMenu = operatorMenu;
     }
 }

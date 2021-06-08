@@ -109,7 +109,8 @@ public class AdminMenu extends Menu {
                 }
                 return true;
             case "e":
-                //agency.getOperatorsMenu().execute(agency);
+                //Operator operator = chooseOperator(agency);
+                agency.getOperatorMenu().execute(agency);
                 return true;
             case "f":
                 //seting menu

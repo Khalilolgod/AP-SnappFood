@@ -1,0 +1,14 @@
+**************************************************
+*                                                *
+*               Operator actions                 *
+*                                                *
+*      a. Provider Name        b. Location       *
+*                                                *
+*      c. Service Type         d. Orders         *
+*                                                *
+*      e. productMenu          f. Schedule(todo) *
+*                                                *
+*      g. Deliveries(deleted)  h. Reviews        *
+*                                                *
+*                  i. Exit                       *
+**************************************************

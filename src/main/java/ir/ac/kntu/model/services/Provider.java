@@ -5,6 +5,7 @@ import ir.ac.kntu.model.users.Operator;
 import ir.ac.kntu.model.utils.FariFoodObject;
 import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.Review;
+import ir.ac.kntu.ui.OperatorMenu;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class Provider extends FariFoodObject {
     private DeliverySchedule deliverySchedule;
     private Operator operator;
 
+    private OperatorMenu operatorMenu;
+
     public Provider(String name, ProductMenu productMenu, Schedule schedule, Location location, ServiceType type, Operator operator) {
         super();
         this.name = name;
@@ -28,9 +31,11 @@ public class Provider extends FariFoodObject {
         this.location = location;
         this.type = type;
         this.operator = operator;
+        operator.setProvider(this);
         orders = new ArrayList<>();
         deliveredOrders = new ArrayList<>();
         rate = 5;
+        operatorMenu = new OperatorMenu(this);
     }
 
     public Provider(String name, Schedule schedule, Location location, ServiceType type, Operator operator) {
@@ -138,6 +143,14 @@ public class Provider extends FariFoodObject {
 
     public void setOperator(Operator operator) {
         this.operator = operator;
+    }
+
+    public OperatorMenu getOperatorMenu() {
+        return operatorMenu;
+    }
+
+    public void setOperatorMenu(OperatorMenu operatorMenu) {
+        this.operatorMenu = operatorMenu;
     }
 }
 
