@@ -10,6 +10,11 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "username : '" + username + '\'';
+    }
+
     public boolean verifyUser(String username, String password) {
         if (!getUsername().equals(username)) {
             //System.out.println("user doesn't exist");
