@@ -10,11 +10,11 @@ public class FariFoodObject {
         reviews = new ArrayList<>();
     }
 
-    public ArrayList<Review> getReveiws() {
+    public ArrayList<Review> getReviews() {
         return reviews;
     }
 
-    public void setReveiws(ArrayList<Review> reveiws) {
-        this.reviews = reveiws;
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
 }
