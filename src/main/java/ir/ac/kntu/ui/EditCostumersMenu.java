@@ -117,6 +117,9 @@ public class EditCostumersMenu extends Menu {
 
     public void editReviewHistory() {
 
+        if (costumer.getReviewHistory().size() < 1) {
+            return;
+        }
         Review review = chooseReview();
         System.out.println(" a. Edit   b. remove ");
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -132,16 +135,19 @@ public class EditCostumersMenu extends Menu {
 
     }
 
-    public void editPurchaseHistory(){
-        char i ='a';
-        for(Order o : costumer.getPurchaseHistory()){
-            System.out.println(i+". "+o);
+    public void editPurchaseHistory() {
+        if (costumer.getPurchaseHistory().size() < 1) {
+            return;
+        }
+        char i = 'a';
+        for (Order o : costumer.getPurchaseHistory()) {
+            System.out.println(i + ". " + o);
             i++;
         }
-        System.out.println(i+". Exit");
+        System.out.println(i + ". Exit");
         System.out.println("delete : ");
-        int choice = ScannerWrapper.getInstance().next()-'a';
-        if(choice < costumer.getPurchaseHistory().size()){
+        int choice = ScannerWrapper.getInstance().next() - 'a';
+        if (choice < costumer.getPurchaseHistory().size()) {
             costumer.getPurchaseHistory().remove(choice);
         }
     }
