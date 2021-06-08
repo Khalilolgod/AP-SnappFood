@@ -40,6 +40,11 @@ public class ProductMenu {
         getProducts().put(product, getProducts().get(product) - 1);
     }
 
+    /**
+     * chooses a delivery time for the order
+     * @param order
+     * @return
+     */
     public DeliveryShift selectDeliveryShift(Order order) {
         char i = 'a';
         for (DeliveryShift d : order.getProvider().getDeliverySchedule().getAvailableShifts().getShifts()) {
@@ -52,6 +57,10 @@ public class ProductMenu {
     }
 
 
+    /**
+     * changes order status and asigns Deliverys and is supposed to be automatically done
+     * @param order
+     */
     public void processOrder(Order order) {
         if (order.getOrderStatus() == OrderStatus.PROCESSING) {
             DeliveryShift deliveryShift = selectDeliveryShift(order);

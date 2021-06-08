@@ -34,6 +34,10 @@ public class DeliverySchedule {
         }
     }
 
+    /**
+     *
+     * @return shifts that still have capacity
+     */
     public DeliverySchedule getAvailableShifts() {
         DeliverySchedule deliverySchedule = new DeliverySchedule();
         for (DeliveryShift d : shifts) {
@@ -44,6 +48,10 @@ public class DeliverySchedule {
         return  deliverySchedule;
     }
 
+    /**
+     * reduces the availble capacity
+     * @param deliveryShift
+     */
     public void reserveShift(DeliveryShift deliveryShift){
         deliveryShift.setCapacity(deliveryShift.getCapacity()-1);
     }

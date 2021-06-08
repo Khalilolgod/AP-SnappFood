@@ -60,6 +60,10 @@ public class Order {
         }
     }
 
+    /**
+     * remove the product from the product list
+     * @param product
+     */
     public void removeFood(Product product) {
         if (products.containsKey(product) && products.get(product) > 0) {
             products.put(product, products.get(product) - 1);
