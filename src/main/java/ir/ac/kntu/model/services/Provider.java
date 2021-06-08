@@ -20,14 +20,14 @@ public class Provider extends FariFoodObject {
     private ServiceType type;
     private DeliverySchedule deliverySchedule;
     private Operator operator;
+    private ProviderType providerType;
 
     private OperatorMenu operatorMenu;
 
-    public Provider(String name, ProductMenu productMenu, Schedule schedule, Location location, ServiceType type, Operator operator) {
+    public Provider(String name, Location location, ServiceType type, Operator operator) {
         super();
         this.name = name;
         this.productMenu = productMenu;
-        this.schedule = schedule;
         this.location = location;
         this.type = type;
         this.operator = operator;
@@ -36,26 +36,29 @@ public class Provider extends FariFoodObject {
         deliveredOrders = new ArrayList<>();
         rate = 5;
         operatorMenu = new OperatorMenu(this);
+
     }
 
-    public Provider(String name, Schedule schedule, Location location, ServiceType type, Operator operator) {
-        this.name = name;
-        this.schedule = schedule;
-        this.location = location;
-        this.type = type;
-        this.operator = operator;
-        orders = new ArrayList<>();
-        deliveredOrders = new ArrayList<>();
-        rate = 5;
+    public double calculateRate(){
+        double rate = 5;
+        if(getReviews().size() > 0){
+            for(Review r : getReviews()){
+                rate += r.getRate();
+            }
+            rate/=(getReviews().size()+1);
+        }
+        setRate(rate);
+        return rate;
     }
 
     @Override
     public String toString() {
         return "Provider{" +
                 "name='" + name + '\'' +
-                ", serviceType=" + type.name() +
+                ", serviceType=" + type.name().toLowerCase() +
+                ", providerType=" + providerType.name().toLowerCase() +
                 ", orders=" + orders.size() +
-                ", rate=" + rate +
+                ", rate=" + calculateRate() +
                 ", schedule=" + schedule +
                 '}';
     }
@@ -151,6 +154,14 @@ public class Provider extends FariFoodObject {
 
     public void setOperatorMenu(OperatorMenu operatorMenu) {
         this.operatorMenu = operatorMenu;
+    }
+
+    public ProviderType getProviderType() {
+        return providerType;
+    }
+
+    public void setProviderType(ProviderType providerType) {
+        this.providerType = providerType;
     }
 }
 
