@@ -2,6 +2,7 @@ package ir.ac.kntu.ui;
 
 import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 import ir.ac.kntu.model.deliverySystem.*;
 import ir.ac.kntu.model.time.*;
@@ -10,7 +11,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class NewDelivery extends Menu {
+public class NewDeliverer extends Menu {
 
     public boolean execute(Agency agency) {
         return inputProcessor(agency);
@@ -38,12 +39,13 @@ public class NewDelivery extends Menu {
         return WageType.values()[choice];
     }
 
+    /*
     public void getRestaurants(Agency agency, Deliverer deliverer) {
 
         ArrayList<Provider> allrestaurants = new ArrayList<>(agency.getRestaurants());
         System.out.println("restaurants to work for : ");
         for (int i = 0; i < 2; i++) {
-            showRestaurants(allrestaurants);
+            showProviders(allrestaurants);
             int choice = ScannerWrapper.getInstance().next() - 'a';
             if (choice < allrestaurants.size()) {
                 deliverer.addRestaurant(allrestaurants.get(choice));
@@ -55,15 +57,16 @@ public class NewDelivery extends Menu {
 
     }
 
-    void showRestaurants(ArrayList<Provider> providers) {
+    void showProviders(ArrayList<Provider> providers) {
         char i = 'a';
         for (Provider provider : providers) {
             System.out.println(i + ". " + provider);
             i++;
         }
         System.out.println(i + ". Done");
-    }
+    }*/
 
+    /*
     public LocalTime makeTime() {
         System.out.println("enter hour (0-23) : ");
         int hour = ScannerWrapper.getInstance().nextInt();
@@ -100,16 +103,26 @@ public class NewDelivery extends Menu {
             workDays.add(workDay);
         }
         return new Schedule(workDays);
+    }*/
+
+    public Location getLocation(){
+        System.out.println("enter location longtitude : ");
+        double longtitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter location latitutde : ");
+        double latitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter address : ");
+        String address = ScannerWrapper.getInstance().nextLine();
+        Location location = new Location(latitude , longtitude ,address);
+        return location;
     }
 
     @Override
     public boolean inputProcessor(Agency agency) {
         VehicleType vehicleType = getVehicleType();
         WageType wageType = getWageType();
-        Schedule schedule = getSchedule();
-        Deliverer deliverer = new Deliverer(vehicleType, wageType, schedule);
-        getRestaurants(agency, deliverer);
-        agency.getAllDeliveries().add(deliverer);
+        Location location = getLocation();
+        Deliverer deliverer = new Deliverer(vehicleType, wageType, location);
+        DeliverySystem.getDeliverers().add(deliverer);
         return false;
     }
 }
