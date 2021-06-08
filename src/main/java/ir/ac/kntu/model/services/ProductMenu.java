@@ -71,7 +71,7 @@ public class ProductMenu {
 
     public boolean inputProcessor(Provider provider, Costumer costumer) {
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        Order order = new Order(costumer);
+        Order order = new Order(provider, costumer);
         while (choice < getProducts().size()) {
             order.addProduct((Product) products.keySet().toArray()[choice]);
             System.out.println("added " + ((Product) products.keySet().toArray()[choice]).getName());

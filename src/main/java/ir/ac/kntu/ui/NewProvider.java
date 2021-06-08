@@ -167,7 +167,7 @@ public class NewProvider extends Menu {
         ServiceType serviceType = getRestaurantType();
         Schedule schedule = getSchedule();
         Operator operator = getOperator(agency);
-        Provider provider = new Provider(name, schedule, location, serviceType, operator);
+        Provider provider = new Provider(name, location, serviceType, operator);
         ProductMenu productMenu = getProductMenu(provider);
         provider.setProductMenu(productMenu);
         agency.getProviders().add(provider);

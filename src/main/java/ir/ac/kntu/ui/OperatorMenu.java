@@ -121,12 +121,16 @@ public class OperatorMenu extends Menu {
 
     }
 
-    public Provider selectOperator(Agency agency) {
+    public void showOperators(Agency agency){
         char i = 'a';
         for (Provider provider : agency.getProviders()) {
             System.out.println(i + ". " + provider);
             i++;
         }
+    }
+
+    public Provider selectOperator(Agency agency) {
+        showOperators(agency);
         int choice = ScannerWrapper.getInstance().next() - 'a';
         System.out.println(agency.getProviders().get(choice).hashCode());
         return agency.getProviders().get(choice);

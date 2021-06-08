@@ -39,6 +39,7 @@ public class Agency {
         this.mainMenu = new MainMenu();
         this.editCostumersMenu = new EditCostumersMenu();
         this.operatorMenu = new OperatorMenu();
+        this.costumers = new ArrayList<>();
     }
 
     public Costumer findCustumer(String username){

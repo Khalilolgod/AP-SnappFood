@@ -20,13 +20,14 @@ public class Order {
 
     private EditOrder editOrder;
 
-    public Order(Costumer costumer) {
+    public Order(Provider provider,Costumer costumer) {
         this.costumer = costumer;
         this.id = getAlphaNumericString(10);
         setOrderStatus(OrderStatus.PROCESSING);
         setFinalPrice(0.0);
         setPrepTime(0);
         setProducts(new HashMap<>());
+        this.provider = provider;
         this.editOrder = new EditOrder(this);
     }
 

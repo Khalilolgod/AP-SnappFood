@@ -15,6 +15,13 @@ public class Location {
 
     }
 
+    @Override
+    public String toString() {
+        return "Location{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 
     public double distanceFrom(Location location) {
         double dist = Math.pow(getLatitude() - location.getLatitude(), 2) +
