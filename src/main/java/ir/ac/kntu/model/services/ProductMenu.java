@@ -56,7 +56,7 @@ public class ProductMenu {
             order.setOrderStatus(OrderStatus.RESERVED);
         }else if(order.getOrderStatus() == OrderStatus.RESERVED){
             // todo check if its time
-            order.setDeliverer(DeliverySystem.findDeliverer(order.getCostumer(),order.getProvider(), ));
+            order.setDeliverer(DeliverySystem.findDeliverer(order.getCostumer(),order.getProvider(),order ));
             order.setOrderStatus(OrderStatus.SENDING);
         } else if (order.getOrderStatus() == OrderStatus.SENDING) {
             //TODO check if its Delivered by ETA
