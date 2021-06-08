@@ -105,14 +105,14 @@ public class NewDeliverer extends Menu {
         return new Schedule(workDays);
     }*/
 
-    public Location getLocation(){
+    public Location getLocation() {
         System.out.println("enter location longtitude : ");
         double longtitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter location latitutde : ");
         double latitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        Location location = new Location(latitude , longtitude ,address);
+        Location location = new Location(latitude, longtitude, address);
         return location;
     }
 

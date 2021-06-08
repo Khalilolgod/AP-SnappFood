@@ -7,7 +7,7 @@ import ir.ac.kntu.model.utils.Review;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Costumer extends User{
+public class Costumer extends User {
 
     private Location location;
     private String phoneNumber;
@@ -26,8 +26,12 @@ public class Costumer extends User{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Costumer)) return false;
+        if (this == o){
+            return true;
+        }
+        if (!(o instanceof Costumer)) {
+            return false;
+        }
         Costumer costumer = (Costumer) o;
         return Objects.equals(getPhoneNumber(), costumer.getPhoneNumber());
     }

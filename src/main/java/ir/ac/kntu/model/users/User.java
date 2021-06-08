@@ -10,14 +10,14 @@ public class User {
         this.password = password;
     }
 
-    public boolean verifyUser(String username , String password) {
-        if(!getUsername().equals(username)){
+    public boolean verifyUser(String username, String password) {
+        if (!getUsername().equals(username)) {
             //System.out.println("user doesn't exist");
             //perhaps using some exeptions would be a good idea
             return false;
         }
 
-        if(!getPassword().equals(password)){
+        if (!getPassword().equals(password)) {
             //System.out.println("invalid password");
             //
             return false;

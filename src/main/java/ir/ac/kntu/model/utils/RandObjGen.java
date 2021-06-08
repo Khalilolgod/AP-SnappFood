@@ -26,13 +26,15 @@ public class RandObjGen {
     /**
      * @return a random Deliverer object
      */
+    /*
     public Deliverer deliveryGen() {
         VehicleType vehicleType = VehicleType.values()[rand.nextInt(VehicleType.values().length)];
         WageType wageType = WageType.values()[rand.nextInt(WageType.values().length)];
+
         //ArrayList<Provider> restaurants = new ArrayList<>();//todo make sure it meets with the restaurant schedule
         Schedule schedule = scheduleGen();
         return new Deliverer(vehicleType, wageType, schedule);
-    }
+    }*/
 
     /**
      * @return a random Shift object
@@ -52,6 +54,7 @@ public class RandObjGen {
     /**
      * @return a random Schedule object
      */
+
     public Schedule scheduleGen() {
         int daysInWeek = rand.nextInt(7) + 1;
         int numberOfshifts;
@@ -82,6 +85,7 @@ public class RandObjGen {
         return sb.toString();
     }
 
+    /*
     public void assignRandomDeliveris(Agency agency, Provider provider) {
         int numberOfDeliveries = rand.nextInt(2) + 1;
         for (int i = 0; i < numberOfDeliveries; i++) {
@@ -133,5 +137,5 @@ public class RandObjGen {
 
     }
 
-
+    */
 }

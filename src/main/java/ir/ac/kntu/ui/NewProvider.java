@@ -60,7 +60,7 @@ public class NewProvider extends Menu {
 
     public ProductMenu getProductMenu(Provider provider) {
 
-        HashMap<Product,Integer> products = new HashMap<>();
+        HashMap<Product, Integer> products = new HashMap<>();
         int choice;
         System.out.println("product menu: ");
         while (true) {
@@ -73,8 +73,8 @@ public class NewProvider extends Menu {
                 double price = Double.parseDouble(ScannerWrapper.getInstance().nextLine());
                 System.out.println("preptime : ");
                 int preptime = Integer.parseInt(ScannerWrapper.getInstance().nextLine());
-                Product product = new Product(name, price, preptime,provider);
-                products.put(product,10);
+                Product product = new Product(name, price, preptime, provider);
+                products.put(product, 10);
             } else {
                 break;
             }
@@ -104,7 +104,7 @@ public class NewProvider extends Menu {
         }
         return deliveries;
     }
-
+*/
     public LocalTime makeTime() {
         System.out.println("enter hour (0-23) : ");
         int hour = ScannerWrapper.getInstance().nextInt();
@@ -112,7 +112,7 @@ public class NewProvider extends Menu {
         int minute = ScannerWrapper.getInstance().nextInt();
         return LocalTime.of(hour, minute);
     }
-    */
+
     public Schedule getSchedule() {
         //change it so (a.add b.done)
         System.out.println("Number of workdays in a week : ");
@@ -143,23 +143,23 @@ public class NewProvider extends Menu {
         return new Schedule(workDays);
     }
 
-    public Location getLocation(){
+    public Location getLocation() {
         System.out.println("enter location longtitude : ");
         double longtitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter location latitutde : ");
         double latitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        Location location = new Location(latitude , longtitude ,address);
+        Location location = new Location(latitude, longtitude, address);
         return location;
     }
 
-    public Operator getOperator(Agency agency){
+    public Operator getOperator(Agency agency) {
         System.out.println("enter Operator username : ");
         String username = ScannerWrapper.getInstance().nextLine();
         System.out.println("enter Operator password : ");
         String password = ScannerWrapper.getInstance().nextLine();
-        return new Operator(username,password);
+        return new Operator(username, password);
     }
 
     public void newRestaurant(Agency agency) {
@@ -168,7 +168,7 @@ public class NewProvider extends Menu {
         ServiceType serviceType = getRestaurantType();
         Schedule schedule = getSchedule();
         Operator operator = getOperator(agency);
-        Provider provider = new Provider(name,schedule,location,serviceType,operator);
+        Provider provider = new Provider(name, schedule, location, serviceType, operator);
         ProductMenu productMenu = getProductMenu(provider);
         provider.setProductMenu(productMenu);
         agency.getProviders().add(provider);

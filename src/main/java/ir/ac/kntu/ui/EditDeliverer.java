@@ -22,7 +22,7 @@ public class EditDeliverer extends Menu {
         do {
             showMenu();
             this.deliverer = deliverer;
-        }while (inputProcessor(agency));
+        } while (inputProcessor(agency));
         return false;
     }
 
@@ -123,26 +123,26 @@ public class EditDeliverer extends Menu {
     }
 */
 
-    public Location getLocation(){
+    public Location getLocation() {
         System.out.println("enter location longtitude : ");
         double longtitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter location latitutde : ");
         double latitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        Location location = new Location(latitude , longtitude ,address);
+        Location location = new Location(latitude, longtitude, address);
         return location;
     }
 
-    public void showOrders(){
+    public void showOrders() {
         char i = 'i';
-        for(Order o : deliverer.getOrderHistory()){
-            System.out.println(i+". "+o);
+        for (Order o : deliverer.getOrderHistory()) {
+            System.out.println(i + ". " + o);
         }
     }
 
-    public void editLocation(){
-        System.out.println("current location : "+deliverer.getLocation());
+    public void editLocation() {
+        System.out.println("current location : " + deliverer.getLocation());
         System.out.println("new location: ");
         Location location = getLocation();
         deliverer.setLocation(location);

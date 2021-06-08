@@ -11,7 +11,7 @@ public class DeliveryShift extends Shift {
     private ArrayList<Order> orders;
     private int capacity;
 
-    public DeliveryShift(LocalTime start , LocalTime end, int capacity) {
+    public DeliveryShift(LocalTime start, LocalTime end, int capacity) {
         super(start, end);
         this.capacity = capacity;
         this.orders = new ArrayList<>();
@@ -20,7 +20,7 @@ public class DeliveryShift extends Shift {
     @Override
     public String toString() {
         return "DeliveryShift{ " +
-                super.toString()+
+                super.toString() +
                 " capacity=" + capacity +
                 '}';
     }

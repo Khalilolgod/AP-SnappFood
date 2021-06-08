@@ -33,13 +33,13 @@ public class AdminMenu extends Menu {
                 agency.getDeliverySystemMenu().execute(agency);
                 return true;
             case "c":
-                agency.getRestaurantMenu().execute(agency);
+                agency.getProviderMenu().execute(agency);
                 return true;
             case "d":
-                //costumers menu
+                agency.getCostumersMenu().execute(agency);
                 return true;
             case "e":
-                //operators manu
+                agency.getOperatorsMenu().execute(agency);
                 return true;
             case "f":
                 //seting menu

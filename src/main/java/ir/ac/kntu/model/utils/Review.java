@@ -1,7 +1,6 @@
 package ir.ac.kntu.model.utils;
 
-public class Review
-{
+public class Review {
     private String comment;
     private boolean isByBuyer;
 
@@ -10,7 +9,7 @@ public class Review
         this.isByBuyer = isByBuyer;
     }
 
-    public Review(){
+    public Review() {
 
     }
 

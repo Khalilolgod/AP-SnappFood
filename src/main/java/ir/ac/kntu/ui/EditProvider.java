@@ -28,19 +28,19 @@ public class EditProvider extends Menu {
         provider.setName(name);
     }
 
-    public Location getLocation(){
+    public Location getLocation() {
         System.out.println("enter location longtitude : ");
         double longtitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter location latitutde : ");
         double latitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        Location location = new Location(latitude , longtitude ,address);
+        Location location = new Location(latitude, longtitude, address);
         return location;
     }
 
-    public void editLocation(){
-        System.out.println("current location : "+provider.getLocation());
+    public void editLocation() {
+        System.out.println("current location : " + provider.getLocation());
         System.out.println("new location: ");
         Location location = getLocation();
         provider.setLocation(location);

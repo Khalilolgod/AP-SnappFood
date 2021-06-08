@@ -6,25 +6,24 @@ import ir.ac.kntu.model.users.Costumer;
 
 import java.util.ArrayList;
 
-public class DeliverySystem
-{
+public class DeliverySystem {
     private static ArrayList<Deliverer> deliverers;
 
     public DeliverySystem(ArrayList<Deliverer> deliverers) {
         DeliverySystem.deliverers = deliverers;
     }
 
-    public DeliverySystem(){
+    public DeliverySystem() {
         deliverers = new ArrayList<>();
     }
 
-    public static Deliverer findDeliverer(Costumer costumer , Provider provider, Order order){
+    public static Deliverer findDeliverer(Costumer costumer, Provider provider, Order order) {
         double minDist = Double.MAX_VALUE;
         double dist = 0;
-        Deliverer deliverer =  null;
-        for(Deliverer d : getDeliverers()){
+        Deliverer deliverer = null;
+        for (Deliverer d : getDeliverers()) {
             dist = d.getLocation().distanceFrom(costumer.getLocation()) + d.getLocation().distanceFrom(provider.getLocation());
-            if (dist<minDist){
+            if (dist < minDist) {
                 minDist = dist;
                 deliverer = d;
             }

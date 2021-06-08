@@ -2,6 +2,7 @@ package ir.ac.kntu.ui;
 
 import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.deliverySystem.Deliverer;
+import ir.ac.kntu.model.deliverySystem.DeliverySystem;
 import ir.ac.kntu.model.services.Product;
 import ir.ac.kntu.model.services.Order;
 import ir.ac.kntu.model.services.OrderStatus;
@@ -53,7 +54,7 @@ public class EditOrder extends Menu {
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case "a":
-                provider.getFoodMenu().execute(provider, order.getCostumer());
+                provider.getProductMenu().execute(provider, order.getCostumer());
                 break;
             case "b":
                 char i = 'a';
@@ -77,12 +78,12 @@ public class EditOrder extends Menu {
         switch (choice) {
             case "a":
                 char i = 'a';
-                for (Deliverer deliverer : provider.getDeliveries()) {
+                for (Deliverer deliverer : DeliverySystem.getDeliverers()) {
                     System.out.println(i + ". " + deliverer);
                     i++;
                 }
                 int chois = ScannerWrapper.getInstance().next() - 'a';
-                order.setDeliverer(provider.getDeliveries().get(chois));
+                order.setDeliverer(DeliverySystem.getDeliverers().get(chois));
                 break;
             case "b":
                 order.setDeliverer(null);

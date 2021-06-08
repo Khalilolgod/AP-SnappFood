@@ -7,68 +7,70 @@ import ir.ac.kntu.model.utils.ScannerWrapper;
 
 public class MainMenu extends Menu {
 
-    public MainMenu(){
+    public MainMenu() {
         super("MainMenu.txt");
     }
 
-    public void execute(Agency agency){
+    public void execute(Agency agency) {
         while (true) {
             showMenu();
-            if(!inputProcessor(agency)){
+            if (!inputProcessor(agency)) {
                 break;
             }
         }
     }
 
-    public boolean verifyUser(User user){
-        if(user == null){
+    public boolean verifyUser(User user) {
+        if (user == null) {
             System.out.println("no such user exists");
             return false;
         }
         System.out.print("Password : ");
         String password = ScannerWrapper.getInstance().nextLine();
-        if(user.verifyUser(user.getUsername(), password)){
+        if (user.verifyUser(user.getUsername(), password)) {
             return true;
         }
         System.out.println("wrong password");
         return false;
     }
 
-    public boolean loginCostumer(Agency agency){
+    public boolean loginCostumer(Agency agency) {
         System.out.print("costumer username : ");
         String username = ScannerWrapper.getInstance().nextLine();
-        Costumer costumer =  agency.findCustumer(username);
+        Costumer costumer = agency.findCustumer(username);
         return verifyUser(costumer);
     }
 
-    public boolean loginOperator(Agency agency){
+    public boolean loginOperator(Agency agency) {
         System.out.print("operator username : ");
         String username = ScannerWrapper.getInstance().nextLine();
-        Costumer costumer =  agency.findCustumer(username);
+        Costumer costumer = agency.findCustumer(username);
         return verifyUser(costumer);
     }
 
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
-        switch (choice){
+        switch (choice) {
             case "a":
                 System.out.println("admin username : ");
                 String username = ScannerWrapper.getInstance().nextLine();
-                if(agency.getAdmin().getUsername().equals(username)){
-                    if(verifyUser(agency.getAdmin())){
+                if (agency.getAdmin().getUsername().equals(username)) {
+                    if (verifyUser(agency.getAdmin())) {
                         agency.getAdmin().getAdminMenu().execute(agency);
                     }
                 }
                 return true;
             case "b":
-                if(loginOperator(agency)){
+                if (loginOperator(agency)) {
                     //Operator menu
+                    return true;
                 }
                 return true;
             case "c":
-                if(loginCostumer(agency)){
+                if (loginCostumer(agency)) {
                     //Costumer menu
+                    return true;
                 }
                 return true;
             case "d":

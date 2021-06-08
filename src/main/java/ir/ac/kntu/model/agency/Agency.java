@@ -104,11 +104,11 @@ public class Agency {
         this.deliverySystemMenu = deliverySystemMenu;
     }
 
-    public ProviderMenu getRestaurantMenu() {
+    public ProviderMenu getProviderMenu() {
         return providerMenu;
     }
 
-    public void setRestaurantMenu(ProviderMenu providerMenu) {
+    public void setProviderMenu(ProviderMenu providerMenu) {
         this.providerMenu = providerMenu;
     }
 
