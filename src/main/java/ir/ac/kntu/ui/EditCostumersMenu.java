@@ -18,9 +18,16 @@ public class EditCostumersMenu extends Menu {
         super("EditCostumersMenu.txt");
     }
 
+    public EditCostumersMenu(Costumer costumer) {
+        super("EditCostumersMenu.txt");
+        this.costumer = costumer;
+    }
+
     public boolean execute(Agency agency) {
-        showCostumers(agency);
-        costumer = chooseCostumer(agency.getCostumers());
+        if(costumer == null) {
+            showCostumers(agency);
+            costumer = chooseCostumer(agency.getCostumers());
+        }
         do {
             showMenu();
         } while (inputProcessor(agency));

@@ -23,6 +23,9 @@ public abstract class Menu {
     }
 
     public void showMenu(){
+        if(file==null){
+            return;
+        }
         try {
             Scanner myReader = new Scanner(this.file);
             while (myReader.hasNextLine()) {

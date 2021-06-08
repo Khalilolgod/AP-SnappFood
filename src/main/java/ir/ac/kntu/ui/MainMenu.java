@@ -7,6 +7,7 @@ import ir.ac.kntu.model.utils.ScannerWrapper;
 
 public class MainMenu extends Menu {
 
+
     public MainMenu() {
         super("MainMenu.txt");
     }
@@ -34,11 +35,13 @@ public class MainMenu extends Menu {
         return false;
     }
 
-    public boolean loginCostumer(Agency agency) {
+    public void loginCostumer(Agency agency) {
         System.out.print("costumer username : ");
         String username = ScannerWrapper.getInstance().nextLine();
         Costumer costumer = agency.findCustumer(username);
-        return verifyUser(costumer);
+        if (verifyUser(costumer)) {
+            costumer.getCostumerMenu().execute(agency);
+        }
     }
 
     public boolean loginOperator(Agency agency) {
@@ -68,13 +71,11 @@ public class MainMenu extends Menu {
                 }
                 return true;
             case "c":
-                if (loginCostumer(agency)) {
-                    //Costumer menu
-                    return true;
-                }
+                loginCostumer(agency);
                 return true;
             case "d":
                 //setting menu
+                return true;
             case "e":
                 System.out.println("aight then imma exit");
                 return false;

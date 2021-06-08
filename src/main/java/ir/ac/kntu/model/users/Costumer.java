@@ -3,6 +3,7 @@ package ir.ac.kntu.model.users;
 import ir.ac.kntu.model.services.Order;
 import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.Review;
+import ir.ac.kntu.ui.CostumerMenu;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,6 +16,8 @@ public class Costumer extends User {
     private ArrayList<Review> reviewHistory;
     private CostumerType costumerType;
 
+    private CostumerMenu costumerMenu;
+
     public Costumer(String username, String password, CostumerType costumerType, Location location, String phoneNumber) {
         super(username, password);
         this.costumerType = costumerType;
@@ -22,6 +25,7 @@ public class Costumer extends User {
         this.phoneNumber = phoneNumber;
         purchaseHistory = new ArrayList<>();
         reviewHistory = new ArrayList<>();
+        costumerMenu = new CostumerMenu(this);
     }
 
     @Override
@@ -89,5 +93,13 @@ public class Costumer extends User {
 
     public void setCostumerType(CostumerType costumerType) {
         this.costumerType = costumerType;
+    }
+
+    public CostumerMenu getCostumerMenu() {
+        return costumerMenu;
+    }
+
+    public void setCostumerMenu(CostumerMenu costumerMenu) {
+        this.costumerMenu = costumerMenu;
     }
 }
