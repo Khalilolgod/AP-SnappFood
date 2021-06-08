@@ -6,7 +6,7 @@ public class Review {
     private double rate;
     private FariFoodObject fariFoodObject;
 
-    public Review(String comment, int rate, boolean isByBuyer , FariFoodObject fariFoodObject) {
+    public Review(String comment, int rate, boolean isByBuyer, FariFoodObject fariFoodObject) {
         this.comment = comment;
         this.isByBuyer = isByBuyer;
         this.rate = rate;

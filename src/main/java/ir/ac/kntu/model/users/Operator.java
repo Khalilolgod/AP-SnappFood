@@ -1,11 +1,12 @@
 package ir.ac.kntu.model.users;
 
+import ir.ac.kntu.model.services.Provider;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 import ir.ac.kntu.ui.AdminMenu;
 
 public class Operator extends User{
 
-
+    private Provider provider;
     private AdminMenu adminMenu;
 
     public Operator(String username, String password) {
@@ -37,5 +38,13 @@ public class Operator extends User{
 
     public void setOperatorMenu(AdminMenu adminMenu) {
         this.adminMenu = adminMenu;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 }
