@@ -17,7 +17,7 @@ public class EditProvider extends Menu {
     }
 
     public boolean execute(Agency agency) {
-        this.provider = selectRestaurant(agency);
+        this.provider = selectProvider(agency);
         showMenu();
         return inputProcessor(agency);
     }
@@ -109,7 +109,7 @@ public class EditProvider extends Menu {
 
     }
 
-    Provider selectRestaurant(Agency agency) {
+    Provider selectProvider(Agency agency) {
         char i = 'a';
         for (Provider provider : agency.getProviders()) {
             System.out.println(i + ". " + provider);
@@ -120,25 +120,28 @@ public class EditProvider extends Menu {
         return agency.getProviders().get(choice);
     }
 
-    public void showReviews(){
+    public Review chooseReview() {
         char i = 'a';
-        for(Review r : provider.getReviews()){
-            System.out.println(i+". "+r);
+        for (Review r : provider.getReviews()) {
+            System.out.println(i + ". " + r);
             i++;
         }
-
+        int choice = ScannerWrapper.getInstance().next() - 'a';
+        return provider.getReviews().get(choice);
     }
 
-    public void editReviews() {
-        showReviews();
-        int choice = ScannerWrapper.getInstance().next()-'a';
-        Review review = provider.getReviews().get(choice);
-        System.out.println("new comment : ");
-        String comment = ScannerWrapper.getInstance().nextLine();
-        review.setComment(comment);
-        System.out.println("new rate : ");
-        double rate = ScannerWrapper.getInstance().nextDouble();
-        review.setRate(rate);
+    public void editReviewHistory() {
+
+        Review review = chooseReview();
+        System.out.println(" a. remove   b. exit ");
+        String choice = ScannerWrapper.getInstance().nextLine();
+        switch (choice) {
+            case "a":
+                provider.getReviews().remove(review);
+                return;
+            default:
+                return;
+        }
 
     }
 
@@ -166,7 +169,7 @@ public class EditProvider extends Menu {
             case "g":
                 return true;
             case "h":
-                editReviews();
+                editReviewHistory();
                 return true;
             case "i":
                 return false;
