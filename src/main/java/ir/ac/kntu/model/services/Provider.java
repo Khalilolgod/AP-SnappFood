@@ -33,6 +33,17 @@ public class Provider {
         reviews = new ArrayList<>();
     }
 
+    public Provider(String name, Schedule schedule, Location location, ServiceType type, Operator operator) {
+        this.name = name;
+        this.schedule = schedule;
+        this.location = location;
+        this.type = type;
+        this.operator = operator;
+        orders = new ArrayList<>();
+        deliveredOrders = new ArrayList<>();
+        rate = 5;
+        reviews = new ArrayList<>();
+    }
 
     @Override
     public String toString() {

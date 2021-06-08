@@ -1,6 +1,6 @@
 **************************************************
 *                                                *
-*               Restaurant actions               *
+*                Provider actions                *
 *                                                *
 *         a. Show all             b. Edit        *
 *                                                *
