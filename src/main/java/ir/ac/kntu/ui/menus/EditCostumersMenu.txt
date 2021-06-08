@@ -1,0 +1,13 @@
+**************************************************
+*                                                *
+*                     Edit...                    *
+*                                                *
+*      a. Username           b. Password         *
+*                                                *
+*      c. Location           d. Phone number     *
+*                                                *
+*      e. CostumerType       f. Review history   *
+*                                                *
+*      g. Purchase history   h. Exit             *
+*                                                *
+**************************************************
