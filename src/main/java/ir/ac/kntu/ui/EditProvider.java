@@ -4,6 +4,7 @@ import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.services.*;
 import ir.ac.kntu.model.users.Costumer;
 import ir.ac.kntu.model.utils.Location;
+import ir.ac.kntu.model.utils.Review;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 
 
@@ -35,8 +36,7 @@ public class EditProvider extends Menu {
         double latitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        Location location = new Location(latitude, longtitude, address);
-        return location;
+        return  new Location(latitude, longtitude, address);
     }
 
     public void editLocation() {
@@ -120,11 +120,26 @@ public class EditProvider extends Menu {
         return agency.getProviders().get(choice);
     }
 
-    public void editRate() {
-        System.out.println("current rate : " + provider.getRate());
+    public void showReviews(){
+        char i = 'a';
+        for(Review r : provider.getReviews()){
+            System.out.println(i+". "+r);
+            i++;
+        }
+
+    }
+
+    public void editReviews() {
+        showReviews();
+        int choice = ScannerWrapper.getInstance().next()-'a';
+        Review review = provider.getReviews().get(choice);
+        System.out.println("new comment : ");
+        String comment = ScannerWrapper.getInstance().nextLine();
+        review.setComment(comment);
         System.out.println("new rate : ");
         double rate = ScannerWrapper.getInstance().nextDouble();
-        provider.setRate(rate);
+        review.setRate(rate);
+
     }
 
 
@@ -151,7 +166,7 @@ public class EditProvider extends Menu {
             case "g":
                 return true;
             case "h":
-                editRate();
+                editReviews();
                 return true;
             case "i":
                 return false;

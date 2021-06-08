@@ -2,13 +2,13 @@
 *                                                *
 *                     Edit...                    *
 *                                                *
-*      a. Name                 b. Address        *
+*      a. Name                 b. Location       *
 *                                                *
-*      c. Restaurant Type      d. Orders         *
+*      c. Service Type         d. Orders         *
 *                                                *
-*      e. productMenu(todo)       f. Schedule(todo) *
+*      e. productMenu(todo)    f. Schedule(todo) *
 *                                                *
-*      g. Deliveries(todo)     h. Rate           *
+*      g. Deliveries(deleted)  h. Reviews        *
 *                                                *
 *                  i. Exit                       *
 **************************************************
