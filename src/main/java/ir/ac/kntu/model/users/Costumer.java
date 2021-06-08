@@ -25,6 +25,16 @@ public class Costumer extends User {
     }
 
     @Override
+    public String toString() {
+        return "Costumer{" +
+                super.toString()+
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", location=" + location +
+                ", costumerType=" + costumerType +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o){
             return true;
