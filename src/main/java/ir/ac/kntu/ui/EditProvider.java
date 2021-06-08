@@ -3,15 +3,16 @@ package ir.ac.kntu.ui;
 import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.services.*;
 import ir.ac.kntu.model.users.Costumer;
+import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 
 
-public class EditRestaurant extends Menu {
+public class EditProvider extends Menu {
 
     private Provider provider;
 
-    public EditRestaurant() {
-        super("EditRestaurant.txt");
+    public EditProvider() {
+        super("EditProvider.txt");
     }
 
     public boolean execute(Agency agency) {
@@ -27,15 +28,26 @@ public class EditRestaurant extends Menu {
         provider.setName(name);
     }
 
-    public void editAddress() {
-        System.out.println(provider.getAddress());
-        System.out.println("new address : ");
+    public Location getLocation(){
+        System.out.println("enter location longtitude : ");
+        double longtitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter location latitutde : ");
+        double latitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        provider.setAddress(address);
+        Location location = new Location(latitude , longtitude ,address);
+        return location;
     }
 
-    public void editRestaurantType() {
-        System.out.println("current Type : " + provider.getRestaurantType().name());
+    public void editLocation(){
+        System.out.println("current location : "+provider.getLocation());
+        System.out.println("new location: ");
+        Location location = getLocation();
+        provider.setLocation(location);
+    }
+
+    public void editProviderType() {
+        System.out.println("current Type : " + provider.getType().name());
         char i = 'a';
         for (ServiceType serviceType : ServiceType.values()) {
             System.out.println(i + ". " + serviceType.name());
@@ -43,7 +55,7 @@ public class EditRestaurant extends Menu {
         }
         System.out.println("new provider type : ");
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        provider.setRestaurantType(ServiceType.values()[choice]);
+        provider.setType(ServiceType.values()[choice]);
     }
 
     public void showOrders() {
@@ -55,13 +67,11 @@ public class EditRestaurant extends Menu {
         }
     }
 
-    public void addOrder() {
-        System.out.println("enter phone number");
-        String phonenumber = ScannerWrapper.getInstance().nextLine();
-        System.out.println("enter address");
-        String address = ScannerWrapper.getInstance().nextLine();
-        Costumer costumer = new Costumer(phonenumber, address);
-        provider.getFoodMenu().execute(provider, costumer);
+    public void addOrder(Agency agency) {
+        System.out.println("enter Costumer UserName");
+        String userName = ScannerWrapper.getInstance().nextLine();
+        Costumer costumer = agency.findCustumer(userName);
+        provider.getProductMenu().execute(provider, costumer);
     }
 
     public void removeOrder() {
@@ -80,12 +90,12 @@ public class EditRestaurant extends Menu {
         }
     }
 
-    public void editOrders() {
+    public void editOrders(Agency agency) {
         System.out.println("a. Add         b. Remove         c. Edit");
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case "a":
-                addOrder();
+                addOrder(agency);
                 break;
             case "b":
                 removeOrder();
@@ -101,13 +111,13 @@ public class EditRestaurant extends Menu {
 
     Provider selectRestaurant(Agency agency) {
         char i = 'a';
-        for (Provider provider : agency.getRestaurants()) {
+        for (Provider provider : agency.getProviders()) {
             System.out.println(i + ". " + provider);
             i++;
         }
         int choice = ScannerWrapper.getInstance().next() - 'a';
-        System.out.println(agency.getRestaurants().get(choice).hashCode());
-        return agency.getRestaurants().get(choice);
+        System.out.println(agency.getProviders().get(choice).hashCode());
+        return agency.getProviders().get(choice);
     }
 
     public void editRate() {
@@ -126,13 +136,13 @@ public class EditRestaurant extends Menu {
                 editName();
                 return true;
             case "b":
-                editAddress();
+                editLocation();
                 return true;
             case "c":
-                editRestaurantType();
+                editProviderType();
                 return true;
             case "d":
-                editOrders();
+                editOrders(agency);
                 return true;
             case "e":
                 return true;
