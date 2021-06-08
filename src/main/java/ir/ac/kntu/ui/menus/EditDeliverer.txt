@@ -2,11 +2,12 @@
 *                                                *
 *                     Edit...                    *
 *                                                *
-*      a. Vehicle Type       b. Wage Type        *
+*      a. Vehicle Type      b. Wage Type         *
 *                                                *
 *      c. Paycheck          d. Active Order(todo)*
 *                                                *
-*      e. Restaurants        f. Schedule(todo)   *
+*      e. Orders            f. Location          *
 *                                                *
-*                  g. Exit                       *
+*                   g. Exit                      *
+*                                                *
 **************************************************

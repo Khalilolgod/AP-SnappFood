@@ -4,15 +4,15 @@ import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 import ir.ac.kntu.model.deliverySystem.*;
 
-public class DeliveryMenu extends Menu {
+public class DeliverySystemMenu extends Menu {
 
-    private EditDelivery editDelivery;
-    private NewDelivery newDelivery;
+    private EditDeliverer editDeliverer;
+    private NewDeliverer newDeliverer;
 
-    public DeliveryMenu() {
-        super("DeliveryMenu.txt");
-        this.editDelivery = new EditDelivery();
-        this.newDelivery = new NewDelivery();
+    public DeliverySystemMenu() {
+        super("DeliverySystemMenu.txt");
+        this.editDeliverer = new EditDeliverer();
+        this.newDeliverer = new NewDeliverer();
     }
 
     public boolean execute(Agency agency) {
@@ -24,7 +24,7 @@ public class DeliveryMenu extends Menu {
 
     public void showAllDeliveries(Agency agency) {
         char i = 'a';
-        for (Deliverer deliverer : agency.getAllDeliveries()) {
+        for (Deliverer deliverer : DeliverySystem.getDeliverers()) {
             System.out.println(i + ". " + deliverer);
             i++;
         }
@@ -40,10 +40,10 @@ public class DeliveryMenu extends Menu {
             case "b":
                 showAllDeliveries(agency);
                 int index = ScannerWrapper.getInstance().next() - 'a';
-                editDelivery.execute(agency, agency.getAllDeliveries().get(index));
+                editDeliverer.execute(agency, DeliverySystem.getDeliverers().get(index));
                 return true;
             case "c":
-                newDelivery.execute(agency);
+                newDeliverer.execute(agency);
                 return true;
             case "d":
                 return false;

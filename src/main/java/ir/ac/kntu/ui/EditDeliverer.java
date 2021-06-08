@@ -2,18 +2,20 @@ package ir.ac.kntu.ui;
 
 import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.deliverySystem.*;
+import ir.ac.kntu.model.services.Order;
 import ir.ac.kntu.model.services.Provider;
 import ir.ac.kntu.model.time.WorkDay;
+import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 
 import java.util.ArrayList;
 
-public class EditDelivery extends Menu {
+public class EditDeliverer extends Menu {
 
     private Deliverer deliverer;
 
-    public EditDelivery() {
-        super("EditDelivery.txt");
+    public EditDeliverer() {
+        super("EditDeliverer.txt");
     }
 
     public boolean execute(Agency agency, Deliverer deliverer) {
@@ -56,27 +58,28 @@ public class EditDelivery extends Menu {
         System.out.println("current paycheck  " + deliverer.getPaycheck());
     }
 
-    public void showRestaurants(ArrayList<Provider> providers) {
+    /*
+    public void showProviders(ArrayList<Provider> providers) {
         char i = 'a';
         for (Provider r : providers) {
             System.out.println(i + ". " + r);
             i++;
         }
-    }
+    }*/
 
     /*
     public void editRestaurant(Agency agency) {
-        showRestaurants(deliverer.getRestaurants());
+        showProviders(deliverer.getRestaurants());
         System.out.println("a. Add            b. Remove");
         String input = ScannerWrapper.getInstance().nextLine();
         switch (input) {
             case "a":
-                showRestaurants(agency.getRestaurants());
+                showProviders(agency.getRestaurants());
                 int choice1 = ScannerWrapper.getInstance().next() - 'a';
                 agency.getRestaurants().get(choice1).addDelivery(deliverer);
                 break;
             case "b":
-                showRestaurants(deliverer.getRestaurants());
+                showProviders(deliverer.getRestaurants());
                 int choice2 = ScannerWrapper.getInstance().next() - 'a';
                 deliverer.getRestaurants().get(choice2).getDeliveries().remove(deliverer);
                 deliverer.getRestaurants().remove(choice2);
@@ -119,6 +122,32 @@ public class EditDelivery extends Menu {
 
     }
 */
+
+    public Location getLocation(){
+        System.out.println("enter location longtitude : ");
+        double longtitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter location latitutde : ");
+        double latitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter address : ");
+        String address = ScannerWrapper.getInstance().nextLine();
+        Location location = new Location(latitude , longtitude ,address);
+        return location;
+    }
+
+    public void showOrders(){
+        char i = 'i';
+        for(Order o : deliverer.getOrderHistory()){
+            System.out.println(i+". "+o);
+        }
+    }
+
+    public void editLocation(){
+        System.out.println("current location : "+deliverer.getLocation());
+        System.out.println("new location: ");
+        Location location = getLocation();
+        deliverer.setLocation(location);
+    }
+
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -136,10 +165,10 @@ public class EditDelivery extends Menu {
                 //todo
                 break;
             case "e":
-                //editRestaurant(agency);
+                showOrders();
                 break;
             case "f":
-                //editSchedule();
+                editLocation();
                 break;
             case "g":
                 return false;
