@@ -2,12 +2,13 @@ package ir.ac.kntu.model.services;
 
 import ir.ac.kntu.model.time.*;
 import ir.ac.kntu.model.users.Operator;
+import ir.ac.kntu.model.utils.FariFoodObject;
 import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.Review;
 
 import java.util.ArrayList;
 
-public class Provider {
+public class Provider extends FariFoodObject {
     private String name;
     private ProductMenu productMenu;
     private ArrayList<Order> orders;
@@ -15,7 +16,6 @@ public class Provider {
     private double rate;
     private Schedule schedule;
     private Location location;
-    private ArrayList<Review> reviews;
     private ServiceType type;
     private DeliverySchedule deliverySchedule;
     private Operator operator;
@@ -30,7 +30,6 @@ public class Provider {
         orders = new ArrayList<>();
         deliveredOrders = new ArrayList<>();
         rate = 5;
-        reviews = new ArrayList<>();
     }
 
     public Provider(String name, Schedule schedule, Location location, ServiceType type, Operator operator) {
@@ -42,7 +41,6 @@ public class Provider {
         orders = new ArrayList<>();
         deliveredOrders = new ArrayList<>();
         rate = 5;
-        reviews = new ArrayList<>();
     }
 
     @Override
@@ -116,13 +114,6 @@ public class Provider {
         this.location = location;
     }
 
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     public ServiceType getType() {
         return type;

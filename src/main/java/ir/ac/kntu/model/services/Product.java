@@ -1,16 +1,16 @@
 package ir.ac.kntu.model.services;
 
+import ir.ac.kntu.model.utils.FariFoodObject;
 import ir.ac.kntu.model.utils.Review;
 
 import java.util.ArrayList;
 
-public class Product {
+public class Product extends FariFoodObject {
 
     private String name;
     private double price;
     private int prepTime;
     private double rate;
-    private ArrayList<Review> reviews;
     private Provider provider;
 
 
@@ -21,11 +21,11 @@ public class Product {
      * @param prepTime by minutes
      */
     public Product(String name, double price, int prepTime,Provider provider) {
+        super();
         this.setName(name);
         this.setPrice(price);
         this.setPrepTime(prepTime);
         this.provider = provider;
-        reviews = new ArrayList<>();
         this.setRate(5);
     }
 
@@ -71,13 +71,6 @@ public class Product {
         this.rate = rate;
     }
 
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     public Provider getProvider() {
         return provider;
