@@ -1,4 +1,4 @@
-﻿package ir.ac.kntu.model.users;
+package ir.ac.kntu.model.users;
 
 public  enum CostumerType
 {

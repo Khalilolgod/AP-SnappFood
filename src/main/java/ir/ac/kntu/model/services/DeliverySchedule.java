@@ -1,12 +1,12 @@
-﻿package ir.ac.kntu.model.services;
+package ir.ac.kntu.model.services;
 
 import ir.ac.kntu.model.deliverySystem.DeliveryShift;
 
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class DeliverySchedule {
+
     private LocalTime start;
     private LocalTime end;
     private int numberOfShifts;
