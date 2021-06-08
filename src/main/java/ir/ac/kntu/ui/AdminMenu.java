@@ -36,10 +36,10 @@ public class AdminMenu extends Menu {
                 agency.getProviderMenu().execute(agency);
                 return true;
             case "d":
-                agency.getCostumersMenu().execute(agency);
+                //agency.getCostumersMenu().execute(agency);
                 return true;
             case "e":
-                agency.getOperatorsMenu().execute(agency);
+                //agency.getOperatorsMenu().execute(agency);
                 return true;
             case "f":
                 //seting menu
