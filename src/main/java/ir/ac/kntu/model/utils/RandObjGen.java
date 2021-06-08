@@ -3,13 +3,13 @@ package ir.ac.kntu.model.utils;
 import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.deliverySystem.*;
 import ir.ac.kntu.model.services.*;
-import ir.ac.kntu.model.time.*;
+import ir.ac.kntu.model.users.Costumer;
+import ir.ac.kntu.model.users.CostumerType;
+import ir.ac.kntu.model.users.Operator;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.Random;
 
-import java.util.ArrayList;
 
 public class RandObjGen {
 
@@ -19,27 +19,27 @@ public class RandObjGen {
     private final String[] foodNames = {"pizza", "hamburger", "kabab", "jooje", "ghorme sabzi", "makaroni", "zereshk polo", "lazania"};
 
 
-    RandObjGen() {
+    public RandObjGen() {
         this.rand = new Random();
     }
 
     /**
      * @return a random Deliverer object
      */
-    /*
+
     public Deliverer deliveryGen() {
         VehicleType vehicleType = VehicleType.values()[rand.nextInt(VehicleType.values().length)];
         WageType wageType = WageType.values()[rand.nextInt(WageType.values().length)];
+        Location location = new Location(rand.nextDouble(), rand.nextDouble(), stringGen(20));
+        return new Deliverer(vehicleType, wageType, location);
+    }
 
-        //ArrayList<Provider> restaurants = new ArrayList<>();//todo make sure it meets with the restaurant schedule
-        Schedule schedule = scheduleGen();
-        return new Deliverer(vehicleType, wageType, schedule);
-    }*/
 
     /**
      * @return a random Shift object
      */
-    public Shift shiftGen() {
+   /* public Shift shiftGen() {
+
         int hour1 = rand.nextInt(24);
         int minute1 = rand.nextInt(60);
         int deltaHour = rand.nextInt(2);
@@ -50,12 +50,12 @@ public class RandObjGen {
         LocalTime end = LocalTime.of(hour2, minute2);
         return new Shift(start, end);
     }
+    */
 
     /**
      * @return a random Schedule object
      */
-
-    public Schedule scheduleGen() {
+    /*public Schedule scheduleGen() {
         int daysInWeek = rand.nextInt(7) + 1;
         int numberOfshifts;
         DayOfWeek dayOfTheWeek;
@@ -72,8 +72,23 @@ public class RandObjGen {
             workDays.add(workDay);
         }
         return new Schedule(workDays);
+    }*/
+    public String getAlphaNumericString(int n) {
+        String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789";
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+
+            int index = (int) (alphaNumericString.length() * Math.random());
+            sb.append(alphaNumericString.charAt(index));
+        }
+        return sb.toString();
     }
 
+    /**
+     * @param n length of the generated string
+     * @return a random alphabetic string
+     */
     public String stringGen(int n) {
         String alphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "qwertyuiopasdfghjklzxcvbnm";
         StringBuilder sb = new StringBuilder(n);
@@ -93,49 +108,91 @@ public class RandObjGen {
             //not safe change this later
         }
     }
-
-    public Provider restaurantGen(String name, Agency agency) {
+*/
+    public Location locationGen() {
+        double lat = rand.nextInt(300);
+        double lon = rand.nextInt(300);
         String address = stringGen(20);
-        ServiceType serviceType = ServiceType.values()[rand.nextInt(ServiceType.values().length)];
-        ProductMenu productMenu = foodmenuGen();
-        Schedule schedule = scheduleGen();
-        //todo sort the deliveries out
-        Provider provider = new Provider(name, address, serviceType, productMenu, schedule);
-        assignRandomDeliveris(agency, provider);
-        return provider;
+        return new Location(lat, lon, address);
     }
 
-    public ProductMenu foodmenuGen() {
-        ArrayList<Product> products = new ArrayList<>();
+    public Operator operatorGen() {
+        return new Operator(stringGen(6), getAlphaNumericString(4));
+    }
+
+    public Restaurant restaurantGen(Agency agency) {
+        String name = stringGen(10);
+        Location location = locationGen();
+        ServiceType serviceType = ServiceType.values()[rand.nextInt(ServiceType.values().length)];
+        Operator operator = operatorGen();
+        Restaurant restaurant = new Restaurant(name, location, serviceType, operator);
+        ProductMenu productMenu = productMenuGen(restaurant);
+        restaurant.setProductMenu(productMenu);
+        return restaurant;
+    }
+
+    public TareBar tareBargen(Agency agency) {
+        String name = stringGen(10);
+        Location location = locationGen();
+        ServiceType serviceType = ServiceType.values()[rand.nextInt(ServiceType.values().length)];
+        Operator operator = operatorGen();
+        TareBar tareBar = new TareBar(name, location, serviceType, operator);
+        ProductMenu productMenu = productMenuGen(tareBar);
+        tareBar.setProductMenu(productMenu);
+        return tareBar;
+    }
+
+    public SuperMarket superMarketgen(Agency agency) {
+        String name = stringGen(10);
+        Location location = locationGen();
+        ServiceType serviceType = ServiceType.values()[rand.nextInt(ServiceType.values().length)];
+        Operator operator = operatorGen();
+        SuperMarket superMarket = new SuperMarket(name, location, serviceType, operator);
+        ProductMenu productMenu = productMenuGen(superMarket);
+        superMarket.setProductMenu(productMenu);
+        return superMarket;
+    }
+
+    public ProductMenu productMenuGen(Provider provider) {
+        HashMap<Product, Integer> products = new HashMap<>();
         int numberOfFoods = rand.nextInt(foodNames.length) + 1;
         for (int i = 0; i < numberOfFoods; i++) {
-            products.add(foodGen(foodNames[i]));
+            products.put(productGen(foodNames[i], provider), rand.nextInt(5) + 1);
         }
         return new ProductMenu(products);
     }
 
-    public Product foodGen(String name) {
+    //todo make food , vegetable , ... names and enums
+
+    public Product productGen(String name, Provider provider) {
         double price = rand.nextDouble() * 100;
         int prepTime = rand.nextInt(120) + 10;
-        return new Product(name, price, prepTime);
+        return new Product(name, price, prepTime, provider);
+    }
+
+    public Costumer costumerGen() {
+        return new Costumer(stringGen(6), getAlphaNumericString(4),
+                CostumerType.values()[rand.nextInt(CostumerType.values().length)], locationGen(), stringGen(11));
     }
 
     public void generate(Agency agency) {
+        /*
         for (int i = 0; i < 15; i++) {
             agency.getAllDeliveries().add(deliveryGen());
         }
-        for (int i = 0; i < restaurentNames.length; i++) {
-            agency.getRestaurants().add(restaurantGen(restaurentNames[i], agency));
+        */
+
+        for (int i = 0; i < 4; i++) {
+            agency.getProviders().add(restaurantGen(agency));
+            agency.getProviders().add(tareBargen(agency));
+            agency.getProviders().add(superMarketgen(agency));
         }
-        ArrayList<Shift> shifts = new ArrayList<>();
-        Shift shift = new Shift(LocalTime.of(1, 0), LocalTime.of(23, 59));
-        shifts.add(shift);
-        WorkDay workDay = new WorkDay(DayOfWeek.TUESDAY, shifts);
-        agency.getProviders().get(3).getSchedule().getWorkDays().add(workDay);
-        agency.getProviders().get(4).getSchedule().getWorkDays().add(workDay);
-        agency.getProviders().get(5).getSchedule().getWorkDays().add(workDay);
+
+        for (int i = 0; i < 10; i++) {
+            agency.getCostumers().add(costumerGen());
+        }
 
     }
 
-    */
+
 }
