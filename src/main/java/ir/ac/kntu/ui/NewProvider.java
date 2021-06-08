@@ -150,8 +150,7 @@ public class NewProvider extends Menu {
         double latitude = ScannerWrapper.getInstance().nextDouble();
         System.out.println("enter address : ");
         String address = ScannerWrapper.getInstance().nextLine();
-        Location location = new Location(latitude, longtitude, address);
-        return location;
+        return new Location(latitude, longtitude, address);
     }
 
     public Operator getOperator(Agency agency) {
