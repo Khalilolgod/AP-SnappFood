@@ -10,14 +10,14 @@ import ir.ac.kntu.model.users.Costumer;
 
 public class AdminMenu extends Menu {
 
-    public AdminMenu(){
+    public AdminMenu() {
         super("AdminMenu.txt");
     }
 
-    public void execute(Agency agency){
+    public void execute(Agency agency) {
         while (true) {
             showMenu();
-            if(!inputProcessor(agency)){
+            if (!inputProcessor(agency)) {
                 break;
             }
         }
@@ -61,36 +61,39 @@ public class AdminMenu extends Menu {
         return CostumerType.values()[choice - 'a'];
     }
 
-    public Costumer getCostumer(Agency agency){
+    public Costumer getCostumer(Agency agency) {
         String username = getUsername(agency);
         System.out.println("enter password : ");
         String password = ScannerWrapper.getInstance().nextLine();
         Location location = getLocation();
         String phoneNumber = getPhoneNumber();
         CostumerType costumerType = getCostumerType();
-        return  new Costumer(username,password,costumerType,location,phoneNumber);
+        return new Costumer(username, password, costumerType, location, phoneNumber);
 
     }
 
-    public Operator chooseOperator(Agency agency){
-        char i ='a';
-        for(Provider p : agency.getProviders()){
-            System.out.println(i+". "+p.getOperator());
+    public Operator chooseOperator(Agency agency) {
+        char i = 'a';
+        for (Provider p : agency.getProviders()) {
+            System.out.println(i + ". " + p.getOperator());
             i++;
         }
-        int choice = ScannerWrapper.getInstance().next()-'a';
+        int choice = ScannerWrapper.getInstance().next() - 'a';
         return agency.getProviders().get(choice).getOperator();
     }
 
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
-        switch (choice){
+        switch (choice) {
             case "a":
                 System.out.println("enter Costumer UserName");
                 String userName = ScannerWrapper.getInstance().nextLine();
                 Costumer costumer = agency.findCustumer(userName);
-                agency.getChooseProviderMenu().execute(agency,costumer);
+                if(costumer == null){
+                    return true;
+                }
+                agency.getChooseProviderMenu().execute(agency, costumer);
                 return true;
             case "b":
                 agency.getDeliverySystemMenu().execute(agency);
@@ -100,17 +103,23 @@ public class AdminMenu extends Menu {
                 return true;
             case "d":
                 //todo sperate newing and editing
-                System.out.println("a. New     b. Edit");
-                String choise  = ScannerWrapper.getInstance().nextLine();
-                if(choise.equals("b")) {
+                agency.getEditCostumersMenu().showCostumers(agency);
+                System.out.println("a. New     b. Edit    c. Exit");
+                String choise = ScannerWrapper.getInstance().nextLine();
+                if (choise.equals("b")) {
                     agency.getEditCostumersMenu().execute(agency);
-                }else if(choise.equals("a")){
+                } else if (choise.equals("a")) {
                     agency.getCostumers().add(getCostumer(agency));
                 }
                 return true;
             case "e":
-                //Operator operator = chooseOperator(agency);
-                agency.getOperatorMenu().execute(agency);
+                agency.getOperatorMenu().showOperators(agency);
+                System.out.println("get in as Operator? ");
+                System.out.println("a. yes     b. no");
+                String tmp = ScannerWrapper.getInstance().nextLine();
+                if (tmp.equals("a")) {
+                    agency.getOperatorMenu().execute(agency);
+                }
                 return true;
             case "f":
                 //seting menu
