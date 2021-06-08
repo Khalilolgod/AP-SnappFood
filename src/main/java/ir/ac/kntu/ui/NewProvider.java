@@ -3,6 +3,8 @@ package ir.ac.kntu.ui;
 import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.deliverySystem.Deliverer;
 import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.users.Operator;
+import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 import ir.ac.kntu.model.services.Product;
 import ir.ac.kntu.model.services.ProductMenu;
@@ -14,12 +16,13 @@ import ir.ac.kntu.model.time.WorkDay;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class NewRestaurant extends Menu {
+public class NewProvider extends Menu {
 
 
-    public NewRestaurant() {
-        super("RestaurantsMenu.txt");
+    public NewProvider() {
+        super("ProvidersMenu.txt");
     }
 
     public boolean execute(Agency agency) {
@@ -29,7 +32,7 @@ public class NewRestaurant extends Menu {
 
     public void showRestaurants(Agency agency) {
         char i = 'a';
-        for (Provider r : agency.getRestaurants()) {
+        for (Provider r : agency.getProviders()) {
             System.out.println(i + ". " + r);
             i++;
         }
@@ -55,11 +58,11 @@ public class NewRestaurant extends Menu {
         return ServiceType.values()[choice];
     }
 
-    public ProductMenu getFoodMenu() {
+    public ProductMenu getProductMenu(Provider provider) {
 
-        ArrayList<Product> products = new ArrayList<>();
+        HashMap<Product,Integer> products = new HashMap<>();
         int choice;
-        System.out.println("food menu: ");
+        System.out.println("product menu: ");
         while (true) {
             System.out.println("a. Add Product       b. Done");
             choice = ScannerWrapper.getInstance().next();
@@ -70,8 +73,8 @@ public class NewRestaurant extends Menu {
                 double price = Double.parseDouble(ScannerWrapper.getInstance().nextLine());
                 System.out.println("preptime : ");
                 int preptime = Integer.parseInt(ScannerWrapper.getInstance().nextLine());
-                Product product = new Product(name, price, preptime);
-                products.add(product);
+                Product product = new Product(name, price, preptime,provider);
+                products.put(product,10);
             } else {
                 break;
             }
@@ -79,7 +82,7 @@ public class NewRestaurant extends Menu {
         return new ProductMenu(products);
     }
 
-
+    /*
     public ArrayList<Deliverer> getDeliveries(Agency agency, Provider provider) {
         ArrayList<Deliverer> deliveries = new ArrayList<>();
         ArrayList<Deliverer> validDeliveries =  agency.getAddableDeliveries();
@@ -109,7 +112,7 @@ public class NewRestaurant extends Menu {
         int minute = ScannerWrapper.getInstance().nextInt();
         return LocalTime.of(hour, minute);
     }
-
+    */
     public Schedule getSchedule() {
         //change it so (a.add b.done)
         System.out.println("Number of workdays in a week : ");
@@ -140,16 +143,35 @@ public class NewRestaurant extends Menu {
         return new Schedule(workDays);
     }
 
+    public Location getLocation(){
+        System.out.println("enter location longtitude : ");
+        double longtitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter location latitutde : ");
+        double latitude = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("enter address : ");
+        String address = ScannerWrapper.getInstance().nextLine();
+        Location location = new Location(latitude , longtitude ,address);
+        return location;
+    }
+
+    public Operator getOperator(Agency agency){
+        System.out.println("enter Operator username : ");
+        String username = ScannerWrapper.getInstance().nextLine();
+        System.out.println("enter Operator password : ");
+        String password = ScannerWrapper.getInstance().nextLine();
+        return new Operator(username,password);
+    }
+
     public void newRestaurant(Agency agency) {
         String name = getRestaurantName();
-        String address = getRestaurantAddress();
+        Location location = getLocation();
         ServiceType serviceType = getRestaurantType();
-        ProductMenu productMenu = getFoodMenu();
         Schedule schedule = getSchedule();
-        Provider provider = new Provider(name, address, serviceType, productMenu, schedule);
-        ArrayList<Deliverer> deliveries = getDeliveries(agency, provider);
-        provider.setDeliveries(deliveries);
-        agency.getRestaurants().add(provider);
+        Operator operator = getOperator(agency);
+        Provider provider = new Provider(name,schedule,location,serviceType,operator);
+        ProductMenu productMenu = getProductMenu(provider);
+        provider.setProductMenu(productMenu);
+        agency.getProviders().add(provider);
     }
 
     @Override
