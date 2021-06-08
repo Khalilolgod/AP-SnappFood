@@ -1,6 +1,6 @@
 package ir.ac.kntu.model.agency;
 
-import ir.ac.kntu.model.deliverySystem.Deliverer;
+import ir.ac.kntu.model.deliverySystem.DeliverySystem;
 import ir.ac.kntu.model.users.Admin;
 import ir.ac.kntu.model.services.*;
 import ir.ac.kntu.model.users.Costumer;
@@ -14,24 +14,27 @@ public class Agency {
 
     private Admin admin;
     private ArrayList<Provider> providers;
-    private ArrayList<Deliverer> allDeliveries;
+    //private ArrayList<Deliverer> allDeliveries;
+    private DeliverySystem deliverySystem;
     private ArrayList<Costumer> costumers;
 
     private ArrayList<Order> pendingOrders;
 
     private ChooseProviderMenu chooseProviderMenu;
-    private DeliveryMenu deliveryMenu;
-    private RestaurantMenu restaurantMenu;
+    private DeliverySystemMenu deliverySystemMenu;
+    private MainMenu mainMenu;
+    private ProviderMenu providerMenu;
 
 
-    Agency() {
+    public Agency() {
         this.setAdmin(new Admin("admin", "1234"));
         this.providers = new ArrayList<>();
         this.chooseProviderMenu = new ChooseProviderMenu();
-        this.deliveryMenu = new DeliveryMenu();
-        this.restaurantMenu = new RestaurantMenu();
-        this.allDeliveries = new ArrayList<>();
+        this.deliverySystemMenu = new DeliverySystemMenu();
+        this.providerMenu = new ProviderMenu();
+        this.deliverySystem = new DeliverySystem();
         this.pendingOrders = new ArrayList<>();
+        this.mainMenu = new MainMenu();
     }
 
     public Costumer findCustumer(String username){
@@ -53,15 +56,8 @@ public class Agency {
     }
 
 
-    //TODO
-    public void operatorlogin() {
-        while (true) {
-            if (admin.verifyUser()) {
-                break;
-            }
-        }
-        admin.getOperatorMenu().execute(this);
-        System.out.println("Exit");
+    public void start() {
+        getMainMenu().execute(this);
     }
 
 
@@ -92,14 +88,6 @@ public class Agency {
         this.admin = admin;
     }
 
-    public ArrayList<Deliverer> getAllDeliveries() {
-        return allDeliveries;
-    }
-
-    public void setAllDeliveries(ArrayList<Deliverer> allDeliveries) {
-        this.allDeliveries = allDeliveries;
-    }
-
     public ChooseProviderMenu getChooseProviderMenu() {
         return chooseProviderMenu;
     }
@@ -108,20 +96,20 @@ public class Agency {
         this.chooseProviderMenu = chooseProviderMenu;
     }
 
-    public DeliveryMenu getDeliveryMenu() {
-        return deliveryMenu;
+    public DeliverySystemMenu getDeliverySystemMenu() {
+        return deliverySystemMenu;
     }
 
-    public void setDeliveryMenu(DeliveryMenu deliveryMenu) {
-        this.deliveryMenu = deliveryMenu;
+    public void setDeliverySystemMenu(DeliverySystemMenu deliverySystemMenu) {
+        this.deliverySystemMenu = deliverySystemMenu;
     }
 
-    public RestaurantMenu getRestaurantMenu() {
-        return restaurantMenu;
+    public ProviderMenu getRestaurantMenu() {
+        return providerMenu;
     }
 
-    public void setRestaurantMenu(RestaurantMenu restaurantMenu) {
-        this.restaurantMenu = restaurantMenu;
+    public void setRestaurantMenu(ProviderMenu providerMenu) {
+        this.providerMenu = providerMenu;
     }
 
     public ArrayList<Costumer> getCostumers() {
@@ -138,5 +126,21 @@ public class Agency {
 
     public void setPendingOrders(ArrayList<Order> pendingOrders) {
         this.pendingOrders = pendingOrders;
+    }
+
+    public DeliverySystem getDeliverySystem() {
+        return deliverySystem;
+    }
+
+    public void setDeliverySystem(DeliverySystem deliverySystem) {
+        this.deliverySystem = deliverySystem;
+    }
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
+
+    public void setMainMenu(MainMenu mainMenu) {
+        this.mainMenu = mainMenu;
     }
 }
