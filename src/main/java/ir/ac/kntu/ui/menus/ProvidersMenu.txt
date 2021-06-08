@@ -2,8 +2,8 @@
 *                                                *
 *                Provider actions                *
 *                                                *
-*         a. Show all             b. Edit        *
+*         a. Show all           b. New           *
 *                                                *
-*         c. New                  d. Exit        *
+*         c. show top 5         d. exit          *
 *                                                *
 **************************************************

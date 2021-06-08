@@ -77,6 +77,7 @@ public class ProductMenu {
             if(products.get((Product)products.keySet().toArray()[choice]) > 0){
                 order.addProduct((Product)products.keySet().toArray()[choice]);
                 reduceProductCount((Product) products.keySet().toArray()[choice]);
+                costumer.setWallet(costumer.getWallet()- ((Product) products.keySet().toArray()[choice]).getPrice());
                 System.out.println("added " + ((Product) products.keySet().toArray()[choice]).getName());
             }else {
                 System.out.println("out of this product");

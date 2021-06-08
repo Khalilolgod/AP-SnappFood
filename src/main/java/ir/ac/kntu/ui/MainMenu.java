@@ -2,11 +2,11 @@ package ir.ac.kntu.ui;
 
 import ir.ac.kntu.model.agency.Agency;
 import ir.ac.kntu.model.users.Costumer;
+import ir.ac.kntu.model.users.Operator;
 import ir.ac.kntu.model.users.User;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 
 public class MainMenu extends Menu {
-
 
     public MainMenu() {
         super("MainMenu.txt");
@@ -44,11 +44,14 @@ public class MainMenu extends Menu {
         }
     }
 
-    public boolean loginOperator(Agency agency) {
+    public void loginOperator(Agency agency) {
         System.out.print("operator username : ");
         String username = ScannerWrapper.getInstance().nextLine();
-        Costumer costumer = agency.findCustumer(username);
-        return verifyUser(costumer);
+        Operator operator = agency.findOperator(username);
+        if(verifyUser(operator)){
+            OperatorMenu operatorMenu = new OperatorMenu(operator.getProvider());
+            operatorMenu.execute(agency);
+        }
     }
 
     @Override
@@ -65,10 +68,7 @@ public class MainMenu extends Menu {
                 }
                 return true;
             case "b":
-                if (loginOperator(agency)) {
-                    //Operator menu
-                    return true;
-                }
+                loginOperator(agency);
                 return true;
             case "c":
                 loginCostumer(agency);

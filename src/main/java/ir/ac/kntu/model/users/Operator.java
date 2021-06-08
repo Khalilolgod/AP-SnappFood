@@ -3,15 +3,14 @@ package ir.ac.kntu.model.users;
 import ir.ac.kntu.model.services.Provider;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 import ir.ac.kntu.ui.AdminMenu;
+import ir.ac.kntu.ui.OperatorMenu;
 
 public class Operator extends User{
 
     private Provider provider;
-    private AdminMenu adminMenu;
 
     public Operator(String username, String password) {
         super(username, password);
-        this.adminMenu = new AdminMenu();
     }
 
 
@@ -29,15 +28,6 @@ public class Operator extends User{
             return false;
         }
         return true;
-    }
-
-
-    public AdminMenu getOperatorMenu() {
-        return adminMenu;
-    }
-
-    public void setOperatorMenu(AdminMenu adminMenu) {
-        this.adminMenu = adminMenu;
     }
 
     public Provider getProvider() {

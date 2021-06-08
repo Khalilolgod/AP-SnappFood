@@ -15,7 +15,7 @@ public class Costumer extends User {
     private ArrayList<Order> purchaseHistory;
     private ArrayList<Review> reviewHistory;
     private CostumerType costumerType;
-
+    private double wallet;
     private CostumerMenu costumerMenu;
 
     public Costumer(String username, String password, CostumerType costumerType, Location location, String phoneNumber) {
@@ -26,12 +26,15 @@ public class Costumer extends User {
         purchaseHistory = new ArrayList<>();
         reviewHistory = new ArrayList<>();
         costumerMenu = new CostumerMenu(this);
+        this.wallet = 10000;
+
     }
 
     @Override
     public String toString() {
         return "Costumer{" +
                 super.toString()+
+                ", wallet='" + getWallet() + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", location=" + location +
                 ", costumerType=" + costumerType +
@@ -101,5 +104,13 @@ public class Costumer extends User {
 
     public void setCostumerMenu(CostumerMenu costumerMenu) {
         this.costumerMenu = costumerMenu;
+    }
+
+    public double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(double wallet) {
+        this.wallet = wallet;
     }
 }

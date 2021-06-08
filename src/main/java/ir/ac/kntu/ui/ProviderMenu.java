@@ -32,8 +32,6 @@ public class ProviderMenu extends Menu {
         }
     }
 
-
-
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -42,11 +40,11 @@ public class ProviderMenu extends Menu {
                 showProviders(agency);
                 return true;
             case "b":
-                editProvider.execute(agency);
-                return true;
-            case "c":
                 newProvider.execute(agency);
                 return true;
+            case "c":
+                //showtops(agency);
+                return false;
             case "d":
                 return false;
             default:

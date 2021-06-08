@@ -148,6 +148,9 @@ public class OperatorMenu extends Menu {
 
     public void editReviewHistory() {
 
+        if(provider.getReviews().size() <1 ){
+            return;
+        }
         Review review = chooseReview();
         System.out.println(" a. remove   b. exit ");
         String choice = ScannerWrapper.getInstance().nextLine();

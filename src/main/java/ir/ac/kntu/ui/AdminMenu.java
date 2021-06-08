@@ -82,6 +82,30 @@ public class AdminMenu extends Menu {
         return agency.getProviders().get(choice).getOperator();
     }
 
+    public void showCostumers(Agency agency) {
+        char i = 'a';
+        for (Costumer c : agency.getCostumers()) {
+            System.out.println(i + ". " + c + " password : " + c.getPassword());
+            i++;
+        }
+    }
+
+    public void showOperators(Agency agency) {
+        char i = 'a';
+        for (Provider p : agency.getProviders()) {
+            System.out.println(i + ". " + p.getOperator() + " password : " + p.getOperator().getPassword());
+            i++;
+        }
+    }
+
+    public void showProviders(Agency agency) {
+        char i = 'a';
+        for (Provider p : agency.getProviders()) {
+            System.out.println(i + ". " + p);
+            i++;
+        }
+    }
+
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
@@ -99,11 +123,12 @@ public class AdminMenu extends Menu {
                 agency.getDeliverySystemMenu().execute(agency);
                 return true;
             case "c":
+                showProviders(agency);
                 agency.getProviderMenu().execute(agency);
                 return true;
             case "d":
                 //todo sperate newing and editing
-                agency.getEditCostumersMenu().showCostumers(agency);
+                showCostumers(agency);
                 System.out.println("a. New     b. Edit    c. Exit");
                 String choise = ScannerWrapper.getInstance().nextLine();
                 if (choise.equals("b")) {
@@ -113,7 +138,7 @@ public class AdminMenu extends Menu {
                 }
                 return true;
             case "e":
-                agency.getOperatorMenu().showOperators(agency);
+                showOperators(agency);
                 System.out.println("get in as Operator? ");
                 System.out.println("a. yes     b. no");
                 String tmp = ScannerWrapper.getInstance().nextLine();

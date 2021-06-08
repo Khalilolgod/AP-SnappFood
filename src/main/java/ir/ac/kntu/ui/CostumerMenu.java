@@ -6,17 +6,17 @@ import ir.ac.kntu.model.users.Costumer;
 import ir.ac.kntu.model.utils.Review;
 import ir.ac.kntu.model.utils.ScannerWrapper;
 
-public class CostumerMenu extends Menu{
+public class CostumerMenu extends Menu {
 
-    private Costumer costumer ;
+    private Costumer costumer;
     private EditCostumersMenu editCostumersMenu;
 
-    public CostumerMenu(Costumer costumer){
+    public CostumerMenu(Costumer costumer) {
         this.costumer = costumer;
         this.editCostumersMenu = new EditCostumersMenu(costumer);
     }
 
-    public boolean execute(Agency agency){
+    public boolean execute(Agency agency) {
         do {
             showMenu();
         } while (inputProcessor(agency));
@@ -29,14 +29,14 @@ public class CostumerMenu extends Menu{
         System.out.println("a. order      b. show info       c. edit info \n\t\td. exit");
     }
 
-    void showinfo(){
+    void showinfo() {
         System.out.println(costumer);
         System.out.println("reviews : ");
-        for(Review r : costumer.getReviewHistory()){
+        for (Review r : costumer.getReviewHistory()) {
             System.out.println(r);
         }
         System.out.println("purchases : ");
-        for (Order o : costumer.getPurchaseHistory()){
+        for (Order o : costumer.getPurchaseHistory()) {
             System.out.println(o);
         }
     }
@@ -44,7 +44,7 @@ public class CostumerMenu extends Menu{
     @Override
     public boolean inputProcessor(Agency agency) {
         String choice = ScannerWrapper.getInstance().nextLine();
-        switch (choice){
+        switch (choice) {
             case "a":
                 agency.getChooseProviderMenu().execute(agency, costumer);
                 return true;
