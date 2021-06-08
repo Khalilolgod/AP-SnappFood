@@ -4,7 +4,7 @@
 *                                                *
 *      a. Order Status       b. Final Price      *
 *                                                *
-*      c. Prep Time          d. Foods            *
+*      c. Prep Time          d. Products            *
 *                                                *
 *      e. Delivery           f. Exit             *
 *                                                *
