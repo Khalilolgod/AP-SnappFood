@@ -16,6 +16,13 @@ public class WorkDay {
         this.day = day;
     }
 
+    public WorkDay(DayOfWeek day, LocalTime start, LocalTime end) {
+        this.day = day;
+        this.shifts = new ArrayList<>();
+        Shift shift = new Shift(start, end);
+        getShifts().add(shift);
+    }
+
     @Override
     public String toString() {
         String output = "day=" + day.name();
