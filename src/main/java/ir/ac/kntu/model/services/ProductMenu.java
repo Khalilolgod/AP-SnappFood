@@ -72,9 +72,16 @@ public class ProductMenu {
     public boolean inputProcessor(Provider provider, Costumer costumer) {
         int choice = ScannerWrapper.getInstance().next() - 'a';
         Order order = new Order(provider, costumer);
+        costumer.getPurchaseHistory().add(order);
         while (choice < getProducts().size()) {
-            order.addProduct((Product) products.keySet().toArray()[choice]);
-            System.out.println("added " + ((Product) products.keySet().toArray()[choice]).getName());
+            if(products.get((Product)products.keySet().toArray()[choice]) > 0){
+                order.addProduct((Product)products.keySet().toArray()[choice]);
+                reduceProductCount((Product) products.keySet().toArray()[choice]);
+                System.out.println("added " + ((Product) products.keySet().toArray()[choice]).getName());
+            }else {
+                System.out.println("out of this product");
+            }
+
             System.out.println("next food: ");
             choice = ScannerWrapper.getInstance().next() - 'a';
         }
@@ -85,6 +92,9 @@ public class ProductMenu {
         return false;
     }
 
+    public void reduceProductCount(Product product){
+        products.put(product,products.get(product)-1);
+    }
 
     public HashMap<Product, Integer> getProducts() {
         return products;

@@ -156,5 +156,6 @@ public class Order {
 
     public void setDeliveryShift(DeliveryShift deliveryShift) {
         this.deliveryShift = deliveryShift;
+        provider.getDeliverySchedule().reserveShift(deliveryShift);
     }
 }

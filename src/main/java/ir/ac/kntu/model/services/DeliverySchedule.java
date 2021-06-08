@@ -44,6 +44,10 @@ public class DeliverySchedule {
         return  deliverySchedule;
     }
 
+    public void reserveShift(DeliveryShift deliveryShift){
+        deliveryShift.setCapacity(deliveryShift.getCapacity()-1);
+    }
+
     public LocalTime getStart() {
         return start;
     }
