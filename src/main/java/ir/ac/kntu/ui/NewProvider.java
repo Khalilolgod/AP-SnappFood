@@ -1,14 +1,10 @@
 package ir.ac.kntu.ui;
 
 import ir.ac.kntu.model.agency.Agency;
-import ir.ac.kntu.model.deliverySystem.Deliverer;
-import ir.ac.kntu.model.services.Provider;
+import ir.ac.kntu.model.services.*;
 import ir.ac.kntu.model.users.Operator;
 import ir.ac.kntu.model.utils.Location;
 import ir.ac.kntu.model.utils.ScannerWrapper;
-import ir.ac.kntu.model.services.Product;
-import ir.ac.kntu.model.services.ProductMenu;
-import ir.ac.kntu.model.services.ServiceType;
 import ir.ac.kntu.model.time.Schedule;
 import ir.ac.kntu.model.time.Shift;
 import ir.ac.kntu.model.time.WorkDay;
@@ -153,6 +149,16 @@ public class NewProvider extends Menu {
         return new Location(latitude, longtitude, address);
     }
 
+    public ProviderType getProviderType(){
+        char i = 'a';
+        for(ProviderType pt : ProviderType.values()){
+            System.out.println(i+". "+pt.name().toLowerCase());
+            i++;
+        }
+        int choice = ScannerWrapper.getInstance().next()-'a';
+        return ProviderType.values()[choice];
+    }
+
     public Operator getOperator(Agency agency) {
         System.out.println("enter Operator username : ");
         String username = ScannerWrapper.getInstance().nextLine();
@@ -161,13 +167,27 @@ public class NewProvider extends Menu {
         return new Operator(username, password);
     }
 
-    public void newRestaurant(Agency agency) {
+    public void newProvider(Agency agency) {
         String name = getRestaurantName();
+        ProviderType providerType = getProviderType();
         Location location = getLocation();
         ServiceType serviceType = getRestaurantType();
-        Schedule schedule = getSchedule();
         Operator operator = getOperator(agency);
-        Provider provider = new Provider(name, location, serviceType, operator);
+        Provider provider;
+        switch (providerType){
+            case RESTAURANT:
+                provider = new Restaurant(name, location, serviceType, operator);
+                break;
+            case TAREBAR:
+                provider = new TareBar(name, location, serviceType, operator);
+                break;
+            case SUPERMARKET:
+                provider = new SuperMarket(name, location, serviceType, operator);
+                break;
+            default:
+                provider = new Provider(name, location, serviceType, operator);
+                break;
+        }
         ProductMenu productMenu = getProductMenu(provider);
         provider.setProductMenu(productMenu);
         agency.getProviders().add(provider);
@@ -175,7 +195,7 @@ public class NewProvider extends Menu {
 
     @Override
     public boolean inputProcessor(Agency agency) {
-        newRestaurant(agency);
+        newProvider(agency);
         return false;
     }
 }
