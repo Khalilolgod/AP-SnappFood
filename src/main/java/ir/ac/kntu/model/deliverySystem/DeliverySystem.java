@@ -32,7 +32,7 @@ public class DeliverySystem
         return deliverer;
     }
 
-    private static ArrayList<Deliverer> getDeliverers() {
+    public static ArrayList<Deliverer> getDeliverers() {
         return deliverers;
     }
 

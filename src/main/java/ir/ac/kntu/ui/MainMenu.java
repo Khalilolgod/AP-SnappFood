@@ -8,7 +8,7 @@ import ir.ac.kntu.model.utils.ScannerWrapper;
 public class MainMenu extends Menu {
 
     public MainMenu(){
-        super("AdminMenu.txt");
+        super("MainMenu.txt");
     }
 
     public void execute(Agency agency){
