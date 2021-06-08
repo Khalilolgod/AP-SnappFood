@@ -50,7 +50,7 @@ public class EditOrder extends Menu {
     }
 
     public void editFoods(Provider provider, Order order) {
-        System.out.println("a. Add       b. Remove");
+        System.out.println("a. Add       b. Remove     c.Update");
         String choice = ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case "a":
@@ -66,6 +66,9 @@ public class EditOrder extends Menu {
                 }
                 int chois = ScannerWrapper.getInstance().next() - 'a';
                 order.removeFood(products.get(chois));
+                break;
+            case "c":
+                provider.getProductMenu().processOrder(order);
                 break;
             default:
                 break;
