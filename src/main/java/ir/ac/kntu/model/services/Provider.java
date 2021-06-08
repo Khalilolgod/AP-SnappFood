@@ -21,6 +21,7 @@ public class Provider extends FariFoodObject {
     private Operator operator;
 
     public Provider(String name, ProductMenu productMenu, Schedule schedule, Location location, ServiceType type, Operator operator) {
+        super();
         this.name = name;
         this.productMenu = productMenu;
         this.schedule = schedule;
